@@ -3,7 +3,7 @@ package alex.com.challenges
 
 import org.junit.Test
 
-class BoxMapTest {
+class BoxMaze {
 
     companion object {
         val hardBoxMap = mutableListOf<String>().apply {

@@ -2,7 +2,7 @@ package alex.com.challenges
 
 import org.junit.Test
 
-class MapTest {
+class Maze {
 
     companion object {
         val simplePath = mutableListOf<String>().apply {
