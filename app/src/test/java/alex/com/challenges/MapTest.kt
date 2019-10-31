@@ -5,16 +5,16 @@ import org.junit.Test
 class MapTest {
 
     companion object {
-        private val simplePath = mutableListOf<String>().apply {
+        val simplePath = mutableListOf<String>().apply {
             add("G#######S")
             add(".........")
         }
-        private val zigZag = mutableListOf<String>().apply {
+        val zigZag = mutableListOf<String>().apply {
             add("G#...#...")
             add(".#.#.#.#.")
             add("...#...#S")
         }
-        private var mapToUse = zigZag
+        var mapToUse = zigZag
 
 
         val START = "S"
