@@ -3,10 +3,10 @@ package alex.com.challenges
 
 import org.junit.Test
 
-class BoxMaze {
+class BoxMazeTest {
 
     companion object {
-        val hardBoxMap = mutableListOf<String>().apply {
+        private val hardBoxMap = mutableListOf<String>().apply {
             add("###########")
             add("#G##......#")
             add("#.#.#..####")
@@ -15,7 +15,7 @@ class BoxMaze {
             add("#.......S.#")
             add("###########")
         }
-        val hardBoxMap2 = mutableListOf<String>().apply {
+        private val hardBoxMap2 = mutableListOf<String>().apply {
             add("G#......")
             add(".##.....")
             add(".#...#..")
@@ -23,13 +23,13 @@ class BoxMaze {
             add("...#.B..")
             add("...#...S")
         }
-        val mediumBoxMap = mutableListOf<String>().apply {
+        private val mediumBoxMap = mutableListOf<String>().apply {
             add("G......S")
             add("...B....")
             add("........")
         }
 
-        val looparoundBoxMap = mutableListOf<String>().apply {
+        private val looparoundBoxMap = mutableListOf<String>().apply {
             add("G#")
             add("S#")
             add("B#")
@@ -37,7 +37,7 @@ class BoxMaze {
             add("..")
             add("..")
         }
-        val simpleBoxMap = mutableListOf<String>().apply {
+        private val simpleBoxMap = mutableListOf<String>().apply {
             add("G...B...S")
         }
 
@@ -46,8 +46,16 @@ class BoxMaze {
     @Test
     fun testSimpleMap() {
         // Try to solve
-        val solution = BoxMap.solve(simpleBoxMap)!!
+        val solution = BoxMaze.solve(simpleBoxMap)!!
         assert(solution.moves == 6)
         assert(solution.pushes == 4)
+    }
+
+    @Test
+    fun testLooparoundBoxMap() {
+        // Try to solve
+        val solution = BoxMaze.solve(looparoundBoxMap)!!
+        assert(solution.moves == 9)
+        assert(solution.pushes == 6)
     }
 }

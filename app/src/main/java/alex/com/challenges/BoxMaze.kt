@@ -1,17 +1,17 @@
 package alex.com.challenges
 
 
-class BoxMap {
+class BoxMaze {
 
     companion object {
-        var mapToUse = emptyList<String>()
+        private var mapToUse = emptyList<String>()
 
-        val START = "S"
-        val GOAL = "G"
-        val BOX = "B"
-        val WALL = "#"
+        private val START = "S"
+        private val GOAL = "G"
+        private val BOX = "B"
+        private val WALL = "#"
 
-        val WRONG_STEP = Int.MAX_VALUE
+        private val WRONG_STEP = Int.MAX_VALUE
 
         fun solve(map: List<String>): Solution? {
 
@@ -35,14 +35,24 @@ class BoxMap {
             return getMinimumPushes(boxStart, player)
         }
 
-        class ProgressState(val box: Pair<Int, Int>, val player: Pair<Int, Int>, val moves: Int, val pushes: Int, val playerPath: String) {
+        class ProgressState(
+            val box: Pair<Int, Int>,
+            val player: Pair<Int, Int>,
+            val moves: Int,
+            val pushes: Int,
+            val playerPath: String
+        ) {
             fun toWinState() = Solution(playerPath, moves, pushes)
         }
+
         class Solution(val playerPath: String, val moves: Int, val pushes: Int)
 
         //must be BFS, not DFS! Simply because of endless loops
 
-        fun getMinimumPushes(boxStartPosition: Pair<Int, Int>, playerStartPosition: Pair<Int, Int>): Solution? {
+        fun getMinimumPushes(
+            boxStartPosition: Pair<Int, Int>,
+            playerStartPosition: Pair<Int, Int>
+        ): Solution? {
 
             val potentialStates = ArrayList<ProgressState>()
 
@@ -57,17 +67,42 @@ class BoxMap {
                     return state.toWinState()
                 }
 
-                getNewProgressStateIfValid(state.box.getTop(), state.box.getBottom(), state, " push up ")?.let { potentialStates.add(it) }
-                getNewProgressStateIfValid(state.box.getBottom(), state.box.getTop(), state, " push down ")?.let { potentialStates.add(it) }
-                getNewProgressStateIfValid(state.box.getLeft(), state.box.getRight(), state, " push left ")?.let { potentialStates.add(it) }
-                getNewProgressStateIfValid(state.box.getRight(), state.box.getLeft(), state, " push right ")?.let { potentialStates.add(it) }
+                getNewProgressStateIfValid(
+                    state.box.getTop(),
+                    state.box.getBottom(),
+                    state,
+                    " push up "
+                )?.let { potentialStates.add(it) }
+                getNewProgressStateIfValid(
+                    state.box.getBottom(),
+                    state.box.getTop(),
+                    state,
+                    " push down "
+                )?.let { potentialStates.add(it) }
+                getNewProgressStateIfValid(
+                    state.box.getLeft(),
+                    state.box.getRight(),
+                    state,
+                    " push left "
+                )?.let { potentialStates.add(it) }
+                getNewProgressStateIfValid(
+                    state.box.getRight(),
+                    state.box.getLeft(),
+                    state,
+                    " push right "
+                )?.let { potentialStates.add(it) }
             }
 
             println("Out of possible moves")
             return null
         }
 
-        private fun getNewProgressStateIfValid(newBoxLocation: Pair<Int, Int>, newPlayerLocation: Pair<Int, Int>, oldState: ProgressState, pushedPath: String): ProgressState? {
+        private fun getNewProgressStateIfValid(
+            newBoxLocation: Pair<Int, Int>,
+            newPlayerLocation: Pair<Int, Int>,
+            oldState: ProgressState,
+            pushedPath: String
+        ): ProgressState? {
             if (newBoxLocation.isValidPosition()) {
                 val pathToHere = newPlayerLocation.playerPathToHere(oldState.player, oldState.box)
                 val pathLength = pathToHere.getPathLength()
@@ -76,7 +111,13 @@ class BoxMap {
                     val newMoves = oldState.moves + pathLength
                     val newPath = oldState.playerPath + pathToHere + pushedPath
 
-                    return ProgressState(newBoxLocation, newPlayerLocation, newMoves, newPushes, newPath)
+                    return ProgressState(
+                        newBoxLocation,
+                        newPlayerLocation,
+                        newMoves,
+                        newPushes,
+                        newPath
+                    )
                 } else {
                     print("Valid box spot but player cant navigate to $newPlayerLocation from ${oldState.player} with box at ${oldState.box}")
                 }
@@ -109,7 +150,10 @@ class BoxMap {
             return isValidPosition()
         }
 
-        fun Pair<Int, Int>.playerPathToHere(playerLocation: Pair<Int, Int>, boxLocation: Pair<Int, Int>): String? {
+        fun Pair<Int, Int>.playerPathToHere(
+            playerLocation: Pair<Int, Int>,
+            boxLocation: Pair<Int, Int>
+        ): String? {
 
             // Avoid Impossible pushes
             if (!isValidPosition() || this.isWall()) {
@@ -122,9 +166,14 @@ class BoxMap {
             return getPlayerPath(playerLocation, this, blockedLocations)
         }
 
-        fun getPlayerPath(currentPosition: Pair<Int, Int>, endPosition: Pair<Int, Int>, blockedLocations: ArrayList<Pair<Int, Int>>): String? {
+        fun getPlayerPath(
+            currentPosition: Pair<Int, Int>,
+            endPosition: Pair<Int, Int>,
+            blockedLocations: ArrayList<Pair<Int, Int>>
+        ): String? {
 
-            val newBlockedLocations: ArrayList<Pair<Int, Int>> = ArrayList<Pair<Int, Int>>(blockedLocations)
+            val newBlockedLocations: ArrayList<Pair<Int, Int>> =
+                ArrayList<Pair<Int, Int>>(blockedLocations)
             newBlockedLocations.add(currentPosition)
 
             if (currentPosition == endPosition) {
@@ -183,7 +232,7 @@ class BoxMap {
                     }
                 }
 
-            var shortestPath:String? = null
+            var shortestPath: String? = null
 
             if (botPath.getPathLength() < shortestPath.getPathLength()) {
                 shortestPath = botPath
