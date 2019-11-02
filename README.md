@@ -3,4 +3,5 @@ A collection of solutions to programming challenges
 
 Maze - Simple maze navigation problem. Shortest solution wins  
 BoxMaze - A twist on maze, where you push a box around a maze. Shortest solution wins. Similar to the game Sokoban
-LinkedListAdder - Add numbers using a linked list
+LinkedListAdder - Add numbers using a linked list  
+TwoSums - Check if two distinct values in an array sum up to a target value.  
