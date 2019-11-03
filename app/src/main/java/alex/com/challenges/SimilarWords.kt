@@ -1,6 +1,6 @@
 package alex.com.challenges
 
-class MatchingWords {
+class SimilarWords {
 
     companion object {
         fun solve(word: String, sentence: String): Int {
