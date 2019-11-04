@@ -7,7 +7,8 @@ class BinaryTreeMaxPath {
         var left: TreeNode? = null
         var right: TreeNode? = null
 
-        //Returns this value 
+        // This node is worthless if theres no children (paths)
+        // If child exists, there is a path from here to there
         fun getValueOfThisNode(): Int? {
 
             if (left == null && right == null) {
@@ -52,35 +53,34 @@ class BinaryTreeMaxPath {
         }
 
 
-//        fun getMaxPathValueOfThisNode2(): Int? {
-//
-//
-//            //PROBLEM: Path is being added twice. When doing the inclusive path
-//            // SOLUTION : Do not add both child & this values. PICK ONE
-//
-//            // ONLY children path (Used to exclude this node but propagate child path)
-//            val leftPath: Int? = left?.getMaxPathValueOfThisNode()
-//            val rightPath: Int? = right?.getMaxPathValueOfThisNode()
-//
-//            // (Child path (or 0) + child value) + this  (Used to include this node & propagate child path)
-//            // If child has null path then
-//            val leftPathInclusive: Int? = if (left == null) null else (leftPath ?: 0) + left!!.value
-//            val rightPathInclusive: Int? = if (right == null) null else (rightPath?: 0) + right!!.value
-//
-//            // Loop back (subtract value to not double account)
-//            val bothPathInclusive: Int? = if (leftPathInclusive != null && rightPathInclusive != null) leftPathInclusive + rightPathInclusive else null
-//
-//
-//            val options = arrayOf(
-//                leftPath,
-//                leftPathInclusive,
-//                rightPath,
-//                rightPathInclusive,
-//                bothPathInclusive
-//            )
-//            val thisNodesMaxPath =  options.mapNotNull { it }.max()
-//            return thisNodesMaxPath
-//        }
+        fun getMaxPathValueOfThisNode(): Int? {
+            
+            //PROBLEM: Path is being added twice. When doing the inclusive path
+            // SOLUTION : Do not add both child & this values. PICK ONE
+
+            // ONLY children path (Used to exclude this node but propagate child path)
+            val leftPath: Int? = left?.getMaxPathValueOfThisNode()
+            val rightPath: Int? = right?.getMaxPathValueOfThisNode()
+
+            // (Child path (or 0) + child value) + this  (Used to include this node & propagate child path)
+            // If child has null path then
+            val leftPathInclusive: Int? = if (left == null) null else (leftPath ?: 0) + left!!.value
+            val rightPathInclusive: Int? = if (right == null) null else (rightPath?: 0) + right!!.value
+
+            // Loop back (subtract value to not double account)
+            val bothPathInclusive: Int? = if (leftPathInclusive != null && rightPathInclusive != null) leftPathInclusive + rightPathInclusive else null
+
+
+            val options = arrayOf(
+                leftPath,
+                leftPathInclusive,
+                rightPath,
+                rightPathInclusive,
+                bothPathInclusive
+            )
+            val thisNodesMaxPath =  options.mapNotNull { it }.max()
+            return thisNodesMaxPath
+        }
 
     }
 
@@ -164,13 +164,3 @@ class BinaryTreeMaxPath {
 }
 
 /// Infinite chain
-/**
- *  should separate PATH and VALUE
- *
- *  A) Child path only
- *  B) If child has path, that + child value
- *
- *  NEVER include THIS value
- *
- *
- * */
