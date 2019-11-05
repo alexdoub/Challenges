@@ -29,7 +29,7 @@ class LinkedListAdder {
 
             while (left != null || right != null || carry) {
 
-                // Calculate new value
+                // Calculate new `val`
                 var thisVal = (left?.`val` ?: 0) + (right?.`val` ?: 0) + if (carry) 1 else 0
 
                 // handle carry

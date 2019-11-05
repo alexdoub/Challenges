@@ -31,7 +31,7 @@ class TwoSums {
             val indexed = nums.withIndex()
             val hashMap = HashMap<Int, MutableList<Int>> ()
 
-            // Create hashmap. Index is the value of the number, Value is an array of indexes in the original array
+            // Create hashmap. Index is the `val` of the number, Value is an array of indexes in the original array
             for (indexedVal in indexed) {
                 if (hashMap[indexedVal.value] == null) {
                     hashMap[indexedVal.value] = ArrayList<Int>()

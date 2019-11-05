@@ -3,119 +3,87 @@ package alex.com.challenges
 import java.util.*
 
 class BinaryTreeMaxPath {
-    private class TreeNode(var value: Int) {
+    class TreeNode(var `val`: Int) {
         var left: TreeNode? = null
         var right: TreeNode? = null
 
-        //@@TODO: What do differently
-        // Keep paths and values separate
-        // Recursively calculate instead of top-down catch-all
+        fun debugPrintToConsole() {
 
-        fun getMaxPathValueOfThisNode(): Int {
-            return this.getMaxValueOfThisNode() ?: 0
+            var nodes = ArrayList<TreeNode>()
+            nodes.add(this)
+
+            while (nodes.isNotEmpty()) {
+                val newList = ArrayList<TreeNode>()
+                for (node in nodes) {
+                    print(
+                        node.`val`.toString() + " -> (${node.left?.`val`
+                            ?: "null"}, ${node.right?.`val` ?: "null"})"
+                    )
+                    node.left?.let {
+                        newList.add(it)
+                    }
+                    node.right?.let {
+                        newList.add(it)
+                    }
+                }
+                println("")
+                println("----")
+                nodes = newList
+            }
+        }
+    }
+
+    companion object {
+
+        private val PRINT_DEBUG = false
+
+        fun maxPathSum(root: TreeNode?): Int {
+            return root?.getMaxValueOfThisNode(false) ?: 0
         }
 
-        fun getRecursiveMaxPathValueOfThisNode(): Int {
-            //recusively call getValue and return max
-            val options = ArrayList<TreeNode>()
-            options.add(this)
+        private fun TreeNode.getMaxValueOfThisNode(cameFromSomewhere: Boolean): Int? {
 
-            var maxPathValue = 0
-
-            while (options.isNotEmpty()) {
-                val node = options.removeAt(0)
-                node.left?.let { options.add(it) }
-                node.right?.let { options.add(it) }
-
-                val nodeValue = node.getMaxValueOfThisNode()
-                if (nodeValue != null && nodeValue > maxPathValue) {
-                    maxPathValue = nodeValue
+            // Base case, reached a leaf. Only has `val` if it came from somewhere
+            if (left == null && right == null) {
+                return if (cameFromSomewhere) {
+                    `val`
+                } else {
+                    null
                 }
             }
-            return maxPathValue
-        }
 
-//        //CASES
-//        //-Orphan node
-//        //-has children
-//        //-has extended children
-//
-//        // Nodes only have value if they have a parent
-//        // Return the value of this node, with or without the parent
-//        fun getMaxValueOfThisNode(): Int? {
-//
-//
-//            //left only
-//            val leftOnlyValue = left?.getMaxValueOfThisNode()?.let { it }
-//
-//            //left + this
-//            val leftInclusiveValue = left?.value
-//            //left + this + parent
-//
-//
-//            // If theres no children, return none
-//            if (left == null && right == null) return null
-//
-//            // If it has children, get their value
-//
-//
-//            // B) The childs best path + this
-//            val leftValueIncludingThis: Int? = left?.value?.let { it + value } ?: null
-//            val rightValueIncludingThis: Int? = right?.value?.let { it + value } ?: null
-//
-//            // C) B for both childs
-//            val bothValuesIncludingThis: Int? =
-//                if (leftValueIncludingThis != null && rightValueIncludingThis != null) {
-//                    leftValueIncludingThis + rightValueIncludingThis - value
-//                } else null
-//
-//
-//            val options = arrayOf(
-//                leftValueIncludingThis,
-//                rightValueIncludingThis,
-//                bothValuesIncludingThis
-//            )
-//            val thisNodesMaxPath = options.mapNotNull { it }.max()
-//            return thisNodesMaxPath
-//        }
+            // Must include pruning off this node
+            val prunedPath = if (cameFromSomewhere) `val` else null
 
-//
-        fun getMaxValueOfThisNode(): Int? {
+            // ONLY child paths (Used to exclude this node but propagate child path)
+            val leftPath: Int? = left?.getMaxValueOfThisNode(false)
+            val rightPath: Int? = right?.getMaxValueOfThisNode(false)
 
-            if (left == null && right == null) {
-                return value
-            }
+            // Child path + THIS
+            val leftPathInclusive: Int? = left?.getMaxValueOfThisNode(true)?.let { it + `val` }
+            val rightPathInclusive: Int? = right?.getMaxValueOfThisNode(true)?.let { it + `val` }
 
-            // ONLY children path (Used to exclude this node but propagate child path)
-            val leftPath: Int? = left?.getMaxValueOfThisNode()
-            val rightPath: Int? = right?.getMaxValueOfThisNode()
-
-            // (Child path (or 0) + child value) + this  (Used to include this node & propagate child path)
-            // If child has null path then
-            val leftPathInclusive: Int? = leftPath?.let { it + value }
-            val rightPathInclusive: Int? = rightPath?.let { it + value }
-
-            // Loop back (subtract value to not double account)
-            val bothPathInclusive: Int? = if (leftPathInclusive != null && rightPathInclusive != null) leftPathInclusive + rightPathInclusive - value else null
+            // Both child paths + this (subtract `val` to not double account)
+            val bothPathInclusive: Int? =
+                if (leftPathInclusive != null && rightPathInclusive != null) {
+                    leftPathInclusive + rightPathInclusive - `val`
+                } else null
 
             val options = arrayOf(
+                prunedPath,
                 leftPath,
                 leftPathInclusive,
                 rightPath,
                 rightPathInclusive,
                 bothPathInclusive
             )
-            val thisNodesMaxPath =  options.mapNotNull { it }.max()
-            return thisNodesMaxPath
+            return options.mapNotNull { it }.max()
         }
 
-    }
-
-    companion object {
-        fun solve(inputs: Array<Int?>): Int {
+        fun buildTree(inputs: Array<Int?>): TreeNode? {
 
             if (inputs.isEmpty() || inputs[0] == null) {
-                return 0
+                return null
             }
             val inputQueue = inputs.toMutableList()
 
@@ -131,7 +99,7 @@ class BinaryTreeMaxPath {
                 val rightInput = if (inputQueue.isNotEmpty()) inputQueue.removeAt(0) else null
                 val parent = nodes.pop()
 
-//                println("Iteration: $iteration. Parent: ${parent.value}. LeftInput: ${leftInput}. RightInput: ${rightInput}")
+                printDebug("Iteration: $iteration. Parent: ${parent.`val`}. LeftInput: ${leftInput}. RightInput: ${rightInput}")
 
                 leftInput?.let {
                     val newNode = TreeNode(it)
@@ -146,45 +114,17 @@ class BinaryTreeMaxPath {
                 iteration += 1
             }
 
-//            println("==DONE BUILDING==")
-//            debugPrint(firstNode)
-
-            return maxPathSum(firstNode)
-        }
-
-        private fun maxPathSum(root: TreeNode): Int {
-            return root.getMaxPathValueOfThisNode()
-        }
-
-        private fun debugPrint(root: TreeNode?) {
-
-            if (root == null) {
-                println("No root!")
+            printDebug("==DONE BUILDING==")
+            if (PRINT_DEBUG) {
+                firstNode.debugPrintToConsole()
             }
 
-            //get initial, put in queue
-            //-----
-            //print queue, build next queue
-            var nodes = ArrayList<TreeNode>()
-            nodes.add(root!!)
+            return firstNode
+        }
 
-            while (nodes.isNotEmpty()) {
-                val newList = ArrayList<TreeNode>()
-                for (node in nodes) {
-                    print(
-                        node.value.toString() + " -> (${node.left?.value
-                            ?: "null"}, ${node.right?.value ?: "null"})"
-                    )
-                    node.left?.let {
-                        newList.add(it)
-                    }
-                    node.right?.let {
-                        newList.add(it)
-                    }
-                }
-                println("")
-                println("----")
-                nodes = newList
+        fun printDebug(string: String) {
+            if (PRINT_DEBUG) {
+                println(string)
             }
         }
     }

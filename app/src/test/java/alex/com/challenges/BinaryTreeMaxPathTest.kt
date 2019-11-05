@@ -8,7 +8,9 @@ class BinaryTreeMaxPathTest {
     fun test1() {
         //  1
         // 2, 3
-        assertEquals(6, BinaryTreeMaxPath.solve(arrayOf(1, 2, 3)))
+        val tree: Array<Int?> = arrayOf(1, 2, 3)
+        val head = BinaryTreeMaxPath.buildTree(tree)
+        assertEquals(6, BinaryTreeMaxPath.maxPathSum(head))
     }
 
     @Test
@@ -16,8 +18,9 @@ class BinaryTreeMaxPathTest {
         //    -10
         //   9,  20
         // n, n, 15, 7
-
-        assertEquals(42, BinaryTreeMaxPath.solve(arrayOf(-10, 9, 20, null, null, 15, 7)))
+        val tree: Array<Int?> = arrayOf(-10, 9, 20, null, null, 15, 7)
+        val head = BinaryTreeMaxPath.buildTree(tree)
+        assertEquals(42, BinaryTreeMaxPath.maxPathSum(head))
     }
 
     @Test
@@ -25,9 +28,10 @@ class BinaryTreeMaxPathTest {
         //    -1000
         //   -11 -12
         // 100 -13 -14
-        // Should equal 90?
-        val values = arrayOf(-1000, -11, -12, 100, -13, -14, null)
-        assertEquals(90, BinaryTreeMaxPath.solve(values))
+        // Should equal 89
+        val tree: Array<Int?> = arrayOf(-1000, -11, -12, 100, -13, -14, null)
+        val head = BinaryTreeMaxPath.buildTree(tree)
+        assertEquals(89, BinaryTreeMaxPath.maxPathSum(head))
     }
 
     @Test
@@ -36,7 +40,33 @@ class BinaryTreeMaxPathTest {
         //  2, n
         // 3, n
         //4, n
-        val values = arrayOf(1, 2, null, 3, null, 4, null)
-        assertEquals(10, BinaryTreeMaxPath.solve(values))
+        val tree: Array<Int?> = arrayOf(1, 2, null, 3, null, 4, null)
+        val head = BinaryTreeMaxPath.buildTree(tree)
+        assertEquals(10, BinaryTreeMaxPath.maxPathSum(head))
+    }
+
+    @Test
+    fun test5_homemade() {
+        //     1
+        //    2, n
+        //   3, n
+        //  4, n
+        //-1, n
+        val tree: Array<Int?> = arrayOf(1, 2, null, 3, null, 4, null, -1, null)
+        val head = BinaryTreeMaxPath.buildTree(tree)
+        assertEquals(10, BinaryTreeMaxPath.maxPathSum(head))
+    }
+
+    @Test
+    fun test6_homemade() {
+        //     1
+        //    2, n
+        //   3, n
+        //  4, n
+        //-1, n
+        //2, n
+        val tree: Array<Int?> = arrayOf(1, 2, null, 3, null, 4, null, -1, null, 2, null)
+        val head = BinaryTreeMaxPath.buildTree(tree)
+        assertEquals(11, BinaryTreeMaxPath.maxPathSum(head))
     }
 }
