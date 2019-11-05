@@ -6,6 +6,8 @@ import org.junit.Test
 class BinaryTreeMaxPathTest {
     @Test
     fun test1() {
+        //  1
+        // 2, 3
         assertEquals(6, BinaryTreeMaxPath.solve(arrayOf(1, 2, 3)))
     }
 

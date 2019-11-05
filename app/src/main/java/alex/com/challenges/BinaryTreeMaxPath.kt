@@ -7,69 +7,96 @@ class BinaryTreeMaxPath {
         var left: TreeNode? = null
         var right: TreeNode? = null
 
-        // This node is worthless if theres no children (paths)
-        // If child exists, there is a path from here to there
-        fun getValueOfThisNode(): Int? {
+        //@@TODO: What do differently
+        // Keep paths and values separate
+        // Recursively calculate instead of top-down catch-all
 
-            if (left == null && right == null) {
-                return 0
-            }
-
-            // The max value of this node is the maximum possibility of
-            // A) the childs best path
-            val leftValue: Int? = left?.getValueOfThisNode()
-            val rightValue: Int? = right?.getValueOfThisNode()
-
-            // B) The childs best path + this
-            val leftValueIncludingThis: Int? =
-                if (left != null) {
-                    leftValue!! + value
-                } else {
-                    null
-                }
-            val rightValueIncludingThis: Int? =
-                if (right != null) {
-                    rightValue!! + value
-                } else {
-                    null
-                }
-
-            // C) B for both childs
-            val bothValuesIncludingThis: Int? =
-                if (leftValueIncludingThis != null && rightValueIncludingThis != null) {
-                    leftValueIncludingThis + rightValueIncludingThis - value
-                } else null
-
-
-            val options = arrayOf(
-                leftValue,
-                leftValueIncludingThis,
-                rightValue,
-                rightValueIncludingThis,
-                bothValuesIncludingThis
-            )
-            val thisNodesMaxPath = options.mapNotNull { it }.max()
-            return thisNodesMaxPath
+        fun getMaxPathValueOfThisNode(): Int {
+            return this.getMaxValueOfThisNode() ?: 0
         }
 
+        fun getRecursiveMaxPathValueOfThisNode(): Int {
+            //recusively call getValue and return max
+            val options = ArrayList<TreeNode>()
+            options.add(this)
 
-        fun getMaxPathValueOfThisNode(): Int? {
+            var maxPathValue = 0
 
-            //PROBLEM: Path is being added twice. When doing the inclusive path
-            // SOLUTION : Do not add both child & this values. PICK ONE
+            while (options.isNotEmpty()) {
+                val node = options.removeAt(0)
+                node.left?.let { options.add(it) }
+                node.right?.let { options.add(it) }
+
+                val nodeValue = node.getMaxValueOfThisNode()
+                if (nodeValue != null && nodeValue > maxPathValue) {
+                    maxPathValue = nodeValue
+                }
+            }
+            return maxPathValue
+        }
+
+//        //CASES
+//        //-Orphan node
+//        //-has children
+//        //-has extended children
+//
+//        // Nodes only have value if they have a parent
+//        // Return the value of this node, with or without the parent
+//        fun getMaxValueOfThisNode(): Int? {
+//
+//
+//            //left only
+//            val leftOnlyValue = left?.getMaxValueOfThisNode()?.let { it }
+//
+//            //left + this
+//            val leftInclusiveValue = left?.value
+//            //left + this + parent
+//
+//
+//            // If theres no children, return none
+//            if (left == null && right == null) return null
+//
+//            // If it has children, get their value
+//
+//
+//            // B) The childs best path + this
+//            val leftValueIncludingThis: Int? = left?.value?.let { it + value } ?: null
+//            val rightValueIncludingThis: Int? = right?.value?.let { it + value } ?: null
+//
+//            // C) B for both childs
+//            val bothValuesIncludingThis: Int? =
+//                if (leftValueIncludingThis != null && rightValueIncludingThis != null) {
+//                    leftValueIncludingThis + rightValueIncludingThis - value
+//                } else null
+//
+//
+//            val options = arrayOf(
+//                leftValueIncludingThis,
+//                rightValueIncludingThis,
+//                bothValuesIncludingThis
+//            )
+//            val thisNodesMaxPath = options.mapNotNull { it }.max()
+//            return thisNodesMaxPath
+//        }
+
+//
+        fun getMaxValueOfThisNode(): Int? {
+
+            if (left == null && right == null) {
+                return value
+            }
 
             // ONLY children path (Used to exclude this node but propagate child path)
-            val leftPath: Int? = left?.getMaxPathValueOfThisNode()
-            val rightPath: Int? = right?.getMaxPathValueOfThisNode()
+            val leftPath: Int? = left?.getMaxValueOfThisNode()
+            val rightPath: Int? = right?.getMaxValueOfThisNode()
 
             // (Child path (or 0) + child value) + this  (Used to include this node & propagate child path)
             // If child has null path then
-            val leftPathInclusive: Int? = if (left == null) null else (leftPath ?: 0) + left!!.value
-            val rightPathInclusive: Int? = if (right == null) null else (rightPath?: 0) + right!!.value
+            val leftPathInclusive: Int? = leftPath?.let { it + value }
+            val rightPathInclusive: Int? = rightPath?.let { it + value }
 
             // Loop back (subtract value to not double account)
-            val bothPathInclusive: Int? = if (leftPathInclusive != null && rightPathInclusive != null) leftPathInclusive + rightPathInclusive else null
-
+            val bothPathInclusive: Int? = if (leftPathInclusive != null && rightPathInclusive != null) leftPathInclusive + rightPathInclusive - value else null
 
             val options = arrayOf(
                 leftPath,
@@ -125,8 +152,8 @@ class BinaryTreeMaxPath {
             return maxPathSum(firstNode)
         }
 
-        private fun maxPathSum(root: TreeNode?): Int {
-            return root?.getValueOfThisNode() ?: 0
+        private fun maxPathSum(root: TreeNode): Int {
+            return root.getMaxPathValueOfThisNode()
         }
 
         private fun debugPrint(root: TreeNode?) {
@@ -162,5 +189,3 @@ class BinaryTreeMaxPath {
         }
     }
 }
-
-/// Infinite chain
