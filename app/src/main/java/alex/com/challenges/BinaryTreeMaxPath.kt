@@ -54,7 +54,7 @@ class BinaryTreeMaxPath {
 
 
         fun getMaxPathValueOfThisNode(): Int? {
-            
+
             //PROBLEM: Path is being added twice. When doing the inclusive path
             // SOLUTION : Do not add both child & this values. PICK ONE
 
