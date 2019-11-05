@@ -1,6 +1,7 @@
 package alex.com.challenges
 
 import java.util.*
+import kotlin.collections.HashMap
 
 class BinaryTreeMaxSimplePath {
     open class TreeNode(var `val`: Int) {
@@ -33,6 +34,32 @@ class BinaryTreeMaxSimplePath {
         }
     }
 
+    class NodeState(val treeNode: TreeNode, val chainValue: Int, val includeOrphans: Boolean, val alreadyBranched: Boolean) {
+
+        override fun hashCode(): Int {
+            var result = treeNode.hashCode()
+            result = 31 * result + chainValue
+            result = 31 * result + includeOrphans.hashCode()
+            result = 31 * result + alreadyBranched.hashCode()
+            return result
+        }
+
+        override fun equals(other: Any?): Boolean {
+            if (this === other) return true
+            if (javaClass != other?.javaClass) return false
+
+            other as NodeState
+
+            if (treeNode != other.treeNode) return false
+            if (chainValue != other.chainValue) return false
+            if (includeOrphans != other.includeOrphans) return false
+            if (alreadyBranched != other.alreadyBranched) return false
+
+            return true
+        }
+
+    }
+
     class TreeNodeWithId(val id: Int, value: Int):TreeNode(value)
 
     //REDO this with top down approach. Parent passes value down, gets returned max possible value
@@ -40,6 +67,8 @@ class BinaryTreeMaxSimplePath {
     companion object {
 
         private val PRINT_DEBUG = false
+
+        val hashmap = HashMap<NodeState, Int>()
 
         fun maxPathSum(root: TreeNode?): Int {
             return root?.getMaxValueOfThisNode(0, true, false) ?: 0
@@ -50,6 +79,9 @@ class BinaryTreeMaxSimplePath {
             includeOrphans: Boolean,
             alreadyBranched: Boolean
         ): Int {
+
+            val nodeState = NodeState(this, chainValue, includeOrphans, alreadyBranched)
+            hashmap[nodeState]?.let { return it }
 
             val onlyThis = `val` + chainValue
 
@@ -71,12 +103,9 @@ class BinaryTreeMaxSimplePath {
             // Ignore if we already branched
             var bothPathsInclusive: Int? = null
             if (!alreadyBranched) {
-                val leftPathInclusiveBranched: Int? = left?.getMaxValueOfThisNode(onlyThis, false, true)
-                val rightPathInclusiveBranched: Int? = right?.getMaxValueOfThisNode(onlyThis, false, true)
-
                 bothPathsInclusive =
-                    if (leftPathInclusiveBranched != null && rightPathInclusiveBranched != null) {
-                        leftPathInclusiveBranched + rightPathInclusiveBranched - onlyThis
+                    if (leftPathInclusive != null && rightPathInclusive != null) {
+                        leftPathInclusive + rightPathInclusive - onlyThis
                     } else null
                 options.add(bothPathsInclusive)
             }
@@ -85,11 +114,13 @@ class BinaryTreeMaxSimplePath {
                 options.add(rightOrphanPath)
             }
             val maxValue = options.mapNotNull { it }.max()!!
-            if ((this as TreeNodeWithId).id == 2) {
+            if ((this as? TreeNodeWithId)?.id == 2) {
                 return maxValue
-                //1's LPI is somehow 5
             }
-            return maxValue
+
+            //Create hash table entry
+            hashmap[nodeState] = maxValue
+            return hashmap[nodeState]!!
         }
 
         fun buildTree(inputs: Array<Int?>): TreeNodeWithId? {
