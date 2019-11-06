@@ -10,4 +10,4 @@ SimilarWords - Find similar words in a sentence. A word is similar if they both 
 IsNumber - Parse a string to determine if its a valid number  
 BinaryTreeMaxPath - Find the max sum path in a binary tree  
 MaxIntersectingLine - Given a list of points, find out how many of them can intersect a single line at max
-LongestSubstringOfUniqueChars - Find the longest substring of unique characters in a string without using recursion
+LongestSubstringOfUniqueChars - Find the longest substring of unique characters in a string without using recursion  
