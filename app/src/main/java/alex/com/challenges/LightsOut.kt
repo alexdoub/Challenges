@@ -1,59 +1,73 @@
 package alex.com.challenges
 
 class LightsOut {
+
+    class GameState(val data: Array<BooleanArray>, val moves: Int)
+
     companion object {
-        fun solve(data: Array<BooleanArray>): Int {
+
+        fun solve(inputData: Array<BooleanArray>): Int {
+            return solve_bfs(inputData)
+        }
+
+        fun solve_bfs(inputData: Array<BooleanArray>): Int {
             //Make map of states. Key = game state. Value = moves to get here
             val stateMap = HashMap<String, Int>()
 
-            //add initial state
-            var moveNumber = 0
-            stateMap[data.toStateString()] = moveNumber
-
             // EZ case
-            if (data.isWinningState()) {
-                return moveNumber
+            if (inputData.isWinningState()) {
+                return 0
             }
+
+            //add initial state
+            stateMap[inputData.toStateString()] = 0
 
             //Loop over all possible options
             // check hash
             // toggle one
             // add to hash
 
-            val options = ArrayList<Array<BooleanArray>>()
-            options.add(data)
+            val options = ArrayList<GameState>()
+            options.add(GameState(inputData, 0))
 
+            var iteration = 0
             while (options.isNotEmpty()) {
-                moveNumber += 1
-                val option = options.removeAt(0)
+                val state = options.removeAt(0)
+                val data = state.data
+                val moves = state.moves + 1
+                val skippedOptions = ArrayList<Array<BooleanArray>>()
 
-                println("------")
-                println("Move: ${moveNumber}")
-                println("Checking: \n${option.toStateString()}")
+//                println("------")
+//                println("Checking: \n${data.toStateString()}\nMove:${moves}")
 
                 //loop over option, try adding all possible new states to list
-                for (row in option.withIndex()) {
+                for (row in data.withIndex()) {
                     for (col in row.value.withIndex()) {
-                        val toggledList = option.toggleAt(col.index, row.index)
+                        val toggledList = data.toggleAt(col.index, row.index)
 
                         if (toggledList.isWinningState()) {
-                            return moveNumber
+                            return moves
                         }
 
                         val key = toggledList.toStateString()
                         if (stateMap[key] == null) {
-                            stateMap[key] = moveNumber
-                            options.add(toggledList)
-                            println("New Option: \n$key")
+                            stateMap[key] = moves
+                            options.add(GameState(toggledList, moves))
                         } else {
-                            println("Ignoring new option: \n$key")
+                            skippedOptions.add(toggledList)
                         }
-                        print("")
                     }
                 }
+
+                iteration += 1
+                println("Iteration: ${iteration}. New options count: ${options.size}. Skipped: ${skippedOptions.size}")
             }
 
             return -1
+        }
+
+        fun solve_uniqueInputs(inputData: Array<BooleanArray>): Int {
+            //@@TODO
         }
 
         fun Array<BooleanArray>.isWinningState(): Boolean {
@@ -72,7 +86,11 @@ class LightsOut {
         }
 
         fun Array<BooleanArray>.toggleAt(x: Int, y: Int): Array<BooleanArray> {
-            val mutable = this.toMutableList()
+            //Copy data
+            val mutable = mutableListOf<BooleanArray>()
+            for (col in this) {
+                mutable.add(col.copyOf())
+            }
 
             //center
             mutable[y][x] = !mutable[y][x]
@@ -102,3 +120,5 @@ class LightsOut {
 //1) Brute force BFS
 //-try possible solutions, memoize states
 //enumerate rows
+
+//2) Rerepresent hash table as 'inputs tried'. toggling an input twice does nothing so only need to focus on that

@@ -28,6 +28,31 @@ class LightsOutTest {
         assertEquals(1, result)
     }
 
+    @Test
+    fun test3() {
+        val data = arrayOf(
+            arrayOf(1, 1, 0).toIntArray(),
+            arrayOf(1, 0, 1).toIntArray(),
+            arrayOf(0, 1, 1).toIntArray()
+        )
+
+        val result = LightsOut.solve(data.toBooleanArrayy())
+        assertEquals(2, result)
+    }
+
+
+    @Test
+    fun test4() {
+        val data = arrayOf(
+            arrayOf(1, 0, 1).toIntArray(),
+            arrayOf(0, 0, 0).toIntArray(),
+            arrayOf(1, 0, 1).toIntArray()
+        )
+
+        val result = LightsOut.solve(data.toBooleanArrayy())
+        assertEquals(4, result)
+    }
+
     private fun Array<IntArray>.toBooleanArrayy(): Array<BooleanArray> {
         return this.map { it.toBooleanArrayy() }.toTypedArray()
     }
