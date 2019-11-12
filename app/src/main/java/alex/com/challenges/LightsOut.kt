@@ -66,9 +66,9 @@ class LightsOut {
             return -1
         }
 
-        fun solve_uniqueInputs(inputData: Array<BooleanArray>): Int {
-            //@@TODO
-        }
+//        fun solve_uniqueInputs(inputData: Array<BooleanArray>): Int {
+//            //@@TODO
+//        }
 
         fun Array<BooleanArray>.isWinningState(): Boolean {
             return !(this.any { it.any { it == true } })
