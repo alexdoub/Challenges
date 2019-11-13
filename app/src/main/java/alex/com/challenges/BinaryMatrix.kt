@@ -1,5 +1,6 @@
 package alex.com.challenges
-
+//https://leetcode.com/problems/reconstruct-a-2-row-binary-matrix/submissions/
+//@@TODO: This times out!
 class BinaryMatrix {
     companion object {
         fun reconstructMatrix(upper: Int, lower: Int, colsum: IntArray): List<List<Int>> {
@@ -35,12 +36,12 @@ class BinaryMatrix {
                 val thisColSum = colsum[matrix[0].size]
                 when (thisColSum) {
                     0 -> {
-                        val updatedCopy = matrix.addValues(0, 0)
-                        return computeMatrixInProgress(updatedCopy)
+                        matrix.addValues(0, 0)
+                        return computeMatrixInProgress(matrix)
                     }
                     2 -> {
-                        val updatedCopy = matrix.addValues(1, 1)
-                        return computeMatrixInProgress(updatedCopy)
+                        matrix.addValues(1, 1)
+                        return computeMatrixInProgress(matrix)
                     }
                     1 -> {
                         //Branch here
@@ -74,10 +75,9 @@ class BinaryMatrix {
             return listOf(this[0].toMutableList(), this[1].toMutableList())
         }
 
-        fun List<MutableList<Int>>.addValues(top: Int, bottom: Int): List<MutableList<Int>> {
+        fun List<MutableList<Int>>.addValues(top: Int, bottom: Int) {
             this[0].add(top)
             this[1].add(bottom)
-            return this
         }
     }
 }
