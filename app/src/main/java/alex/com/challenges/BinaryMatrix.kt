@@ -1,59 +1,69 @@
 package alex.com.challenges
+
 //https://leetcode.com/problems/reconstruct-a-2-row-binary-matrix/submissions/
 //@@TODO: This times out!
 class BinaryMatrix {
     companion object {
+
+        class ProgressState(
+            var matrix: List<MutableList<Int>>,
+            var topProgress: Int,
+            var botProgress: Int
+        )
+
+        var iteration = 0
+
         fun reconstructMatrix(upper: Int, lower: Int, colsum: IntArray): List<List<Int>> {
 
             // Define recursive function for iteration
-            fun computeMatrixInProgress(matrix: List<MutableList<Int>>): List<List<Int>>? {
+            fun computeMatrixInProgress(state: ProgressState): List<List<Int>>? {
+                iteration += 1
+                println("Iteration:${iteration} Computing state #${state.matrix[0].size}")
 
                 // Failure - Top overflow
-                val topColSum = matrix[0].sum()
-                if (topColSum > upper) {
+                if (state.topProgress > upper) {
                     return null
                 }
                 // Failure - Bottom overflow
-                val botColSum = matrix[1].sum()
-                if (botColSum > lower) {
+                if (state.botProgress > lower) {
                     return null
                 }
 
-                // Success
-                if (colsum.size == matrix[0].size
-                    && topColSum == upper
-                    && botColSum == lower
+                // Success - must come before iteration overflow check
+                if (colsum.size == state.matrix[0].size
+                    && state.topProgress == upper
+                    && state.botProgress == lower
                 ) {
-                    return matrix
+                    return state.matrix
                 }
 
                 // Failure - Iterated too far overflow
-                if (matrix[0].size >= colsum.size) {
+                if (state.matrix[0].size >= colsum.size) {
                     return null
                 }
 
                 // Iterate one more time
-                val thisColSum = colsum[matrix[0].size]
+                val thisColSum = colsum[state.matrix[0].size]
                 when (thisColSum) {
                     0 -> {
-                        matrix.addValues(0, 0)
-                        return computeMatrixInProgress(matrix)
+                        state.addValues(0, 0)
+                        return computeMatrixInProgress(state)
                     }
                     2 -> {
-                        matrix.addValues(1, 1)
-                        return computeMatrixInProgress(matrix)
+                        state.addValues(1, 1)
+                        return computeMatrixInProgress(state)
                     }
                     1 -> {
                         //Branch here
                         //Try left path with copy
-                        val copy = matrix.copy()
-                        copy.addValues(1, 0)
-                        computeMatrixInProgress(copy)?.let {
+                        val copyState = state.copy()
+                        copyState.addValues(1, 0)
+                        computeMatrixInProgress(copyState)?.let {
                             return it
                         } ?: run {
                             //It must be with the other path
-                            matrix.addValues(0, 1)
-                            return computeMatrixInProgress(matrix)
+                            state.addValues(0, 1)
+                            return computeMatrixInProgress(state)
                         }
                     }
                     else -> {
@@ -62,22 +72,42 @@ class BinaryMatrix {
                 }
             }
 
+            // Input check to make sure this is even possible. Sum of cols = top limit + bottom limit
+            val sumOfCols = colsum.sum()
+            if (sumOfCols - upper - lower != 0) {
+                return emptyList()
+            }
+
             // Kick off with empty list
             val initialMatrix = listOf(mutableListOf<Int>(), mutableListOf<Int>())
-            computeMatrixInProgress(initialMatrix)?.let {
+            val initialState = ProgressState(initialMatrix, 0, 0)
+            computeMatrixInProgress(initialState)?.let {
                 return it
             } ?: run {
                 return emptyList()
             }
         }
 
-        fun List<MutableList<Int>>.copy(): List<MutableList<Int>> {
-            return listOf(this[0].toMutableList(), this[1].toMutableList())
+        fun ProgressState.copy(): ProgressState {
+            val matrixCopy = listOf(matrix[0].toMutableList(), matrix[1].toMutableList())
+            return ProgressState(matrixCopy, topProgress, botProgress)
         }
 
-        fun List<MutableList<Int>>.addValues(top: Int, bottom: Int) {
-            this[0].add(top)
-            this[1].add(bottom)
+        fun ProgressState.addValues(top: Int, bottom: Int) {
+            matrix[0].add(top)
+            matrix[1].add(bottom)
+            topProgress += top
+            botProgress += bottom
         }
     }
 }
+
+//Optimizations
+//1) Reduce copying
+//2) Reduce sum checks & fail early
+
+//What is the worst case?
+// huge branches then a bot 1 has to propagate way down the list
+
+// 1, 1, 1, 1, 0, 0, 0, 0
+//Bot stress is the worst right?
