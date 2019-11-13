@@ -21,40 +21,37 @@ class BinaryMatrix {
                 }
 
                 // Success
-                if (colsum.size == matrix.size
+                if (colsum.size == matrix[0].size
                     && topColSum == upper
                     && botColSum == lower) {
                     return matrix
                 }
 
                 // Failure - Iterated too far overflow
-                if (matrix.size >= colsum.size) {
+                if (matrix[0].size >= colsum.size) {
                     return null
                 }
 
                 // Iterate one more time
-                val copiedMatrix = matrix.nestedMutableCopy()   //@@TODO: Reduce copying
-                val thisColSum = colsum[copiedMatrix.size]
+                val thisColSum = colsum[matrix[0].size]
                 when (thisColSum) {
                     0 -> {
-                        copiedMatrix.add(listOf(0, 0))
-                        return computeMatrixInProgress(copiedMatrix)
+                        val updatedCopy = matrix.copyAndAddValues(0, 0)
+                        return computeMatrixInProgress(updatedCopy)
                     }
                     2 -> {
-                        copiedMatrix.add(listOf(1, 1))
-                        return computeMatrixInProgress(copiedMatrix)
+                        val updatedCopy = matrix.copyAndAddValues(1, 1)
+                        return computeMatrixInProgress(updatedCopy)
                     }
                     1 -> {
-                        val copiedCopy = copiedMatrix.nestedMutableCopy()
-
                         //Try left path
-                        copiedCopy.add(listOf(1, 0))
-                        computeMatrixInProgress(copiedCopy)?.let {
+                        val updatedCopy = matrix.copyAndAddValues(1, 0)
+                        computeMatrixInProgress(updatedCopy)?.let {
                             return it
                         } ?: run {
                             //It must be with the other path
-                            copiedMatrix.add(listOf(0, 1))
-                            return computeMatrixInProgress(copiedMatrix)
+                            val updatedCopy2 = matrix.copyAndAddValues(0, 1)
+                            return computeMatrixInProgress(updatedCopy2)
                         }
                     }
                     else -> {
@@ -64,26 +61,13 @@ class BinaryMatrix {
             }
 
             // Kick off with empty list
-            val initialMatrix = mutableListOf<List<Int>>()
+            val initialMatrix = listOf(listOf<Int>(), listOf<Int>())
             computeMatrixInProgress(initialMatrix)?.let {
                 return it
             } ?: run {
                 return emptyList()
             }
         }
-
-        private fun List<List<Int>>.nestedMutableCopy(): MutableList<List<Int>> {
-            val newList = mutableListOf<List<Int>>()
-            forEach {
-                newList.add(it.toMutableList())
-            }
-            return newList
-        }
-
-
-        // List of List of Ints
-        // Outer list holds both rows
-        // Inner list holds a single column
 
         fun List<List<Int>>.getColSum(col: Int): Int {
 
@@ -92,15 +76,20 @@ class BinaryMatrix {
             }
 
             var total = 0
-            this.forEach {
-                total += it[col]
+            this[col].forEach {
+                total += it
             }
 
             return total
         }
 
-        fun List<List<Int>>.addValues(top: Int, bottom:Int) {
-            //@@TODO: My list structure is wrong. It should get list[0] and list[1] and add to those. Dont add a new list of 2 values directly to the top element
+        //@@TODO: Reduce copying!
+        fun List<List<Int>>.copyAndAddValues(top: Int, bottom:Int): List<List<Int>> {
+            val topList = this.getOrNull(0)?.toMutableList() ?: mutableListOf()
+            topList.add(top)
+            val botList = this.getOrNull(1)?.toMutableList() ?: mutableListOf()
+            botList.add(bottom)
+            return listOf(topList, botList)
         }
     }
 }
