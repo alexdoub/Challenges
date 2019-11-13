@@ -11,6 +11,6 @@ IsNumber - https://leetcode.com/problems/valid-number
 BinaryTreeMaxPath - https://leetcode.com/problems/binary-tree-maximum-path-sum/  
 MaxPointsOnALine - https://leetcode.com/problems/max-points-on-a-line/  
 LongestSubstringWithoutRepeatingCharacters - https://leetcode.com/problems/longest-substring-without-repeating-characters/  
-LightsOut - Find a solution to the lights out problem. NP-Hard
+LightsOut - Find a solution to the lights out problem. NP-Hard  
 AssignCookies - https://leetcode.com/problems/assign-cookies/  
 BinaryMatrix - https://leetcode.com/problems/reconstruct-a-2-row-binary-matrix/  
