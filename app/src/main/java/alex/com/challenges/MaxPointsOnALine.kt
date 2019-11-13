@@ -1,6 +1,7 @@
 package alex.com.challenges
 
-class MaxIntersectingLine {
+//https://leetcode.com/problems/max-points-on-a-line/
+class MaxPointsOnALine {
     companion object {
 
         fun maxPoints(pointsArray: Array<IntArray>): Int {
@@ -54,7 +55,8 @@ class MaxIntersectingLine {
                 }
 
                 //The max intersecting for this point is the max of any that match the same equation
-                val maxIntersectionsForThisPoint = (hashMap.values.max() ?: 1) + duplicatesOfThisPoint
+                val maxIntersectionsForThisPoint =
+                    (hashMap.values.max() ?: 1) + duplicatesOfThisPoint
                 if (maxIntersectionsForThisPoint > maxOverall) {
                     maxOverall = maxIntersectionsForThisPoint
                 }

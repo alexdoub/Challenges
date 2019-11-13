@@ -3,7 +3,8 @@ package alex.com.challenges
 import java.util.*
 import kotlin.collections.HashMap
 
-class BinaryTreeMaxSimplePath {
+//https://leetcode.com/problems/binary-tree-maximum-path-sum/
+class BinaryTreeMaxPathSumSimple {
     open class TreeNode(var `val`: Int) {
         var left: TreeNode? = null
         var right: TreeNode? = null
@@ -34,7 +35,12 @@ class BinaryTreeMaxSimplePath {
         }
     }
 
-    class NodeState(val treeNode: TreeNode, val chainValue: Int, val includeOrphans: Boolean, val alreadyBranched: Boolean) {
+    class NodeState(
+        val treeNode: TreeNode,
+        val chainValue: Int,
+        val includeOrphans: Boolean,
+        val alreadyBranched: Boolean
+    ) {
 
         override fun hashCode(): Int {
             var result = treeNode.hashCode()
@@ -60,7 +66,7 @@ class BinaryTreeMaxSimplePath {
 
     }
 
-    class TreeNodeWithId(val id: Int, value: Int):TreeNode(value)
+    class TreeNodeWithId(val id: Int, value: Int) : TreeNode(value)
 
     //REDO this with top down approach. Parent passes value down, gets returned max possible value
 

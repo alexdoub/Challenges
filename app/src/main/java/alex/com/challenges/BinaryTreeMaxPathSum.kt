@@ -2,7 +2,8 @@ package alex.com.challenges
 
 import java.util.*
 
-class BinaryTreeMaxPath {
+//https://leetcode.com/problems/binary-tree-maximum-path-sum/
+class BinaryTreeMaxPathSum {
     class TreeNode(var `val`: Int) {
         var left: TreeNode? = null
         var right: TreeNode? = null

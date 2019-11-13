@@ -34,6 +34,7 @@ class IntegerDivision {
             }
 
             //edge case lolol
+            //TODO: Use proper bitwise rollover. dont use longs
             if (count == Int.MIN_VALUE && dividend < 0 && divisor < 0) {
                 return Int.MAX_VALUE
             }

@@ -2,8 +2,8 @@ package alex.com.challenges
 
 import java.lang.Exception
 import java.math.BigDecimal
-
-class IsNumber {
+//https://leetcode.com/problems/valid-number
+class ValidNumber {
     companion object {
         fun isNumber(input: String) : Boolean {
 

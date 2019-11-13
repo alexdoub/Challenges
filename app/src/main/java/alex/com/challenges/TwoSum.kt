@@ -2,8 +2,9 @@ package alex.com.challenges
 
 import android.annotation.SuppressLint
 
+//https://leetcode.com/problems/two-sum/
 @SuppressLint("UseSparseArrays")
-class TwoSums {
+class TwoSum {
     companion object {
 
         val USE_BRUTE_FORCE = false
@@ -29,7 +30,7 @@ class TwoSums {
 
         private fun getIndicesToMatchTarget_hash(nums: IntArray, target: Int): IntArray {
             val indexed = nums.withIndex()
-            val hashMap = HashMap<Int, MutableList<Int>> ()
+            val hashMap = HashMap<Int, MutableList<Int>>()
 
             // Create hashmap. Index is the `val` of the number, Value is an array of indexes in the original array
             for (indexedVal in indexed) {

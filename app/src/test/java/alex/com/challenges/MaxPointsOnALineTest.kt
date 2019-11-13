@@ -1,10 +1,9 @@
 package alex.com.challenges
 
-import android.graphics.Point
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class MaxIntersectingLineTest {
+class MaxPointsOnALineTest {
     @Test
     fun test1() {
         val points = ArrayList<IntArray>()
@@ -14,7 +13,7 @@ class MaxIntersectingLineTest {
         points.add(listOf(2, 0).toIntArray())
         points.add(listOf(2, 1).toIntArray())
 
-        val count = MaxIntersectingLine.maxPoints(points.toTypedArray())
+        val count = MaxPointsOnALine.maxPoints(points.toTypedArray())
         assertEquals(3, count)
     }
 
@@ -23,7 +22,7 @@ class MaxIntersectingLineTest {
         val inputString = "[1,1],[3,2],[5,3],[4,1],[2,3],[1,4]"
         val points = inputString.toTypedIntArray()
 
-        val count = MaxIntersectingLine.maxPoints(points)
+        val count = MaxPointsOnALine.maxPoints(points)
         assertEquals(4, count)
     }
 
@@ -32,7 +31,7 @@ class MaxIntersectingLineTest {
         val inputString = "[-1,-1],[-1,1],[1,1],[1,-1]"
         val points = inputString.toTypedIntArray()
 
-        val count = MaxIntersectingLine.maxPoints(points)
+        val count = MaxPointsOnALine.maxPoints(points)
         assertEquals(2, count)
     }
 
@@ -41,7 +40,7 @@ class MaxIntersectingLineTest {
         val inputString = "[-1,-1],[-1,1],[1,1],[1,-1],[-1,-1],[-1,1],[1,1],[1,-1],[-1,-1],[-1,1],[1,1],[1,-1]"
         val points = inputString.toTypedIntArray()
 
-        val count = MaxIntersectingLine.maxPoints(points)
+        val count = MaxPointsOnALine.maxPoints(points)
         assertEquals(6, count)
     }
 
@@ -50,7 +49,7 @@ class MaxIntersectingLineTest {
         val inputString = "[[${Int.MIN_VALUE},${Int.MIN_VALUE}],[${Int.MAX_VALUE},${Int.MAX_VALUE}]]"
         val points = inputString.toTypedIntArray()
 
-        val count = MaxIntersectingLine.maxPoints(points)
+        val count = MaxPointsOnALine.maxPoints(points)
         assertEquals(2, count)
     }
 
@@ -59,7 +58,7 @@ class MaxIntersectingLineTest {
         val inputString = "[[1,1]]]"
         val points = inputString.toTypedIntArray()
 
-        val count = MaxIntersectingLine.maxPoints(points)
+        val count = MaxPointsOnALine.maxPoints(points)
         assertEquals(1, count)
     }
 
@@ -68,7 +67,7 @@ class MaxIntersectingLineTest {
         val inputString = "[]"
         val points = inputString.toTypedIntArray()
 
-        val count = MaxIntersectingLine.maxPoints(points)
+        val count = MaxPointsOnALine.maxPoints(points)
         assertEquals(0, count)
     }
 
@@ -77,7 +76,7 @@ class MaxIntersectingLineTest {
         val inputString = "[[0,0],[1,1],[0,0]]"
         val points = inputString.toTypedIntArray()
 
-        val count = MaxIntersectingLine.maxPoints(points)
+        val count = MaxPointsOnALine.maxPoints(points)
         assertEquals(3, count)
     }
 
@@ -86,7 +85,7 @@ class MaxIntersectingLineTest {
         val inputString = "[[0,0],[1,1], [0,0],[1,1],     [2,2],    [2,3]]"
         val points = inputString.toTypedIntArray()
 
-        val count = MaxIntersectingLine.maxPoints(points)
+        val count = MaxPointsOnALine.maxPoints(points)
         assertEquals(5, count)
     }
 
@@ -104,8 +103,8 @@ class MaxIntersectingLineTest {
 
     @Test
     fun gcdTest1() {
-        assertEquals(2, MaxIntersectingLine.getGreatestCommonDivisor(4, 18))
-        assertEquals(2, MaxIntersectingLine.getGreatestCommonDivisor(4, 6))
-        assertEquals(2, MaxIntersectingLine.getGreatestCommonDivisor(4, 4002))
+        assertEquals(2, MaxPointsOnALine.getGreatestCommonDivisor(4, 18))
+        assertEquals(2, MaxPointsOnALine.getGreatestCommonDivisor(4, 6))
+        assertEquals(2, MaxPointsOnALine.getGreatestCommonDivisor(4, 4002))
     }
 }

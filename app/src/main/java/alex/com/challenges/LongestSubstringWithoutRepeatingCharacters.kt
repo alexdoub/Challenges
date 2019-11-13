@@ -2,7 +2,8 @@ package alex.com.challenges
 
 import java.util.concurrent.ConcurrentHashMap
 
-class LongestSubstringOfUniqueChars {
+//https://leetcode.com/problems/longest-substring-without-repeating-characters/
+class LongestSubstringWithoutRepeatingCharacters {
     companion object {
 
         fun lengthOfLongestSubstring(s: String): Int {
@@ -15,7 +16,7 @@ class LongestSubstringOfUniqueChars {
 
 
                 //after a repeat comes in, null out evertyhing before it
-                charHashTable.keys.forEach {  key ->
+                charHashTable.keys.forEach { key ->
                     val checkChar = charHashTable[key]!!
                     if (checkChar <= oldIndex) {
                         charHashTable.remove(key)

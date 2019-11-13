@@ -2,7 +2,8 @@ package alex.com.challenges
 
 import java.util.*
 
-class GreedyCookies {
+//https://leetcode.com/problems/assign-cookies/
+class AssignCookies {
     companion object {
         fun findContentChildren(children: IntArray, cookies: IntArray): Int {
             return solve_greedy(children, cookies)
