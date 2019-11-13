@@ -26,12 +26,4 @@ class BinaryMatrixTest {
         assertEquals(expected, BinaryMatrix.reconstructMatrix(5, 5, intArrayOf(2,1,2,0,1,0,1,2,0,1)))
     }
 
-    ////////////////////////////
-
-    @Test
-    fun test4() {
-        val expected = listOf(listOf(1,0,1,0,1,0,1,0,1,0,1), listOf(0,1,0,1,0,1,0,1,0,1,1))
-        assertEquals(expected, BinaryMatrix.reconstructMatrix(6, 6, intArrayOf(1,1,1,1,1,1,1,1,1,1,2)))
-    }
-
 }

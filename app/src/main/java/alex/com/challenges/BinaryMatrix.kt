@@ -1,21 +1,19 @@
 package alex.com.challenges
 
-import java.lang.RuntimeException
-
 class BinaryMatrix {
     companion object {
         fun reconstructMatrix(upper: Int, lower: Int, colsum: IntArray): List<List<Int>> {
 
             // Define recursive function for iteration
-            fun computeMatrixInProgress(matrix: List<List<Int>>): List<List<Int>>? {
+            fun computeMatrixInProgress(matrix: List<MutableList<Int>>): List<List<Int>>? {
 
                 // Failure - Top overflow
-                val topColSum = matrix.getColSum(0)
+                val topColSum = matrix[0].sum()
                 if (topColSum > upper) {
                     return null
                 }
                 // Failure - Bottom overflow
-                val botColSum = matrix.getColSum(1)
+                val botColSum = matrix[1].sum()
                 if (botColSum > lower) {
                     return null
                 }
@@ -23,7 +21,8 @@ class BinaryMatrix {
                 // Success
                 if (colsum.size == matrix[0].size
                     && topColSum == upper
-                    && botColSum == lower) {
+                    && botColSum == lower
+                ) {
                     return matrix
                 }
 
@@ -36,22 +35,24 @@ class BinaryMatrix {
                 val thisColSum = colsum[matrix[0].size]
                 when (thisColSum) {
                     0 -> {
-                        val updatedCopy = matrix.copyAndAddValues(0, 0)
+                        val updatedCopy = matrix.addValues(0, 0)
                         return computeMatrixInProgress(updatedCopy)
                     }
                     2 -> {
-                        val updatedCopy = matrix.copyAndAddValues(1, 1)
+                        val updatedCopy = matrix.addValues(1, 1)
                         return computeMatrixInProgress(updatedCopy)
                     }
                     1 -> {
-                        //Try left path
-                        val updatedCopy = matrix.copyAndAddValues(1, 0)
-                        computeMatrixInProgress(updatedCopy)?.let {
+                        //Branch here
+                        //Try left path with copy
+                        val copy = matrix.copy()
+                        copy.addValues(1, 0)
+                        computeMatrixInProgress(copy)?.let {
                             return it
                         } ?: run {
                             //It must be with the other path
-                            val updatedCopy2 = matrix.copyAndAddValues(0, 1)
-                            return computeMatrixInProgress(updatedCopy2)
+                            matrix.addValues(0, 1)
+                            return computeMatrixInProgress(matrix)
                         }
                     }
                     else -> {
@@ -61,7 +62,7 @@ class BinaryMatrix {
             }
 
             // Kick off with empty list
-            val initialMatrix = listOf(listOf<Int>(), listOf<Int>())
+            val initialMatrix = listOf(mutableListOf<Int>(), mutableListOf<Int>())
             computeMatrixInProgress(initialMatrix)?.let {
                 return it
             } ?: run {
@@ -69,27 +70,14 @@ class BinaryMatrix {
             }
         }
 
-        fun List<List<Int>>.getColSum(col: Int): Int {
-
-            if (this.isEmpty()) {
-                return 0
-            }
-
-            var total = 0
-            this[col].forEach {
-                total += it
-            }
-
-            return total
+        fun List<MutableList<Int>>.copy(): List<MutableList<Int>> {
+            return listOf(this[0].toMutableList(), this[1].toMutableList())
         }
 
-        //@@TODO: Reduce copying!
-        fun List<List<Int>>.copyAndAddValues(top: Int, bottom:Int): List<List<Int>> {
-            val topList = this.getOrNull(0)?.toMutableList() ?: mutableListOf()
-            topList.add(top)
-            val botList = this.getOrNull(1)?.toMutableList() ?: mutableListOf()
-            botList.add(bottom)
-            return listOf(topList, botList)
+        fun List<MutableList<Int>>.addValues(top: Int, bottom: Int): List<MutableList<Int>> {
+            this[0].add(top)
+            this[1].add(bottom)
+            return this
         }
     }
 }
