@@ -1,7 +1,7 @@
 package alex.com.challenges
 
 //https://leetcode.com/problems/reconstruct-a-2-row-binary-matrix/submissions/
-//@@TODO: This times out!
+//@@TODO: This times out! Passed 3 obstacles then stack overflow
 class BinaryMatrix {
     companion object {
 
@@ -55,15 +55,21 @@ class BinaryMatrix {
                     }
                     1 -> {
                         //Branch here
-                        //Try left path with copy
-                        val copyState = state.copy()
-                        copyState.addValues(1, 0)
-                        computeMatrixInProgress(copyState)?.let {
-                            return it
-                        } ?: run {
-                            //It must be with the other path
-                            state.addValues(0, 1)
-                            return computeMatrixInProgress(state)
+                        //Try path thats closer to the goal
+                        val topDiff = upper - state.topProgress
+                        val botDiff = lower - state.botProgress
+                        val startWithTop = topDiff > botDiff
+
+                        fun copyAndCompute(top: Int, bot: Int): List<List<Int>>? {
+                            val copyState = state.copy()
+                            copyState.addValues(top, bot)
+                            return@copyAndCompute computeMatrixInProgress(copyState)
+                        }
+
+                        return if (startWithTop) {
+                            copyAndCompute(1, 0) ?: copyAndCompute(0, 1)
+                        } else {
+                            copyAndCompute(0, 1) ?: copyAndCompute(1, 0)
                         }
                     }
                     else -> {
