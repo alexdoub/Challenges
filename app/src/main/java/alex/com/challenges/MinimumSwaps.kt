@@ -36,14 +36,16 @@ class MinimumSwaps {
                 val topChar = mutableS1[index]
                 val botChar = mutableS2[index]
 
-                val debugS1 = mutableS1.toMutableList()
-                val debugS2 = mutableS2.toMutableList()
-                (0 until index).forEach {
-                    debugS1.removeAt(0)
-                    debugS2.removeAt(0)
+                if (debug) {
+                    val debugS1 = mutableS1.toMutableList()
+                    val debugS2 = mutableS2.toMutableList()
+                    (0 until index).forEach {
+                        debugS1.removeAt(0)
+                        debugS2.removeAt(0)
+                    }
+                    printDebug("s1: ${debugS1.toString()}")
+                    printDebug("s2: ${debugS2.toString()}")
                 }
-                println("s1: ${debugS1.toString()}")
-                println("s2: ${debugS2.toString()}")
 
                 // If top != bot
                 if (topChar != botChar) {
@@ -62,8 +64,8 @@ class MinimumSwaps {
                             ) {
                                 mutableS2[nextIndex] = topChar
                                 mutableS1[index] = nextBotChar
-                                println("Good Swap: s1 ${index} for s2 ${nextIndex}")
-                                println("-----")
+                                printDebug("Good Swap: s1 ${index} for s2 ${nextIndex}")
+                                printDebug("-----")
                                 return true
                             }
                         }
@@ -78,8 +80,8 @@ class MinimumSwaps {
                             if (botChar == nextBotChar) {
                                 mutableS2[nextIndex] = topChar
                                 mutableS1[index] = nextBotChar
-                                println("Bad swap: s1 ${index} for s2 ${nextIndex}")
-                                println("-----")
+                                printDebug("Bad swap: s1 ${index} for s2 ${nextIndex}")
+                                printDebug("-----")
                                 return true
                             }
                         }
@@ -92,15 +94,22 @@ class MinimumSwaps {
                         swaps += 1
                     } else {
                         //Should never happen
-                        println("No swaps to take!!")
+                        printDebug("No swaps to take!!")
                     }
                 } else {
-                    println("Skipping $index, already matches")
-                    println("-----")
+                    printDebug("Skipping $index, already matches")
+                    printDebug("-----")
                 }
             }
 
             return swaps
+        }
+
+        val debug = false
+        fun printDebug(string: String) {
+            if (debug) {
+                println(string)
+            }
         }
     }
 }

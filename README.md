@@ -14,3 +14,4 @@ LongestSubstringWithoutRepeatingCharacters - https://leetcode.com/problems/longe
 LightsOut - Find a solution to the lights out problem. NP-Hard  
 AssignCookies - https://leetcode.com/problems/assign-cookies/  
 BinaryMatrix - https://leetcode.com/problems/reconstruct-a-2-row-binary-matrix/  
+MinimumSwaps - https://leetcode.com/problems/minimum-swaps-to-make-strings-equal/  
