@@ -7,17 +7,18 @@ class SimilarWords {
 
     companion object {
         fun solve(word: String, sentence: String): Int {
-            return solve(word, sentence.split(" "))
+            return solve_simple(word, sentence.split(" "))
         }
-        fun solve2(word: String, sentence: String): Int {
-            return solve2(word, sentence.split(" "))
-        }
-
-        fun solveExact(word: String, sentence: String): Int {
-            return solveExact(word, sentence.split(" "))
+        fun solve_quick(word: String, sentence: String): Int {
+            return solve_quick(word, sentence.split(" "))
         }
 
-        private fun solve(word: String, wordList: List<String>): Int {
+        fun solve_exact(word: String, sentence: String): Int {
+            return solve_exact(word, sentence.split(" "))
+        }
+
+        // Quick and dirty
+        private fun solve_simple(word: String, wordList: List<String>): Int {
             val matching = ArrayList<String>().toMutableSet()
 
             for (item in wordList) {
@@ -43,7 +44,8 @@ class SimilarWords {
             return matching.size
         }
 
-        private fun solve2(word: String, wordList: List<String>): Int {
+        // Use hashmap, compare key set
+        private fun solve_quick(word: String, wordList: List<String>): Int {
             val matching = ArrayList<String>().toMutableSet()
 
             val targetWord = word.associateByTo(HashMap(), { it })
@@ -57,8 +59,8 @@ class SimilarWords {
             return matching.size
         }
 
-        // Must have same characters & same character count
-        private fun solveExact(word: String, wordList: List<String>): Int {
+        // Must have same character set & count
+        private fun solve_exact(word: String, wordList: List<String>): Int {
             val matchingList = ArrayList<String>().toMutableSet()
 
             val targetWordMap = word.groupBy { it }

@@ -9,7 +9,7 @@ class SimilarWordsTest {
         val word = "love"
         val wordList = "velo low vole lovee volvell lowly lower lover levo loved love lovee lowe lowes lovey lowan lowa evolve loves volvelle lowed love"
 
-        val count = SimilarWords.solve2(word, wordList)
+        val count = SimilarWords.solve_quick(word, wordList)
         assert(count == 8)
     }
 
@@ -19,7 +19,7 @@ class SimilarWordsTest {
         val wordList = "velo low vole lovee volvell lowly lower lover levo loved love lovee lowe lowes lovey lowan lowa evolve loves volvelle lowed love"
 
         //velo vole love levo
-        val count = SimilarWords.solveExact(word, wordList)
+        val count = SimilarWords.solve_exact(word, wordList)
         assertEquals(4, count)
     }
 }
