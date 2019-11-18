@@ -9,22 +9,16 @@ class MinimumSwaps {
     companion object {
         fun minimumSwap(s1: String, s2: String): Int {
 
-            //CAN SWAP ANY POSITION ON 2nd STRING
-
-            // Fail case 1: Unequal lenghts
+            // Fail case 1: Unequal lengths
             if (s1.length != s2.length) {
                 return -1
             }
 
             // Fail case 2: odd number of X
             val combined = s1 + s2
-            if (combined.groupBy { it }.any { it.value.size %2 == 1 }) {
-                    return -1
+            if (combined.groupBy { it }.any { it.value.size % 2 == 1 }) {
+                return -1
             }
-
-
-            //Plan: Loop until nothing swapped
-            //X+1 swapping, skip this iteration if it will further unbalance
 
             val mutableS1 = s1.toMutableList()
             val mutableS2 = s2.toMutableList()
@@ -42,24 +36,67 @@ class MinimumSwaps {
                 val topChar = mutableS1[index]
                 val botChar = mutableS2[index]
 
-                println("s1: ${mutableS1.toString()}")
-                println("s2: ${mutableS2.toString()}")
+                val debugS1 = mutableS1.toMutableList()
+                val debugS2 = mutableS2.toMutableList()
+                (0 until index).forEach {
+                    debugS1.removeAt(0)
+                    debugS2.removeAt(0)
+                }
+                println("s1: ${debugS1.toString()}")
+                println("s2: ${debugS2.toString()}")
 
                 // If top != bot
                 if (topChar != botChar) {
-                    for (nextIndex in index+1 until mutableS2.size) {
 
-                        // Swap if
-                        val nextBotChar = mutableS2[nextIndex]
-                        if (botChar == nextBotChar) {
-                            mutableS2[nextIndex] = topChar
-                            mutableS1[index] = nextBotChar
-                            swaps += 1
-                            println("Swapping s1 ${index} for s2 ${nextIndex}")
-                            println("-----")
-                            break
+                    fun findGoodSwap(): Boolean {
+                        for (nextIndex in index + 1 until mutableS2.size) {
+
+                            // Swap if
+                            val nextTopChar = mutableS1[nextIndex]
+                            val nextBotChar = mutableS2[nextIndex]
+                            if (
+                                //Matches in current position
+                                botChar == nextBotChar
+                                //Doesnt break an already matching pair
+                                && nextTopChar != nextBotChar
+                            ) {
+                                mutableS2[nextIndex] = topChar
+                                mutableS1[index] = nextBotChar
+                                println("Good Swap: s1 ${index} for s2 ${nextIndex}")
+                                println("-----")
+                                return true
+                            }
                         }
+                        return false
                     }
+
+                    fun findBadSwap(): Boolean {
+                        for (nextIndex in index + 1 until mutableS2.size) {
+
+                            // Swap if: Matches at current position now
+                            val nextBotChar = mutableS2[nextIndex]
+                            if (botChar == nextBotChar) {
+                                mutableS2[nextIndex] = topChar
+                                mutableS1[index] = nextBotChar
+                                println("Bad swap: s1 ${index} for s2 ${nextIndex}")
+                                println("-----")
+                                return true
+                            }
+                        }
+                        return false
+                    }
+
+                    if (findGoodSwap()) {
+                        swaps += 1
+                    } else if (findBadSwap()) {
+                        swaps += 1
+                    } else {
+                        //Should never happen
+                        println("No swaps to take!!")
+                    }
+                } else {
+                    println("Skipping $index, already matches")
+                    println("-----")
                 }
             }
 
