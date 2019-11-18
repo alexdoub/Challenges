@@ -1,7 +1,6 @@
 package alex.com.challenges
 
 //https://leetcode.com/problems/reconstruct-a-2-row-binary-matrix/submissions/
-//@@TODO: This times out! Passed 3 obstacles then stack overflow
 class BinaryMatrix {
     companion object {
 
@@ -13,7 +12,18 @@ class BinaryMatrix {
 
         var iteration = 0
 
+
         fun reconstructMatrix(upper: Int, lower: Int, colsum: IntArray): List<List<Int>> {
+            return reconstructMatrix_attempt2(upper, lower, colsum)
+        }
+
+        // Treat problem like DFS search, build solution
+        // Problem: StackOverflow on massive inputs
+        private fun reconstructMatrix_attempt1(
+            upper: Int,
+            lower: Int,
+            colsum: IntArray
+        ): List<List<Int>> {
 
             // Define recursive function for iteration
             fun computeMatrixInProgress(state: ProgressState): List<List<Int>>? {
@@ -92,6 +102,56 @@ class BinaryMatrix {
             } ?: run {
                 return emptyList()
             }
+        }
+
+        //Simple greedy solution - passes
+        fun reconstructMatrix_attempt2(
+            upper: Int,
+            lower: Int,
+            colsum: IntArray
+        ): List<List<Int>> {
+
+            // Input validation to make sure this is even possible. Sum of cols = top limit + bottom limit
+            val sumOfCols = colsum.sum()
+            if (sumOfCols - upper - lower != 0) {
+                return emptyList()
+            }
+
+            // Enumerate and create
+            var upperRemaining = upper
+            var lowerRemaining = lower
+            val reconstructed = listOf(mutableListOf<Int>(), mutableListOf<Int>())
+            for (value in colsum) {
+                when (value) {
+                    0 -> {
+                        reconstructed[0].add(0)
+                        reconstructed[1].add(0)
+                    }
+                    1 -> {
+                        if (upperRemaining > lowerRemaining) {
+                            reconstructed[0].add(1)
+                            reconstructed[1].add(0)
+                            upperRemaining -= 1
+                        } else {
+                            reconstructed[0].add(0)
+                            reconstructed[1].add(1)
+                            lowerRemaining -= 1
+                        }
+                    }
+                    2 -> {
+                        reconstructed[0].add(1)
+                        reconstructed[1].add(1)
+                        upperRemaining -= 1
+                        lowerRemaining -= 1
+                    }
+                }
+
+                if (upperRemaining < 0 || lowerRemaining < 0) {
+                    return emptyList()
+                }
+            }
+
+            return reconstructed
         }
 
         fun ProgressState.copy(): ProgressState {
