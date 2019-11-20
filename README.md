@@ -17,3 +17,4 @@ BinaryMatrix - https://leetcode.com/problems/reconstruct-a-2-row-binary-matrix/
 MinimumSwaps - https://leetcode.com/problems/minimum-swaps-to-make-strings-equal/  
 ValidParenthesis - https://leetcode.com/problems/valid-parentheses/  
 MinCostClimbingStairs - https://leetcode.com/problems/min-cost-climbing-stairs/submissions/  
+MinFallingPathSum - https://leetcode.com/problems/minimum-falling-path-sum  
