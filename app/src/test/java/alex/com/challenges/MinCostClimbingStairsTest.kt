@@ -8,7 +8,7 @@ import org.junit.Test
  * Created by Alex Doub on 11/18/2019.
  */
 
-class MinCostClimbingStairs2Test  {
+class MinCostClimbingStairsTest  {
     @Test
     fun test1() {
         val costs = intArrayOf(10, 15, 20)
