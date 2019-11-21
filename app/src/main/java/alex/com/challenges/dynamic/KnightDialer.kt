@@ -51,3 +51,4 @@ class KnightDialer {
             return solution.toList().modSum()
         }
     }
+}
