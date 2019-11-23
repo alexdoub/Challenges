@@ -19,3 +19,4 @@ ValidParenthesis - https://leetcode.com/problems/valid-parentheses/
 MinCostClimbingStairs - https://leetcode.com/problems/min-cost-climbing-stairs/submissions/  
 MinFallingPathSum - https://leetcode.com/problems/minimum-falling-path-sum  
 KnightDialer - https://leetcode.com/problems/knight-dialer  
+DivisorGame - https://leetcode.com/problems/divisor-game/  
