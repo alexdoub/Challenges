@@ -37,7 +37,18 @@ class TwoSumTest {
 
     @Test
     fun test5() {
-        val ints = arrayOf(500, 500).toIntArray()
+        val ints = arrayOf(1, 2, 3, 500, 4, 500, 5).toIntArray()
+        val target = 1000
+        val indicies = TwoSum.getIndicesToMatchTarget(ints, target)
+        assert(ints[indicies[0]] + ints[indicies[1]] == target)
+
+        //no same index
+        assert(indicies[0] != indicies[1])
+    }
+
+    @Test
+    fun test6() {
+        val ints = arrayOf(1, 2, 3, 1500, 4, -500, 5).toIntArray()
         val target = 1000
         val indicies = TwoSum.getIndicesToMatchTarget(ints, target)
         assert(ints[indicies[0]] + ints[indicies[1]] == target)
