@@ -20,3 +20,4 @@ MinCostClimbingStairs - https://leetcode.com/problems/min-cost-climbing-stairs/s
 MinFallingPathSum - https://leetcode.com/problems/minimum-falling-path-sum  
 KnightDialer - https://leetcode.com/problems/knight-dialer  
 DivisorGame - https://leetcode.com/problems/divisor-game/  
+DiceRollsWithTargetSum - https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/  
