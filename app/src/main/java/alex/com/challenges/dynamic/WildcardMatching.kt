@@ -46,13 +46,9 @@ class WildcardMatching {
                         val topLeftMatches = row != 0 && col != 0 && matches[row - 1][col - 1]
                         if (topLeftMatches) {
                             matches[row][col] = true
-                            debugPrint(
-                                "Marked a match at $row,$col"
-                            )
+                            debugPrint("Marked a match at $row,$col")
                         } else {
-                            debugPrint(
-                                "SKIPPED single match at $row,$col"
-                            )
+                            debugPrint("SKIPPED single match at $row,$col")
                         }
 
                     } else if (patternChar == '*') {
@@ -61,20 +57,14 @@ class WildcardMatching {
                         val leftMatches = if (col == 0) false else matches[row][col - 1]
                         if (aboveMatches || leftMatches) {
                             matches[row][col] = true
-                            debugPrint(
-                                "Star match at $row,$col"
-                            )
+                            debugPrint("Star match at $row,$col")
                         } else {
-                            debugPrint(
-                                "SKIPPED star match at $row,$col"
-                            )
+                            debugPrint("SKIPPED star match at $row,$col")
                         }
                     }
                 }
 
-                debugPrint(
-                    "Finished filling out row #$row. ${matches[row].joinToString()}}"
-                )
+                debugPrint("Finished filling out row #$row. ${matches[row].joinToString()}}")
                 println()
             }
 
