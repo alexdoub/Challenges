@@ -40,4 +40,9 @@ class DivisorGameTest {
         // 1-> they get 4
         assert(DivisorGame.divisorGame(5) == false)
     }
+
+    @Test
+    fun test6() {
+        assert(DivisorGame.divisorGame(99) == false)
+    }
 }
