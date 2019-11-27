@@ -23,3 +23,4 @@ DivisorGame - https://leetcode.com/problems/divisor-game/
 DiceRollsWithTargetSum - https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/  
 ValidParenthesisString - https://leetcode.com/problems/valid-parenthesis-string/  
 WildcardMatching - https://leetcode.com/problems/wildcard-matching/  
+SmallestSpanningRange - https://www.careercup.com/question?id=16759664  
