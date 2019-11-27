@@ -21,36 +21,46 @@ class FindEventualSafeStates {
 
             graph.forEachIndexed { index, ints ->
 
-                //Do propagation loop for this node.
+                // Maintain a list of visited nodes. Visit them in order
+                // This makes it easy to detect a double-back
+                // UPDATE: This only works from left -> right
                 val visited = BooleanArray(graph.size) { false }
-                visited[index] = true
 
-                val indexesToCheck = graph[index].toMutableList()
+                val indexesToCheck = mutableSetOf<Int>().toSortedSet()
+                indexesToCheck.add(index)
+
+                debugPrint("Processing Node #$index. Initial NodesToCheck:${indexesToCheck.joinToString()}")
                 var nodeIsSafe = true
                 while (indexesToCheck.isNotEmpty() && nodeIsSafe) {
 
-                    val nodeIndex = indexesToCheck.removeAt(0)
-                    graph[nodeIndex].forEach {
+                    val nodeToCheck = indexesToCheck.first()
+                    indexesToCheck.remove(nodeToCheck)
+                    debugPrint("... checking $nodeToCheck")
+
+                    if (visited[nodeToCheck]) {
+                        nodeIsSafe = false
+                        debugPrint(".... double back found. Marking unsafe")
+                        break
+                    }
+                    visited[nodeToCheck] = true
+
+                    graph[nodeToCheck].forEach {
 
                             if (safeNodeList[it] == false) {
                                 // This paths to an unsafe node, thus this node isnt safe
                                 nodeIsSafe = false
-                                debugPrint("Node ${index} leads to $it which is already unsafe")
-                            } else if (visited[it]) {
-                                // This path looped back, so its unsafe
-                                nodeIsSafe = false
-                                debugPrint("Node ${index} leads to $it which doubles back")
-                            } else {
-                                // Mark visited
-                                visited[it] = true
+                                debugPrint(".... leads to $it which is already unsafe")
+                            }  else {
+                                // Add its path to our list
                                 val newNodesToCheck = graph[it].toTypedArray()
-                                debugPrint("Node ${index} lead to node ${it} with path: ${newNodesToCheck.joinToString()}")
+                                debugPrint(".... leads to node ${it} with path: ${newNodesToCheck.joinToString()}")
                                 indexesToCheck.addAll(newNodesToCheck)
                             }
                     }
                 }
                 safeNodeList[index] = nodeIsSafe
                 debugPrint("Done checking. Marking node #$index as safe: $nodeIsSafe")
+                debugPrint("--------------")
             }
 
             val indexOfSafeNodes = safeNodeList.filter { it.value == true }.map { it.key }
@@ -99,3 +109,5 @@ class FindEventualSafeStates {
         }
     }
 }
+
+// do nodes to visit in order, only marking them visited IN ORDER. that way you'll know if it doubles back
