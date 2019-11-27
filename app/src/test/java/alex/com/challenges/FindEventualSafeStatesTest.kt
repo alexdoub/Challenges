@@ -115,6 +115,7 @@ class FindEventualSafeStatesTest {
 
     // This test exposes a flaw: my sortedSet queue only works from left to right
     // Note: I could expand visited horizontally...
+    // Note: Fixed with outward propagation (goes in order of relative distance, not absolute index)
     @Test
     fun test6() {
         val graph = arrayOf(
@@ -128,5 +129,58 @@ class FindEventualSafeStatesTest {
         assertEquals(listOf(0, 1, 2, 3, 4), output)
     }
 
-    //@@TODO: RESOLVE THIS WITH NEW APPROACH
+    @Test
+    fun test7() {
+        val graph = arrayOf(
+            intArrayOf(2,3),  //0
+            intArrayOf(),        //1
+            intArrayOf(4),           //2
+            intArrayOf(2),              //3
+            intArrayOf()                //4
+        )
+        val output = FindEventualSafeStates.eventualSafeNodes(graph)
+        assertEquals(listOf(0, 1, 2, 3, 4), output)
+    }
+
+    @Test
+    fun test8() {
+        val graph = arrayOf(
+            intArrayOf(2,3),  //0
+            intArrayOf(4),        //1
+            intArrayOf(1),           //2
+            intArrayOf(2),              //3
+            intArrayOf()                //4
+        )
+        val output = FindEventualSafeStates.eventualSafeNodes(graph)
+        assertEquals(listOf(0, 1, 2, 3, 4), output)
+    }
+
+    @Test
+    fun test9() {
+        val graph = arrayOf(
+            intArrayOf(1),  //0
+            intArrayOf(3,4),     //1
+            intArrayOf(),     //2
+            intArrayOf(2),     //3
+            intArrayOf(2,5),       //4
+            intArrayOf()       //5
+        )
+        val output = FindEventualSafeStates.eventualSafeNodes(graph)
+        assertEquals(listOf(0, 1, 2, 3, 4, 5), output)
+    }
+
+    // Finally found simple failure case
+    @Test
+    fun test10() {
+        val graph = arrayOf(
+            intArrayOf(1),  //0
+            intArrayOf(2,4),     //1
+            intArrayOf(5),     //2
+            intArrayOf(2),     //3
+            intArrayOf(3,5),       //4
+            intArrayOf()       //5
+        )
+        val output = FindEventualSafeStates.eventualSafeNodes(graph)
+        assertEquals(listOf(0, 1, 2, 3, 4, 5), output)
+    }
 }
