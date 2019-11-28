@@ -183,4 +183,37 @@ class FindEventualSafeStatesTest {
         val output = FindEventualSafeStates.eventualSafeNodes(graph)
         assertEquals(listOf(0, 1, 2, 3, 4, 5), output)
     }
+
+    @Test
+    fun test11() {
+//        val limit = 500    //takes 1.338s
+//        val limit = 1000    //takes 8.017s
+        val limit = 1500    //takes 26.430s
+        val graph = mutableListOf<IntArray>()
+        (0 until limit).forEach {
+            val node = IntArray(limit - it - 1)
+
+            // Count from it
+            (0 until limit - it - 1).forEach { pointer ->
+                node[pointer] = pointer + 1 + it
+            }
+            graph.add(node)
+        }
+        println("Done building graph")
+
+        assert(graph.size == limit)
+        assert(graph[0].size == limit - 1)
+        assert(graph[1].size == limit - 2)
+
+        //Build expected solution
+        val expected = mutableListOf<Int>()
+        (0 until limit).forEach {
+            expected.add(it)
+        }
+
+        println("Done building expected")
+
+        val output = FindEventualSafeStates.eventualSafeNodes(graph.toTypedArray())
+        assertEquals(expected, output)
+    }
 }

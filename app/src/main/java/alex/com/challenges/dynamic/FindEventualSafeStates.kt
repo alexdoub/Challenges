@@ -59,6 +59,7 @@ class FindEventualSafeStates {
                 }
 
                 safeNodeList[startingNode] = nodeIsSafe
+                println("Done with node: ${startingNode}")
             }
 
 
