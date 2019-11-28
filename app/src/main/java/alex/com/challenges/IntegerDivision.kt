@@ -2,10 +2,85 @@ package alex.com.challenges
 
 import kotlin.math.abs
 
+/**
+ * 11/28/19 (proper)
+ * https://leetcode.com/problems/divide-two-integers/
+ */
+
 class IntegerDivision {
     companion object {
 
+        fun printDebug(string: String) {
+            if (false) println(string)
+        }
+
         fun divide(dividend: Int, divisor: Int): Int {
+            printDebug("Dividing ${dividend} by ${divisor}")
+
+            //Edge case: dividend is int min & its dividing by -1
+            if (dividend == Int.MIN_VALUE && divisor == -1) {
+                return Int.MAX_VALUE
+            }
+
+            //Edge case: Divisor is int min lolol
+            if (divisor == Int.MIN_VALUE) {
+                return if (dividend == Int.MIN_VALUE) 1 else 0
+            }
+
+            var result = 1
+            var mutableDivisor = divisor
+            var mutableDividend = dividend
+            val edge_case_int_min = dividend == Int.MIN_VALUE
+
+            var isNegative = false
+            if (mutableDivisor < 0) {
+                mutableDivisor = abs(mutableDivisor)
+                isNegative = !isNegative
+                printDebug("... did flip negative dividend")
+            }
+            if (mutableDividend < 0) {
+
+                if (edge_case_int_min) {
+                    mutableDividend += 1
+                }
+
+                mutableDividend = abs(mutableDividend)
+                isNegative = !isNegative
+                printDebug("... did flip negative dividend")
+            }
+
+            if (mutableDividend < mutableDivisor || mutableDividend == 0) {
+                printDebug("... reached a 0")
+                return 0
+            }
+
+            //Find the biggest divisor we can do (without rolling over)
+            while (
+                mutableDividend > (mutableDivisor shl 1)
+                && mutableDivisor < 1 shl 30
+            ) {
+                mutableDivisor = mutableDivisor shl 1
+                result = result shl 1
+                printDebug("... did a bitshift")
+            }
+            var remainder = mutableDividend - mutableDivisor
+            if (edge_case_int_min) {
+                remainder += 1
+            }
+
+            printDebug("... did final subtraction before branch. ${mutableDividend} - ${mutableDivisor}")
+
+            result += divide(remainder, abs(divisor))
+
+            if (isNegative) {
+                result = 0 - result
+                printDebug("... did flip result cause negative")
+            }
+
+            return result
+        }
+
+        fun divide_crappy(dividend: Int, divisor: Int): Int {
             val dividendLong = dividend.toLong()
             val divisorLong = divisor.toLong()
 
