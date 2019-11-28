@@ -1,10 +1,5 @@
 package alex.com.challenges.dynamic
 
-import android.util.SparseBooleanArray
-import androidx.core.util.contains
-import androidx.core.util.containsValue
-import androidx.core.util.set
-
 /**
  * Created by Alex Doub on 11/26/2019.
  * https://leetcode.com/problems/keys-and-rooms/
@@ -13,9 +8,27 @@ import androidx.core.util.set
 class KeysAndRooms {
     companion object {
         private fun debugPrint(string: String) {
-            if (false) println(string)
+            if (true) println(string)
         }
+
+        //DFS
         fun canVisitAllRooms(rooms: List<List<Int>>): Boolean {
+            val accessibleRooms = BooleanArray(rooms.size)
+
+            fun checkRoom(room: Int) {
+                accessibleRooms[room] = true
+                rooms[room].forEach { key ->
+                    if (!accessibleRooms[key]) {
+                        checkRoom(key)
+                    }
+                }
+            }
+            checkRoom(0)
+
+            return accessibleRooms.all { accessible -> accessible }
+        }
+
+        fun canVisitAllRooms_BFS(rooms: List<List<Int>>): Boolean {
 
             val accessibleMap = HashMap<Int, Boolean>()
             val keyStack = ArrayList<Int>()

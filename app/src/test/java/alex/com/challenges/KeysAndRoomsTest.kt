@@ -18,7 +18,6 @@ class KeysAndRoomsTest {
         assert(KeysAndRooms.canVisitAllRooms(input))
     }
 
-
     @Test
     fun test2() {
         val input = listOf(
