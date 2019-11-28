@@ -52,7 +52,6 @@ class IntegerDivisionTest {
         assert(IntegerDivision.divide(-6, -2) == 3)
     }
 
-
     @Test
     fun test_large() {
         assert(IntegerDivision.divide(Int.MAX_VALUE, 1) == Int.MAX_VALUE)
