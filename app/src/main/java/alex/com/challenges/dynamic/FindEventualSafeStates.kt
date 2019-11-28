@@ -26,17 +26,18 @@ class FindEventualSafeStates {
         // 1) Dont make separate 'visited' checks for each node, re-use the same one
         // 2) Recursively loop down paths marking items as loop nodes, then unmark if they end up fine
         fun eventualSafeNodes_FAST(graph: Array<IntArray>): List<Int> {
-            val result = ArrayList<Int>()
             val loopNodes = BooleanArray(graph.size)
             val safeNodes = BooleanArray(graph.size)
             for (i in graph.indices) {
-                if (!isLoopNode(i, graph, loopNodes, safeNodes)) {
-                    result.add(i)
-                }
+                isLoopNode(i, graph, loopNodes, safeNodes)
             }
-            return result
+            return safeNodes.withIndex().filter { it.value }.map { it.index }
         }
 
+        // Recursively enumerate paths
+        // Mark visited items as loop nodes while we explore path
+        // If any items loop, the whole path is marked as loop nodes
+        // Else, they are all safe nodes & not loop nodes
         private fun isLoopNode(
             nodeId: Int,
             graph: Array<IntArray>,
@@ -44,7 +45,7 @@ class FindEventualSafeStates {
             safeNodes: BooleanArray
         ): Boolean {
             return when {
-                //Return if it was already decided to be a loop
+                //We came back to the same node, thus its a loop
                 loopNodes[nodeId] -> true
 
                 //If its safe then its not a loop
