@@ -30,17 +30,22 @@ class IntegerDivision {
             var result = 1
             var mutableDivisor = divisor
             var mutableDividend = dividend
-            val edge_case_int_min = dividend == Int.MIN_VALUE
-
             var isNegative = false
+            val edgeCaseIntMin = dividend == Int.MIN_VALUE
+
+            // Handle negative divisor
             if (mutableDivisor < 0) {
                 mutableDivisor = abs(mutableDivisor)
                 isNegative = !isNegative
                 printDebug("... did flip negative dividend")
             }
+
+            // Handle negative dividend (account for int min edge case!)
             if (mutableDividend < 0) {
 
-                if (edge_case_int_min) {
+                //If our dividend was int min, it will roll over when we flip it
+                //solution: take off 1 now, add it back to the remainder
+                if (edgeCaseIntMin) {
                     mutableDividend += 1
                 }
 
@@ -49,6 +54,7 @@ class IntegerDivision {
                 printDebug("... did flip negative dividend")
             }
 
+            // Early return if we cannot divide this
             if (mutableDividend < mutableDivisor || mutableDividend == 0) {
                 printDebug("... reached a 0")
                 return 0
@@ -64,7 +70,7 @@ class IntegerDivision {
                 printDebug("... did a bitshift")
             }
             var remainder = mutableDividend - mutableDivisor
-            if (edge_case_int_min) {
+            if (edgeCaseIntMin) {
                 remainder += 1
             }
 
@@ -83,7 +89,6 @@ class IntegerDivision {
         fun divide_crappy(dividend: Int, divisor: Int): Int {
             val dividendLong = dividend.toLong()
             val divisorLong = divisor.toLong()
-
 
             var absDividend = if (dividendLong < 0) abs(dividendLong) else dividendLong
             var absDivisor = if (divisorLong < 0) abs(divisorLong) else divisorLong
@@ -109,7 +114,7 @@ class IntegerDivision {
             }
 
             //edge case lolol
-            //TODO: Use proper bitwise rollover. dont use longs
+            //TODO: Use proper bitwise rollover. dont use longs. STATUS: DONE!
             if (count == Int.MIN_VALUE && dividend < 0 && divisor < 0) {
                 return Int.MAX_VALUE
             }
