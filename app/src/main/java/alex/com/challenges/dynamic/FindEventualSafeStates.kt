@@ -17,9 +17,61 @@ class FindEventualSafeStates {
             if (false) println(string)
         }
 
-        //Third solution
-        // Correct? but fails on massive input...
         fun eventualSafeNodes(graph: Array<IntArray>): List<Int> {
+            return eventualSafeNodes_FAST(graph)
+        }
+
+
+        //Fourth solution - Recursive (cheat)
+        // 1) Dont make separate 'visited' checks for each node, re-use the same one
+        // 2) Recursively loop down paths marking items as loop nodes, then unmark if they end up fine
+        fun eventualSafeNodes_FAST(graph: Array<IntArray>): List<Int> {
+            val result = ArrayList<Int>()
+            val loopNodes = BooleanArray(graph.size)
+            val safeNodes = BooleanArray(graph.size)
+            for (i in graph.indices) {
+                if (!isLoopNode(i, graph, loopNodes, safeNodes)) {
+                    result.add(i)
+                }
+            }
+            return result
+        }
+
+        private fun isLoopNode(
+            nodeId: Int,
+            graph: Array<IntArray>,
+            loopNodes: BooleanArray,
+            safeNodes: BooleanArray
+        ): Boolean {
+            return when {
+                //Return if it was already decided to be a loop
+                loopNodes[nodeId] -> true
+
+                //If its safe then its not a loop
+                safeNodes[nodeId] -> false
+                else -> {
+
+                    //Mark it as a loop node in case it ever comes back
+                    loopNodes[nodeId] = true
+
+                    //Enumerate paths and search for loops
+                    for (path in graph[nodeId]) {
+                        if (isLoopNode(path, graph, loopNodes, safeNodes)) {
+                            return true
+                        }
+                    }
+
+                    //It had no loops, so unmark it & mark safe
+                    loopNodes[nodeId] = false
+                    safeNodes[nodeId] = true
+                    false
+                }
+            }
+        }
+
+        //Third solution
+        // Correct? but scales horribly
+        fun eventualSafeNodes_SLOW(graph: Array<IntArray>): List<Int> {
 
             // Make list of safe nodes
             val safeNodeList = HashMap<Int, Boolean>()
@@ -27,9 +79,10 @@ class FindEventualSafeStates {
             //Enumerate nodes
             // 1) Recursively get all possible visitable nodes.
             // 2) If it ever points back to start, fail this node
-            graph.forEachIndexed { startingNode, paths ->
+            graph.withIndex().forEach { pair ->
 
-                debugPrint("Checking node: ${startingNode}")
+                val startingNode = pair.index
+                val paths = pair.value
 
                 // Maintain list of visited nodes to prevent re-checking
                 val visitedNodes = mutableSetOf<Int>()
@@ -48,10 +101,18 @@ class FindEventualSafeStates {
                     val visitedNodePath = graph[visitedNode]
 
                     for (path in visitedNodePath) {
+                        // Early fail if it looped back
                         if (path == startingNode) {
                             nodeIsSafe = false
                             debugPrint(".... ${visitedNode} points back to start. Marking unsafe")
-                        } else if (!visitedNodes.contains(path)) {
+                        }
+                        // Skip if its already a safe node
+                        else if (safeNodeList.containsKey(path)) {
+                            debugPrint(".... ${visitedNode} points to safe node ${path}, excluding that")
+                        }
+
+                        // Add to list if not yet visited
+                        else if (!visitedNodes.contains(path)) {
                             nodesToVisit.add(path)
                             debugPrint(".... ${visitedNode} has new path ${path}")
                         }
@@ -59,7 +120,6 @@ class FindEventualSafeStates {
                 }
 
                 safeNodeList[startingNode] = nodeIsSafe
-                println("Done with node: ${startingNode}")
             }
 
 

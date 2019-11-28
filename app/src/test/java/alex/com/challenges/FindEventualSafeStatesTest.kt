@@ -191,11 +191,12 @@ class FindEventualSafeStatesTest {
         val limit = 1500    //takes 26.430s
         val graph = mutableListOf<IntArray>()
         (0 until limit).forEach {
-            val node = IntArray(limit - it - 1)
+            val pathsPerNode = limit - it - 1
+            val node = IntArray(pathsPerNode)
 
             // Count from it
-            (0 until limit - it - 1).forEach { pointer ->
-                node[pointer] = pointer + 1 + it
+            (0 until pathsPerNode).forEach { path ->
+                node[path] = path + 1 + it
             }
             graph.add(node)
         }
@@ -211,7 +212,7 @@ class FindEventualSafeStatesTest {
             expected.add(it)
         }
 
-        println("Done building expected")
+        println("Done building expected result")
 
         val output = FindEventualSafeStates.eventualSafeNodes(graph.toTypedArray())
         assertEquals(expected, output)
