@@ -17,21 +17,19 @@ class IntegerDivision {
         fun divide(dividend: Int, divisor: Int): Int {
             printDebug("Dividing ${dividend} by ${divisor}")
 
-            //Edge case: dividend is int min & its dividing by -1
+            //Edge cases: int min. (cant flip to abs value)
             if (dividend == Int.MIN_VALUE && divisor == -1) {
                 return Int.MAX_VALUE
             }
-
-            //Edge case: Divisor is int min lolol
             if (divisor == Int.MIN_VALUE) {
                 return if (dividend == Int.MIN_VALUE) 1 else 0
             }
+            val edgeCaseIntMin = dividend == Int.MIN_VALUE
 
             var result = 1
             var mutableDivisor = divisor
             var mutableDividend = dividend
             var isNegative = false
-            val edgeCaseIntMin = dividend == Int.MIN_VALUE
 
             // Handle negative divisor
             if (mutableDivisor < 0) {

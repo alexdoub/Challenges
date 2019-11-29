@@ -47,5 +47,4 @@ class KeysAndRoomsTest {
             listOf())//3
         assert(KeysAndRooms.canVisitAllRooms(input) == true)
     }
-
 }
