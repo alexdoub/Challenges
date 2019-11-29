@@ -12,32 +12,35 @@ class MinWindowSubstring {
         }
         fun minWindow(s: String, t: String): String {
 
-            //Create a key which maps chars to char count
-            val key = t.groupBy { it }
+            //Create key, which maps chars to char count
+            val key = t.groupBy { it }.mapValues { it.value.size }
 
             // Create an indexes map, which stores the indexes of chars as they are found.
             // If it stores more than the corresponding 'key' amount, the oldest one is removed
             val indexes = HashMap<Char, ArrayList<Int>>()
-            var shortestSubstring: String? = null
             var indexCount = 0  //Keep count of total indexes stored in indexes. (Cheaper than re-counting each time)
 
-            s.forEachIndexed { index, c ->
-                if (key[c] != null) {
+            // Init indexes with lists for each key
+            key.keys.forEach {
+                indexes[it] = ArrayList()
+            }
 
+            var shortestSubstring: String? = null
+
+            s.forEachIndexed { index, c ->
+
+                // See if this char is in our key set
+                key[c]?.let { keyCharCount ->
                     debugPrint("Found ${c} at ${index}")
 
                     //Add the matching char to the indexes. Update count
-                    if (indexes[c] == null) {
-                        indexes[c] = ArrayList<Int>()
-                    }
                     indexes[c]!!.add(index)
                     indexCount += 1
-                    if (indexes[c]!!.size > key[c]!!.size) {
+                    if (indexes[c]!!.size > keyCharCount) {
                         indexes[c]!!.removeAt(0)
                         indexCount -= 1
                     }
                     debugPrint("... indexCount = ${indexCount}")
-
 
                     // If we have enough indexes to match our target, start recording substrings
                     if (indexCount == t.length) {
@@ -66,7 +69,7 @@ class MinWindowSubstring {
                     } else {
                         debugPrint("... need more chars. ${indexCount} of ${t.length}")
                     }
-                } else {
+                } ?: run {
                     debugPrint("... skipped irrelevant char ${c}")
                 }
             }
