@@ -32,7 +32,7 @@ class RepeatedSubstringPattern {
             divisors.add(s.length)
 
             //Check substrings (length relative to divisor)
-            divisors.forEach { lcd ->
+            return divisors.any { lcd ->
                 debugPrint("Checking LCD: ${lcd}")
                 val substringLength = s.length / lcd
                 val baseSubstring = s.substring(0, substringLength)
@@ -46,13 +46,8 @@ class RepeatedSubstringPattern {
                     }
                     startIndex += substringLength
                 }
-                if (matching) {
-                    debugPrint("...Found match. pattern: ${baseSubstring}")
-                    return true
-                }
+                return@any matching
             }
-
-            return false
         }
     }
 }
