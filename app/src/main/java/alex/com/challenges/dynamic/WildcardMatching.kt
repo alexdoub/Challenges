@@ -10,7 +10,7 @@ package alex.com.challenges.dynamic
 
 class WildcardMatching {
     companion object {
-        fun debugPrint(string: String) {
+        private fun debugPrint(string: String) {
             if (false) println(string)
         }
 

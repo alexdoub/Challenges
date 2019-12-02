@@ -50,7 +50,7 @@ class ValidParenthesisString {
             return stringIsValid(0, 0)
         }
 
-        fun debugPrint(string: String) {
+        private fun debugPrint(string: String) {
             if (false) {
                 println(string)
             }

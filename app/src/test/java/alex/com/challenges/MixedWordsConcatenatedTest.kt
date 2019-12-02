@@ -126,8 +126,9 @@ class MixedWordsConcatenatedTest {
         assert(result.containsAll(expected.toList()))
     }
 
+    //Exposes flaw in algorithm: must get all indexes then do DFS to find matches
     @Test
-    fun test12() {
+    fun test12_BIG_OBSTACLE() {
         val word = "aaaaaaaa"
         val strings = listOf("aa","aa","aa").toTypedArray()
         val expected = mutableListOf<Int>()
