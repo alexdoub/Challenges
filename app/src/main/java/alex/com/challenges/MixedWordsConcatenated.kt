@@ -8,7 +8,7 @@ package alex.com.challenges
 class MixedWordsConcatenated {
     companion object {
         private fun debugPrint(string: String) {
-            if (true) println(string)
+            if (false) println(string)
         }
 
         fun findSubstring(s: String, words: Array<String>): List<Int> {
@@ -17,76 +17,53 @@ class MixedWordsConcatenated {
                 return emptyList()
             }
 
+            val wordCount = words.size
             val wordLength = words[0].length
             val result = mutableListOf<Int>()
-            val wordCounts = words.groupBy { it }.mapValues { it.value.size }
-
-            val matchedIndexes = HashMap<String, ArrayList<Int>>()
-
-            //Init matches
-            for (word in words) {
-                matchedIndexes[word] = ArrayList<Int>()
-            }
+            val wordCounts: Map<String, Int> = words.groupBy { it }.mapValues { it.value.size }
+            val wordSum = wordCounts.values.sum()
 
             var index = 0
-            while (index < s.length - wordLength + 1) {
+            while (index < s.length - (wordCount * wordLength) + 1) {
                 val substring = s.substring(index, index + wordLength)
                 debugPrint("Index: ${index}, substring: ${substring}")
-                if (matchedIndexes.containsKey(substring)) {
-                    // Match, set index
-                    debugPrint("...Match at ${index}")
-                    matchedIndexes[substring]!!.add(index)
 
-                    if (matchedIndexes[substring]!!.size > wordCounts[substring]!!) {
-                        matchedIndexes[substring]!!.removeAt(0)
-                        debugPrint("... ... too many matches, rolled off one")
-                    }
+                // Found a single match, check ahead to see if its a full match
+                if (wordCounts.containsKey(substring)) {
+                    val wordCountsCopy = wordCounts.toMutableMap()
+                    var matches = 1
+                    var isMatching = true
+                    wordCountsCopy[substring] = wordCountsCopy[substring]!! - 1
 
-                    index += wordLength
+                    debugPrint("... did match! Finding remaining ${matches} matches")
 
-                    //Prune out-of-range matches
-                    // If any matched index is 4*wordLength behind us, prune it
-                    matchedIndexes.keys.forEach { key ->
-                        matchedIndexes[key]!!.removeIf {
-                            val remove = it < index - (words.size * wordLength)
-                            if (remove) {
-                                debugPrint("... pruning old match of ${key} with index ${it}")
+                    while (isMatching && matches < wordSum) {
+                        val nextIndex = index + (matches * wordLength)
+                        val nextSubstring = s.substring(nextIndex, nextIndex + wordLength)
+
+                        if (wordCountsCopy[nextSubstring] != null) {
+
+                            if (wordCountsCopy[nextSubstring] == 0) {
+                                debugPrint("... ... matched too many times. ${nextSubstring}")
+                                isMatching = false
+                            } else {
+                                wordCountsCopy[nextSubstring] = wordCountsCopy[nextSubstring]!! - 1
+                                matches += 1
+                                debugPrint("... ... next matches. ${nextSubstring}")
                             }
-                            remove
+                        } else {
+                            debugPrint("... ... not a match. ${nextSubstring}")
+                            isMatching = false
                         }
                     }
-                } else {
-                    // Non match, zero out matched indexes
-                    debugPrint("...Non match at ${index}")
-                    for (word in words) {
-                        matchedIndexes[word]!!.clear()
+
+                    // Check if complete match
+                    if (isMatching && wordCountsCopy.all { it.value == 0 }) {
+                        debugPrint("... ... ... FULL MATCH at ${index}")
+                        result.add(index)
                     }
-
-                    index += 1
                 }
-
-                //Check if full match & clear
-                var fullMatchMinIndex: Int? = null
-                val fullMatch = matchedIndexes.all {
-                    val matchesSize = it.value.size == wordCounts[it.key]
-
-                    if (matchesSize) {
-                        val thisMin = it.value.min()!!
-                        if (thisMin < fullMatchMinIndex ?: Int.MAX_VALUE) {
-                            fullMatchMinIndex = thisMin
-                        }
-                    } else {
-                        debugPrint("... still missing matches")
-                    }
-
-
-                    return@all matchesSize
-                }
-
-                if (fullMatch) {
-                    result.add(fullMatchMinIndex!!)
-                    debugPrint("...!!!!!!Found full match at ${fullMatchMinIndex}")
-                }
+                index += 1
             }
 
             return result

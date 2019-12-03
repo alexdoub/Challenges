@@ -10,7 +10,6 @@ import kotlin.math.abs
  * Thus, any nodes that cycle are unsafe.
  * Return all the safe nodes
  *
- * @@TODO: Resolve this
  */
 
 class FindEventualSafeStates {
@@ -24,7 +23,7 @@ class FindEventualSafeStates {
         }
 
 
-        //Fourth solution - Recursive (cheat)
+        //Fourth solution - Recursive (cheated)
         // 1) Dont make separate 'visited' checks for each node, re-use the same one
         // 2) Recursively loop down paths marking items as loop nodes, then unmark if they end up fine
         fun eventualSafeNodes_FAST(graph: Array<IntArray>): List<Int> {
@@ -154,7 +153,7 @@ class FindEventualSafeStates {
         fun eventualSafeNodes_OUTWARD_ITERATION(graph: Array<IntArray>): List<Int> {
             val safeNodeList = HashMap<Int, Boolean>()
 
-            graph.forEachIndexed { index, ints ->
+            graph.forEachIndexed { index, _ ->
 
                 // Maintain a list of visited nodes & nodes to check
                 val visitedNodes = BooleanArray(graph.size) { false }
