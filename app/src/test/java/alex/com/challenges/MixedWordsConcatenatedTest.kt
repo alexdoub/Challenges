@@ -125,7 +125,7 @@ class MixedWordsConcatenatedTest {
         assert(result.size == expected.size)
         assert(result.containsAll(expected.toList()))
     }
-    
+
     @Test
     fun test12_BIG_OBSTACLE() {
         val word = "aaaaaaaa"

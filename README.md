@@ -31,3 +31,4 @@ StringIncludesPermutation - https://leetcode.com/problems/permutation-in-string/
 RepeatedSubstringPattern - https://leetcode.com/problems/repeated-substring-pattern/  
 LongPressedName - https://leetcode.com/problems/long-pressed-name/  
 MixedWordsConcatenated - https://leetcode.com/problems/substring-with-concatenation-of-all-words/  
+ShortestDistanceToChar - https://leetcode.com/problems/shortest-distance-to-a-character/  
