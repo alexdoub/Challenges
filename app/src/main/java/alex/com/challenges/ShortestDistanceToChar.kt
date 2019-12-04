@@ -11,6 +11,8 @@ class ShortestDistanceToChar {
             if (false) println(string)
         }
 
+        //Time = S
+        //Space = C count in S,
         fun shortestToChar(S: String, C: Char): IntArray {
 
             // Find indexes of C
@@ -62,6 +64,8 @@ class ShortestDistanceToChar {
             return solution
         }
 
+        //Time = S * C
+        //Space = C count in S,
         fun shortestToChar_SLOW(S: String, C: Char): IntArray {
 
             // Find indexes of C
