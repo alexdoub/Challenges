@@ -22,8 +22,8 @@ class CandyDistributionTest {
 
     @Test
     fun test3() {
-        val children = intArrayOf(1,2,3,1,2,3)
-        assertEquals(12, CandyDistribution.candy(children))
+        val children = intArrayOf(1,2,3,1,2,3,1)
+        assertEquals(13, CandyDistribution.candy(children))
     }
 
     @Test

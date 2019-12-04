@@ -12,9 +12,36 @@ class CandyDistribution {
             if (false) println(string)
         }
 
+        // Doesn't use sorting, so O(n) time, O(n) space
+        fun candy(childrenValues: IntArray): Int {
+            val solution = IntArray(childrenValues.size)
+
+            //Iterate from left
+            (childrenValues.indices).forEach { index ->
+                val value = if (index != 0 && childrenValues[index-1] < childrenValues[index]) {
+                    solution[index-1] + 1
+                } else 1
+
+                solution[index] = value
+            }
+
+            //Iterate from right
+            (childrenValues.indices.reversed()).forEach { index ->
+                val value = if (index != childrenValues.indices.last
+                    && childrenValues[index+1] < childrenValues[index]
+                ) {
+                    kotlin.math.max(solution[index+1] + 1, solution[index])
+                } else solution[index]
+
+                solution[index] = value
+            }
+
+            return solution.sum()
+        }
+
         //Time = Sort children by priorities (n log n), enum for fill-out (3 * n)
         //Space = 2 * childrenValues. Priority list & Solution
-        fun candy(childrenValues: IntArray): Int {
+        fun candy_sort_and_prioritize(childrenValues: IntArray): Int {
 
             var candyDistributed = 0
             val solution = IntArray(childrenValues.size)
