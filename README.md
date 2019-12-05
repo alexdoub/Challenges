@@ -33,3 +33,4 @@ LongPressedName - https://leetcode.com/problems/long-pressed-name/
 MixedWordsConcatenated - https://leetcode.com/problems/substring-with-concatenation-of-all-words/  
 ShortestDistanceToChar - https://leetcode.com/problems/shortest-distance-to-a-character/  
 CandyDistribution - https://leetcode.com/problems/candy/  
+PerfectRectangle - https://leetcode.com/problems/perfect-rectangle/  
