@@ -183,6 +183,40 @@ class PerfectRectangleTest {
         assert(PerfectRectangle.isRectangleCover(rectangles))
     }
 
+    /**
+     * 1 1
+     * 0 0
+     * 2 2
+     * * */
+    @Test
+    fun test10_obstacle3(){
+        val rectangles = arrayOf(
+            intArrayOf(0,0,1,1),
+            intArrayOf(0,0,2,1),        //This overlaps. Area still matches because this should be 1 higher
+            intArrayOf(1,0,2,1),
+            intArrayOf(0,2,2,3)
+        )
+        assert(PerfectRectangle.isRectangleCover(rectangles) == false)
+    }
+
+    @Test
+    fun test10_obstacle3_2(){
+        val rectangles = arrayOf(
+            intArrayOf(0,0,1,1),
+            intArrayOf(0,0,2,1),        //this overlaps
+            intArrayOf(1,0,2,1)
+        )
+        assert(PerfectRectangle.isRectangleCover(rectangles) == false)
+    }
+
+    /**
+     * Possible fixes. Another area check but gives weight to higher rows.
+     * Would need same thing on X axis... or combine those
+     *
+     * */
+
+
+
     val min = 1000000
     val max = min + 10000
     @Test
