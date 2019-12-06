@@ -18,8 +18,8 @@ class WordBreakII {
         fun wordBreak_BFS(sentence: String, words: List<String>): List<String> {
             //Map indexes to nodes (+1 to account for base state)
             // NODES = WORKING SPACE, PRUNE AS YOU GO. CHECK FROM THIS
-            val nodes = HashMap<Int, Node>()
-            nodes[-1] = Node(ArrayList(), "")
+            val nodes = HashMap<Int, List<Node>>()
+            nodes[-1] = listOf(Node(ArrayList(), ""))
 
             val wordsByLength = HashMap<Int, HashSet<String>>()
             words.forEach {
@@ -36,14 +36,10 @@ class WordBreakII {
             sentence.forEachIndexed { index, char ->
                 debugPrint("Index: ${index}")
 
-//                if (index == 3) {
-//                    println("!!")
-//                }
-
-
                 //Find any nodes we can build off of or prune
                 val pruneList = ArrayList<Int>()
-                val addList = ArrayList<Pair<String, Node>>()
+                val nodesToAdd = ArrayList<Node>()
+
                 for (nodeEntry in nodes) {
                     // Only check nodes 'behind' this index
                     if (nodeEntry.key < index) {
@@ -55,9 +51,11 @@ class WordBreakII {
                             if (wordsToCheck.contains(thatSubstring)) {
 
                                 //append to existing node or create new node if doesnt exist
-                                addList.add(Pair(thatSubstring, nodeEntry.value))
+                                //@@@PULL, NOT PUSH
+                                val prev = nodes[nodeEntry.key]!!
+                                nodesToAdd.add(Node(prev, thatSubstring))
 
-                                debugPrint("... found ${thatSubstring}. Added to node at ${index}")
+                                debugPrint("... found ${thatSubstring}. Added to node at ${index}. Extended off ${prev.size}")
                             }
                         }
                     }
@@ -69,28 +67,53 @@ class WordBreakII {
                 }
 
                 for (pruneIndex in pruneList) {
-                    nodes.remove(index)
-                    debugPrint("... pruned node at ${pruneIndex}")
+                    debugPrint("... pruning node at ${pruneIndex}")
+                    nodes.remove(pruneIndex)
                 }
-                for (pair in addList) {
-                    if (nodes[index] == null) {
-                        nodes[index] = Node(ArrayList(), thatSubstring)
-                    }
-                    nodes[index]!!.prevNodes.add(nodeEntry.value)
-                }
+
+                nodes[index] = nodesToAdd
             }
 
             //DFS backwards from END of nodes, build solution
-            val finalNode = nodes[sentence.length]
+            val finalNode = nodes[sentence.length - 1]
             finalNode?.let {
                 debugPrint("Found final node")
-                return emptyList()
+                val sentences = getAllSentences(it)
+                return sentences
             } ?: run {
                 debugPrint("No final node")
                 return emptyList()
             }
         }
 
-        private class Node(val prevNodes: ArrayList<Node>, val word: String)
+        private fun getAllSentences(nodes: List<Node>): List<String> {
+            debugPrint(".. getting ALL sentences from node: ${nodes.size} children")
+            val sentences = ArrayList<String>()
+
+            if (nodes.isEmpty()) {
+                return listOf("")
+            }
+
+            nodes.forEach { node ->
+                debugPrint(".. getting ALL sentences from node: ${node.word}")
+                sentences.addAll(getAllSentences(node.prevNodes).map { it + " ${node.word}" })
+            }
+            return sentences
+        }
+
+        //recursive
+//        private fun getSentences(node: Node): List<String> {
+//            val sentences = ArrayList<String>()
+//
+//            //Dont do empty check. Final node is empty space anyway
+//            node.prevNodes.map {
+//                val prevSentences = getAllSentences(it.prevNodes)
+////                val thisSentences = prevSentences.map { it + " ${node.word}" }
+//                sentences.addAll(prevSentences)
+//            }
+//            return sentences
+//        }
+
+        private class Node(val prevNodes: List<Node>, val word: String)
     }
 }
