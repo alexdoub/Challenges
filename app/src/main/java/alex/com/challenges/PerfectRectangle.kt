@@ -15,12 +15,12 @@ class PerfectRectangle {
         //Maintain list of points & count total area
         //Check that all points have proper corresponding points & Area matches
         fun isRectangleCover(rectangles: Array<IntArray>): Boolean {
-            //Find mins and maxes
+
+
             var minX: Int = kotlin.math.min(rectangles[0][0], rectangles[0][2])
             var minY: Int = kotlin.math.min(rectangles[0][1], rectangles[0][3])
             var maxX: Int = kotlin.math.max(rectangles[0][0], rectangles[0][2])
             var maxY: Int = kotlin.math.max(rectangles[0][1], rectangles[0][3])
-
             val pointsMap = HashMap<Point, Int>()
             var calculatedArea = 0L
 
@@ -32,6 +32,7 @@ class PerfectRectangle {
                 }
             }
 
+            // Enumerate rects. Find mins/maxs/areas and build pointsMap
             rectangles.forEach { rect ->
 
                 // Check min/max
@@ -86,7 +87,6 @@ class PerfectRectangle {
             val topRight = Point(maxX, maxY)
             val botLeft = Point(minX, minY)
             val botRight = Point(maxX, minY)
-
             pointsMap.keys.forEach { point ->
 
                 //If point lies on corner, there should be only 1
