@@ -10,14 +10,10 @@ import java.lang.StringBuilder
 class WordBreakII {
     companion object {
         private fun debugPrint(string: String) {
-            if (true) println(string)
+            if (false) println(string)
         }
 
         fun wordBreak(sentence: String, words: List<String>): List<String> {
-            return wordBreak_BFS(sentence, words)
-        }
-
-        fun wordBreak_BFS(sentence: String, words: List<String>): List<String> {
             //Map indexes to nodes (+1 to account for base state)
             // NODES = WORKING SPACE, PRUNE AS YOU GO. CHECK FROM THIS
             val nodes = HashMap<Int, List<Node>>()
@@ -31,7 +27,7 @@ class WordBreakII {
                 }
                 wordsByLength[key]!!.add(it)
             }
-            val maxLengthWord = wordsByLength.keys.max()!!
+            val maxLengthWord = wordsByLength.keys.max() ?: return emptyList()
 
             // Build solution
             // Iterate along, try to build nodes that branch from previous nodes
@@ -42,20 +38,19 @@ class WordBreakII {
                 val pruneList = ArrayList<Int>()
                 val nodesToAdd = ArrayList<Node>()
 
-                for (nodeEntry in nodes) {
+                for (nodesAtIndex in nodes) {
                     // Only check nodes 'behind' this index
-                    if (nodeEntry.key < index) {
-                        val length = index - nodeEntry.key
+                    if (nodesAtIndex.key < index) {
+                        val length = index - nodesAtIndex.key
 
                         //There are words to check that continue this
                         wordsByLength[length]?.let { wordsToCheck ->
-                            val thatSubstring: String =
-                                sentence.substring(nodeEntry.key + 1, nodeEntry.key + length + 1)
+                            val thatSubstring: String = sentence.substring(nodesAtIndex.key + 1, nodesAtIndex.key + length + 1)
                             if (wordsToCheck.contains(thatSubstring)) {
 
                                 //append to existing node or create new node if doesnt exist
                                 // PULL VALUES FROM PREV, DONT PUSH
-                                val prev = nodes[nodeEntry.key]!!
+                                val prev = nodes[nodesAtIndex.key]!!
                                 nodesToAdd.add(Node(prev, thatSubstring))
 
                                 debugPrint("... found ${thatSubstring}. Added to node at ${index}. Extended off ${prev.size}")
@@ -64,8 +59,8 @@ class WordBreakII {
                     }
 
                     //Prune nodes that can no longer be reached
-                    if (nodeEntry.key + maxLengthWord < index) {
-                        pruneList.add(nodeEntry.key)
+                    if (nodesAtIndex.key + maxLengthWord < index) {
+                        pruneList.add(nodesAtIndex.key)
                     }
                 }
 
@@ -74,7 +69,9 @@ class WordBreakII {
                     nodes.remove(pruneIndex)
                 }
 
-                nodes[index] = nodesToAdd
+                if (nodesToAdd.isNotEmpty()) {
+                    nodes[index] = nodesToAdd
+                }
             }
 
             //DFS backwards from END of nodes, build solution
