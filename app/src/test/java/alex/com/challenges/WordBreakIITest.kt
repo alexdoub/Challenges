@@ -18,7 +18,5 @@ class WordBreakIITest{
         assert(solution.contains("x cat sand dogs x cats and dogs"))
         assert(solution.contains("x cats and dogs x cat sand dogs"))
         assert(solution.contains("x cat sand dogs x cat sand dogs"))
-
-        //@@TODO: FIX DOUBLE SPACE
     }
 }

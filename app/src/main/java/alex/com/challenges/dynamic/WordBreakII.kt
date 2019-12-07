@@ -1,5 +1,7 @@
 package alex.com.challenges.dynamic
 
+import java.lang.StringBuilder
+
 /**
  * Created by Alex Doub on 12/5/2019.
  * https://leetcode.com/problems/word-break-ii/
@@ -47,11 +49,12 @@ class WordBreakII {
 
                         //There are words to check that continue this
                         wordsByLength[length]?.let { wordsToCheck ->
-                            val thatSubstring: String = sentence.substring(nodeEntry.key+1, nodeEntry.key + length + 1)
+                            val thatSubstring: String =
+                                sentence.substring(nodeEntry.key + 1, nodeEntry.key + length + 1)
                             if (wordsToCheck.contains(thatSubstring)) {
 
                                 //append to existing node or create new node if doesnt exist
-                                //@@@PULL, NOT PUSH
+                                // PULL VALUES FROM PREV, DONT PUSH
                                 val prev = nodes[nodeEntry.key]!!
                                 nodesToAdd.add(Node(prev, thatSubstring))
 
@@ -76,43 +79,40 @@ class WordBreakII {
 
             //DFS backwards from END of nodes, build solution
             val finalNode = nodes[sentence.length - 1]
-            finalNode?.let {
+            finalNode?.let { finalNode ->
                 debugPrint("Found final node")
-                val sentences = getAllSentences(it)
-                return sentences
+                val builtSentences = getBuiltSentences(finalNode)
+                debugPrint("-----")
+                debugPrint(builtSentences.joinToString(separator = "\n"))
+                return builtSentences.map { it.toString() }
             } ?: run {
                 debugPrint("No final node")
                 return emptyList()
             }
         }
 
-        private fun getAllSentences(nodes: List<Node>): List<String> {
+        private fun getBuiltSentences(nodes: List<Node>): List<StringBuilder> {
             debugPrint(".. getting ALL sentences from node: ${nodes.size} children")
-            val sentences = ArrayList<String>()
+            val sentences = ArrayList<StringBuilder>()
 
             if (nodes.isEmpty()) {
-                return listOf("")
+                sentences.add(StringBuilder())
+            } else {
+                nodes.forEach { node ->
+                    debugPrint(".. getting ALL sentences from node: ${node.word}")
+                    sentences.addAll(getBuiltSentences(node.prevNodes).map { sb ->
+                        if (sb.isNotBlank()) {
+                            sb.append(" ${node.word}")
+                        } else {
+                            sb.append(node.word)
+                        }
+                        sb
+                    })
+                }
             }
 
-            nodes.forEach { node ->
-                debugPrint(".. getting ALL sentences from node: ${node.word}")
-                sentences.addAll(getAllSentences(node.prevNodes).map { it + " ${node.word}" })
-            }
             return sentences
         }
-
-        //recursive
-//        private fun getSentences(node: Node): List<String> {
-//            val sentences = ArrayList<String>()
-//
-//            //Dont do empty check. Final node is empty space anyway
-//            node.prevNodes.map {
-//                val prevSentences = getAllSentences(it.prevNodes)
-////                val thisSentences = prevSentences.map { it + " ${node.word}" }
-//                sentences.addAll(prevSentences)
-//            }
-//            return sentences
-//        }
 
         private class Node(val prevNodes: List<Node>, val word: String)
     }
