@@ -13,6 +13,16 @@ class WordBreakII {
             if (false) println(string)
         }
 
+        //Complexity Analysis
+        //Time:
+            //Buildup: W
+            //Iterate: 1/2 S^3 (Enumerates S, S nodes per index, checks S nodes)
+            //Search: S^2
+        //Space:
+            //Buildup: W
+            //Iterate: S^2 Nodes + S (add) + S (prune)
+            //Search: S^2 * W
+
         fun wordBreak(sentence: String, words: List<String>): List<String> {
             //Map indexes to nodes (+1 to account for base state)
             // NODES = WORKING SPACE, PRUNE AS YOU GO. CHECK FROM THIS
@@ -20,14 +30,21 @@ class WordBreakII {
             nodes[-1] = listOf(Node(ArrayList(), ""))
 
             val wordsByLength = HashMap<Int, HashSet<String>>()
+            var maxLengthWord = 0
             words.forEach {
                 val key = it.length
                 if (wordsByLength[key] == null) {
                     wordsByLength[key] = HashSet()
                 }
                 wordsByLength[key]!!.add(it)
+
+                if (it.length > maxLengthWord) {
+                    maxLengthWord = it.length
+                }
             }
-            val maxLengthWord = wordsByLength.keys.max() ?: return emptyList()
+            if (maxLengthWord == 0) {
+                return emptyList()
+            }
 
             // Build solution
             // Iterate along, try to build nodes that branch from previous nodes
@@ -38,19 +55,19 @@ class WordBreakII {
                 val pruneList = ArrayList<Int>()
                 val nodesToAdd = ArrayList<Node>()
 
-                for (nodesAtIndex in nodes) {
+                for (indexedNode in nodes) {
                     // Only check nodes 'behind' this index
-                    if (nodesAtIndex.key < index) {
-                        val length = index - nodesAtIndex.key
+                    if (indexedNode.key < index) {
+                        val length = index - indexedNode.key
 
                         //There are words to check that continue this
                         wordsByLength[length]?.let { wordsToCheck ->
-                            val thatSubstring: String = sentence.substring(nodesAtIndex.key + 1, nodesAtIndex.key + length + 1)
+                            val thatSubstring: String = sentence.substring(indexedNode.key + 1, indexedNode.key + length + 1)
                             if (wordsToCheck.contains(thatSubstring)) {
 
                                 //append to existing node or create new node if doesnt exist
                                 // PULL VALUES FROM PREV, DONT PUSH
-                                val prev = nodes[nodesAtIndex.key]!!
+                                val prev = nodes[indexedNode.key]!!
                                 nodesToAdd.add(Node(prev, thatSubstring))
 
                                 debugPrint("... found ${thatSubstring}. Added to node at ${index}. Extended off ${prev.size}")
@@ -59,8 +76,8 @@ class WordBreakII {
                     }
 
                     //Prune nodes that can no longer be reached
-                    if (nodesAtIndex.key + maxLengthWord < index) {
-                        pruneList.add(nodesAtIndex.key)
+                    if (indexedNode.key + maxLengthWord < index) {
+                        pruneList.add(indexedNode.key)
                     }
                 }
 
@@ -78,10 +95,11 @@ class WordBreakII {
             val finalNode = nodes[sentence.length - 1]
             finalNode?.let { finalNode ->
                 debugPrint("Found final node")
-                val builtSentences = getBuiltSentences(finalNode)
+                val sentenceBuilders = getBuiltSentences(finalNode)
                 debugPrint("-----")
-                debugPrint(builtSentences.joinToString(separator = "\n"))
-                return builtSentences.map { it.toString() }
+                debugPrint(sentenceBuilders.joinToString(separator = "\n"))
+                val builtSentences = sentenceBuilders.map { it.toString() }
+                return builtSentences
             } ?: run {
                 debugPrint("No final node")
                 return emptyList()

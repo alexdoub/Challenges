@@ -56,6 +56,18 @@ class WordBreakIITest{
     }
 
     @Test
+    fun test_homemade_stress() {
+        val char = "x"
+        val limit = 10
+        val sentence = char.repeat(limit)
+        val words = (1..limit).map { char.repeat(it) }
+
+        // 2^(n-1) solutions
+        val solution = WordBreakII.wordBreak(sentence, words)
+        println("Solution Size: ${solution.size}")
+    }
+
+    @Test
     fun test5_BS() {
         val sentence = "a"
         val words = listOf<String>()
