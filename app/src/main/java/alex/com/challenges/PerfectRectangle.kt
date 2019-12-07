@@ -16,7 +16,6 @@ class PerfectRectangle {
         //Check that all points have proper corresponding points & Area matches
         fun isRectangleCover(rectangles: Array<IntArray>): Boolean {
 
-
             var minX: Int = kotlin.math.min(rectangles[0][0], rectangles[0][2])
             var minY: Int = kotlin.math.min(rectangles[0][1], rectangles[0][3])
             var maxX: Int = kotlin.math.max(rectangles[0][0], rectangles[0][2])
@@ -151,7 +150,7 @@ class PerfectRectangle {
 
 
         //Represent rects as Array of BoolArrays
-        //@@Fails: Memory scaling is insane
+        //Fails: Memory scaling is insane
         fun isRectangleCover_HIGH_MEM(rectangles: Array<IntArray>): Boolean {
 
             //Find mins and maxes
