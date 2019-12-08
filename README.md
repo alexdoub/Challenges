@@ -34,3 +34,5 @@ MixedWordsConcatenated - https://leetcode.com/problems/substring-with-concatenat
 ShortestDistanceToChar - https://leetcode.com/problems/shortest-distance-to-a-character/  
 CandyDistribution - https://leetcode.com/problems/candy/  
 PerfectRectangle - https://leetcode.com/problems/perfect-rectangle/  
+MinimumPath4DSum - https://leetcode.com/problems/minimum-path-sum/ (Modified)  
+LargestIsland - Find largest island in a boolean grid of land & sea  

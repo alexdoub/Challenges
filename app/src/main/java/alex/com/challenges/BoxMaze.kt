@@ -35,7 +35,7 @@ class BoxMaze {
             return getMinimumPushes(boxStart, player)
         }
 
-        class ProgressState(
+        private class ProgressState(
             val box: Pair<Int, Int>,
             val player: Pair<Int, Int>,
             val moves: Int,
