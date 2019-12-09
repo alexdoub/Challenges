@@ -5,6 +5,9 @@ import java.lang.StringBuilder
 /**
  * Created by Alex Doub on 12/5/2019.
  * https://leetcode.com/problems/word-break-ii/
+ *
+ * Solution: Create a node graph representing valid paths to the end.
+ * Traverse paths from end to recreate strings
  */
 
 class WordBreakII {
