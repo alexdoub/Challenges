@@ -1,5 +1,5 @@
 # Challenges
-A collection of solutions to programming challenges
+A collection of solutions to various programming challenges I found online
 
 Maze - Simple maze navigation problem. Shortest solution wins  
 BoxMaze - A twist on maze, where you push a box around a maze. Shortest solution wins. Similar to the game Sokoban  
@@ -35,3 +35,6 @@ ShortestDistanceToChar - https://leetcode.com/problems/shortest-distance-to-a-ch
 CandyDistribution - https://leetcode.com/problems/candy/  
 PerfectRectangle - https://leetcode.com/problems/perfect-rectangle/  
 WordBreakII - https://leetcode.com/problems/word-break-ii/  
+MinimumPath4DSum - https://leetcode.com/problems/minimum-path-sum/ (Modified)  
+LargestIsland - Find largest island in a boolean grid of land & sea  
+PalindromeSubstring - https://leetcode.com/problems/longest-palindromic-substring/  

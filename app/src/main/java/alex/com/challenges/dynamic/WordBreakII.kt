@@ -1,35 +1,53 @@
 package alex.com.challenges.dynamic
 
+import java.lang.StringBuilder
+
 /**
  * Created by Alex Doub on 12/5/2019.
  * https://leetcode.com/problems/word-break-ii/
+ *
+ * Solution: Create a node graph representing valid paths to the end.
+ * Traverse paths from end to recreate strings
  */
 
 class WordBreakII {
     companion object {
         private fun debugPrint(string: String) {
-            if (true) println(string)
+            if (false) println(string)
         }
+
+        //Complexity Analysis
+        //Time:
+            //Buildup: W
+            //Iterate: 1/2 S^3 (Enumerates S, S nodes per index, checks S nodes)
+            //Search: S^2
+        //Space:
+            //Buildup: W
+            //Iterate: S^2 Nodes + S (add) + S (prune)
+            //Search: S^2 * W
 
         fun wordBreak(sentence: String, words: List<String>): List<String> {
-            return wordBreak_BFS(sentence, words)
-        }
-
-        fun wordBreak_BFS(sentence: String, words: List<String>): List<String> {
             //Map indexes to nodes (+1 to account for base state)
             // NODES = WORKING SPACE, PRUNE AS YOU GO. CHECK FROM THIS
             val nodes = HashMap<Int, List<Node>>()
             nodes[-1] = listOf(Node(ArrayList(), ""))
 
             val wordsByLength = HashMap<Int, HashSet<String>>()
+            var maxLengthWord = 0
             words.forEach {
                 val key = it.length
                 if (wordsByLength[key] == null) {
                     wordsByLength[key] = HashSet()
                 }
                 wordsByLength[key]!!.add(it)
+
+                if (it.length > maxLengthWord) {
+                    maxLengthWord = it.length
+                }
             }
-            val maxLengthWord = wordsByLength.keys.max()!!
+            if (maxLengthWord == 0) {
+                return emptyList()
+            }
 
             // Build solution
             // Iterate along, try to build nodes that branch from previous nodes
@@ -40,19 +58,19 @@ class WordBreakII {
                 val pruneList = ArrayList<Int>()
                 val nodesToAdd = ArrayList<Node>()
 
-                for (nodeEntry in nodes) {
+                for (indexedNode in nodes) {
                     // Only check nodes 'behind' this index
-                    if (nodeEntry.key < index) {
-                        val length = index - nodeEntry.key
+                    if (indexedNode.key < index) {
+                        val length = index - indexedNode.key
 
                         //There are words to check that continue this
                         wordsByLength[length]?.let { wordsToCheck ->
-                            val thatSubstring: String = sentence.substring(nodeEntry.key+1, nodeEntry.key + length + 1)
+                            val thatSubstring: String = sentence.substring(indexedNode.key + 1, indexedNode.key + length + 1)
                             if (wordsToCheck.contains(thatSubstring)) {
 
                                 //append to existing node or create new node if doesnt exist
-                                //@@@PULL, NOT PUSH
-                                val prev = nodes[nodeEntry.key]!!
+                                // PULL VALUES FROM PREV, DONT PUSH
+                                val prev = nodes[indexedNode.key]!!
                                 nodesToAdd.add(Node(prev, thatSubstring))
 
                                 debugPrint("... found ${thatSubstring}. Added to node at ${index}. Extended off ${prev.size}")
@@ -61,8 +79,8 @@ class WordBreakII {
                     }
 
                     //Prune nodes that can no longer be reached
-                    if (nodeEntry.key + maxLengthWord < index) {
-                        pruneList.add(nodeEntry.key)
+                    if (indexedNode.key + maxLengthWord < index) {
+                        pruneList.add(indexedNode.key)
                     }
                 }
 
@@ -71,48 +89,48 @@ class WordBreakII {
                     nodes.remove(pruneIndex)
                 }
 
-                nodes[index] = nodesToAdd
+                if (nodesToAdd.isNotEmpty()) {
+                    nodes[index] = nodesToAdd
+                }
             }
 
             //DFS backwards from END of nodes, build solution
             val finalNode = nodes[sentence.length - 1]
-            finalNode?.let {
+            finalNode?.let { finalNode ->
                 debugPrint("Found final node")
-                val sentences = getAllSentences(it)
-                return sentences
+                val sentenceBuilders = getBuiltSentences(finalNode)
+                debugPrint("-----")
+                debugPrint(sentenceBuilders.joinToString(separator = "\n"))
+                val builtSentences = sentenceBuilders.map { it.toString() }
+                return builtSentences
             } ?: run {
                 debugPrint("No final node")
                 return emptyList()
             }
         }
 
-        private fun getAllSentences(nodes: List<Node>): List<String> {
+        private fun getBuiltSentences(nodes: List<Node>): List<StringBuilder> {
             debugPrint(".. getting ALL sentences from node: ${nodes.size} children")
-            val sentences = ArrayList<String>()
+            val sentences = ArrayList<StringBuilder>()
 
             if (nodes.isEmpty()) {
-                return listOf("")
+                sentences.add(StringBuilder())
+            } else {
+                nodes.forEach { node ->
+                    debugPrint(".. getting ALL sentences from node: ${node.word}")
+                    sentences.addAll(getBuiltSentences(node.prevNodes).map { sb ->
+                        if (sb.isNotBlank()) {
+                            sb.append(" ${node.word}")
+                        } else {
+                            sb.append(node.word)
+                        }
+                        sb
+                    })
+                }
             }
 
-            nodes.forEach { node ->
-                debugPrint(".. getting ALL sentences from node: ${node.word}")
-                sentences.addAll(getAllSentences(node.prevNodes).map { it + " ${node.word}" })
-            }
             return sentences
         }
-
-        //recursive
-//        private fun getSentences(node: Node): List<String> {
-//            val sentences = ArrayList<String>()
-//
-//            //Dont do empty check. Final node is empty space anyway
-//            node.prevNodes.map {
-//                val prevSentences = getAllSentences(it.prevNodes)
-////                val thisSentences = prevSentences.map { it + " ${node.word}" }
-//                sentences.addAll(prevSentences)
-//            }
-//            return sentences
-//        }
 
         private class Node(val prevNodes: List<Node>, val word: String)
     }

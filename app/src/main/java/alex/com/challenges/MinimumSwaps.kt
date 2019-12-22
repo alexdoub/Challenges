@@ -24,14 +24,12 @@ class MinimumSwaps {
             val mutableS2 = s2.toMutableList()
 
             //Add 2 cols of balanced padding (x & y) to allow for simulating swap-in-place
-            mutableS1.add("x"[0])
-            mutableS2.add("x"[0])
-            mutableS1.add("y"[0])
-            mutableS2.add("y"[0])
+            mutableS1.add('x')
+            mutableS2.add('x')
+            mutableS1.add('y')
+            mutableS2.add('y')
 
             var swaps = 0
-
-
             for (index in mutableS1.indices) {
                 val topChar = mutableS1[index]
                 val botChar = mutableS2[index]
