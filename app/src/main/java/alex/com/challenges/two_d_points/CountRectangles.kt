@@ -15,15 +15,16 @@ class CountRectangles {
 
             //keep map of lines
             var sum = 0
-            val lines = HashMap<String, Int>()
+            val rectLines = HashMap<String, Int>()
 
             //Enumerate points, compare to other points
             points.forEach { pointA ->
                 points.forEach { pointB ->
                     //find lines on same Y axis (left -> right)
                     if (pointA.x < pointB.x && pointA.y == pointB.y) {
-                        sum += lines["${pointA.x}-${pointB.x}"] ?: 0
-                        lines["${pointA.x}-${pointB.x}"] = (lines["${pointA.x}-${pointB.x}"] ?: 0) + 1
+                        val key = "${pointA.x}-${pointB.x}"
+                        sum += rectLines[key] ?: 0
+                        rectLines[key] = (rectLines[key] ?: 0) + 1
                     }
                 }
             }
@@ -33,6 +34,7 @@ class CountRectangles {
 
         //NOTES: Did not need 2nd map. Just need a single map
         //Approach for Diamond doesnt work because it should also count non perfect diamonds. Thus no need for hashmap
+        //EDIT: The problem statement was rectangles, not parallelograms (like rhombus)
         private fun countRectangles_myway(points: List<Point>): Int {
             //convert list to hashmap
             //do N^2 loop. Check for rects, check for diamonds
