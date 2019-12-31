@@ -50,6 +50,16 @@ class AddTwoNumbersRedoTest {
         assertEquals(listOf(2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2), sum!!.toList())
     }
 
+    @Test
+    fun test3_overflow2() {
+        val left = listOf(9,9,9).toListNode()
+        val right = listOf(1).toListNode()
+
+        val sum = AddTwoNumbersRedo.addTwoNumbers(left, right)
+
+        assertEquals(listOf(0,0,0,1), sum!!.toList())
+    }
+
     //2,4,3 = 342
     private fun List<Int>.toListNode(): AddTwoNumbersRedo.ListNode? {
         var head: AddTwoNumbersRedo.ListNode? = null
