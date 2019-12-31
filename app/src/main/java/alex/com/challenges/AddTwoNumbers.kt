@@ -8,13 +8,13 @@ class AddTwoNumbers {
 
         fun toProperString(): String {
             var item: ListNode? = this
-            var printString = ""
+            var printString = StringBuilder()
             while (item != null) {
-                printString += item.`val`
+                printString.append(item.`val`)
                 item = item.next
             }
 
-            return printString.reversed()
+            return printString.reverse().toString()
         }
     }
 
