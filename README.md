@@ -42,3 +42,4 @@ RectCounter - https://www.youtube.com/watch?v=EuPSibuIKIg  (first half)
 ZigZagConverter - https://leetcode.com/problems/zigzag-conversion/  
 ContainerWithMostWater - https://leetcode.com/problems/container-with-most-water/  
 IntToRoman - https://leetcode.com/problems/integer-to-roman/  
+RomanToInt - https://leetcode.com/problems/roman-to-integer/  
