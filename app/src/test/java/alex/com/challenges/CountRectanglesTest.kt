@@ -11,7 +11,6 @@ import org.junit.Test
 
 class CountRectanglesTest {
 
-
     @Test
     fun test2x2() {
         val points = listOf(
