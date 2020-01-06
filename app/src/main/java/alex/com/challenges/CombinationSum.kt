@@ -5,34 +5,34 @@ package alex.com.challenges
  * https://leetcode.com/problems/combination-sum/
  */
 
+//Notes: If paths only branch 'right' and not left, you dont need to worry about uniqueness anymore. It removes a LOT of computational overhead
 class CombinationSum {
     companion object {
         fun combinationSum(candidates: IntArray, target: Int): List<List<Int>> {
             //DFS
-            fun getPathToTarget(inputSoFar: List<Int>): Set<List<Int>>? {
-                val sum = inputSoFar.sum()
+            fun getPathToTarget(inputSoFar: List<Int>, index: Int): List<List<Int>>? {
 
+                //Check if end of the line
+                val sum = inputSoFar.sum()
                 if (sum > target) {
                     return null
                 }
                 if (sum == target) {
-                    return setOf(inputSoFar.sorted())
+                    return listOf(inputSoFar.sorted())
                 }
 
-                val newPaths = ArrayList<List<Int>>().toMutableSet()
-
-                candidates.forEach { candidate ->
-                    val path = getPathToTarget(inputSoFar + candidate)
-                    if (path != null) {
-                        newPaths.addAll(path)
+                //Try to find new paths
+                val newPaths = ArrayList<List<Int>>()
+                candidates.forEachIndexed { i, candidate ->
+                    if (i >= index) {
+                        getPathToTarget(inputSoFar + candidate, i)?.let { newPaths.addAll(it) }
                     }
                 }
                 return newPaths
             }
 
-            val rval = ArrayList<List<Int>>().toMutableSet()
-            rval.addAll(getPathToTarget(emptyList()) ?: emptyList())
-            return rval.toList()
+            //Starting point -- calculate all paths and join to list
+            return ArrayList<List<Int>>().apply { addAll(getPathToTarget(emptyList(), 0) ?: emptyList()) }
         }
     }
 }
