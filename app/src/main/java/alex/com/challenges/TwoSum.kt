@@ -7,14 +7,8 @@ import android.annotation.SuppressLint
 class TwoSum {
     companion object {
 
-        val USE_BRUTE_FORCE = false
-
         fun getIndicesToMatchTarget(nums: IntArray, target: Int): IntArray {
-            if (USE_BRUTE_FORCE) {
-                return getIndicesToMatchTarget_brute(nums, target)
-            } else {
-                return getIndicesToMatchTarget_hash(nums, target)
-            }
+            return getIndicesToMatchTarget_hash(nums, target)
         }
 
         private fun getIndicesToMatchTarget_brute(nums: IntArray, target: Int): IntArray {
