@@ -1,6 +1,6 @@
 package alex.com.challenges
 
-//https://leetcode.com/problems/reconstruct-a-2-row-binary-matrix/submissions/
+//https://leetcode.com/problems/reconstruct-a-2-row-binary-matrix/
 class BinaryMatrix {
     companion object {
 

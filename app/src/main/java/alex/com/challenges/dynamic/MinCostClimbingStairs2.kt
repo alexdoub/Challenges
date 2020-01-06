@@ -2,7 +2,7 @@ package alex.com.challenges.dynamic
 
 /**
  * Created by Alex Doub on 11/18/2019.
- * https://leetcode.com/problems/min-cost-climbing-stairs/submissions/
+ * https://leetcode.com/problems/min-cost-climbing-stairs/
  *
  * Simpler and faster solution using primitives and no debug/convenience stuff
  */
