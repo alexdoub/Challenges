@@ -55,8 +55,7 @@ class MaxPointsOnALine {
                 }
 
                 //The max intersecting for this point is the max of any that match the same equation
-                val maxIntersectionsForThisPoint =
-                    (hashMap.values.max() ?: 1) + duplicatesOfThisPoint
+                val maxIntersectionsForThisPoint = (hashMap.values.max() ?: 1) + duplicatesOfThisPoint
                 if (maxIntersectionsForThisPoint > maxOverall) {
                     maxOverall = maxIntersectionsForThisPoint
                 }

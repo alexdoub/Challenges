@@ -29,6 +29,11 @@ class DiceRollsWithTargetSumTest {
     }
 
     @Test
+    fun test42() {
+        assert(2 == DiceRollsWithTargetSum.numRollsToTarget(d = 2, f = 6, target = 3))
+    }
+
+    @Test
     fun test5() {
         assert(222616187 == DiceRollsWithTargetSum.numRollsToTarget(d = 30, f = 30, target = 500))
     }

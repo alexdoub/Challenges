@@ -13,7 +13,7 @@ class MinWindowSubstring {
         fun minWindow(s: String, t: String): String {
 
             //Create key, which maps chars to char count
-            val key = t.groupBy { it }.mapValues { it.value.size }
+            val key = t.groupBy { it }.mapValues { it.value.size }  //turns "aabaa" into hashmap "a" ->4 "b" -> 1
 
             // Create an indexes map, which stores the indexes of chars as they are found.
             // If it stores more than the corresponding 'key' amount, the oldest one is removed

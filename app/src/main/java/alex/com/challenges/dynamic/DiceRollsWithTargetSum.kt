@@ -10,7 +10,7 @@ class DiceRollsWithTargetSum {
         fun numRollsToTarget(d: Int, f: Int, target: Int): Int {
 
             val mod = 1_000_000_007
-            val solutionGraph = Array<IntArray>(d) { IntArray(target + 1) }
+            val solutionGraph = Array<IntArray>(d) { IntArray(target + 1) } //Represents "unique ways to arrive at this number" for this dice count
 
             // Base case
             (1..f).forEach {
@@ -19,25 +19,20 @@ class DiceRollsWithTargetSum {
                 }
             }
 
-//            println("Finished base case. SolutionGraph = ${solutionGraph[0].joinToString()}")
-
             // For each dice, fill out a sum row
             (1 until solutionGraph.size).forEach { dice ->
 
                 //For every face on the die, propagate new sums for this dice
                 (1..f).forEach { face ->
 
-                    // Enumerate calculated rows,
+                    // Enumerate calculated rows, update solution graph for this dice face
                     solutionGraph[dice - 1].forEachIndexed { index, value ->
                         if (index + face < solutionGraph[dice].size) {
                             solutionGraph[dice][index + face] += value
                             solutionGraph[dice][index + face] = solutionGraph[dice][index + face] % mod
-                        } else {
-//                            println("Skipped value that computed to: ${index + face}")
                         }
                     }
                 }
-//                println("Finished new level. SolutionGraph = ${solutionGraph[dice].joinToString()}")
             }
 
             return solutionGraph[d - 1][target]
