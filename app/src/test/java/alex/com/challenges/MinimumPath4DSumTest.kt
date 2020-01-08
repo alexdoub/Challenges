@@ -12,6 +12,7 @@ class MinimumPath4DSumTest {
             intArrayOf(4,2,1)
         )
         assertEquals(7, MinimumPath4DSum.minPathSum(input))
+        assertEquals(7, MinimumPath4DSum.minPathSum_modified(input))
     }
 
     @Test
@@ -22,6 +23,7 @@ class MinimumPath4DSumTest {
             intArrayOf(5,1,1)
         )
         assertEquals(5, MinimumPath4DSum.minPathSum(input))
+        assertEquals(5, MinimumPath4DSum.minPathSum_modified(input))
     }
 
     @Test
@@ -33,7 +35,7 @@ class MinimumPath4DSumTest {
             intArrayOf(9,1,9,9),
             intArrayOf(9,1,1,1)
         )
-        assertEquals(10, MinimumPath4DSum.minPathSum(input))
+        assertEquals(10, MinimumPath4DSum.minPathSum_modified(input))
     }
 
     @Test
@@ -46,6 +48,6 @@ class MinimumPath4DSumTest {
             intArrayOf(1,99,99,99,99),
             intArrayOf(1,1,1,1,1)
         )
-        assertEquals(20, MinimumPath4DSum.minPathSum(input))
+        assertEquals(20, MinimumPath4DSum.minPathSum_modified(input))
     }
 }
