@@ -50,3 +50,4 @@ PhoneNumberCombos - https://leetcode.com/problems/letter-combinations-of-a-phone
 RemoveNthNodeFromEnd - https://leetcode.com/problems/remove-nth-node-from-end-of-list/  
 CombinationSum - https://leetcode.com/problems/combination-sum/  
 GenerateParenthesis - https://leetcode.com/problems/generate-parentheses/  
+InvertBinaryTree - https://leetcode.com/problems/invert-binary-tree/  
