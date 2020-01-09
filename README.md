@@ -53,3 +53,4 @@ GenerateParenthesis - https://leetcode.com/problems/generate-parentheses/
 InvertBinaryTree - https://leetcode.com/problems/invert-binary-tree/  
 FindNumRange - https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/  
 MathPow - https://leetcode.com/problems/powx-n/  
+JumpGame - https://leetcode.com/problems/jump-game/  
