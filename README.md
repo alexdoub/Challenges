@@ -54,3 +54,6 @@ InvertBinaryTree - https://leetcode.com/problems/invert-binary-tree/
 FindNumRange - https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/  
 MathPow - https://leetcode.com/problems/powx-n/  
 JumpGame - https://leetcode.com/problems/jump-game/  
+Permutations - https://leetcode.com/problems/permutations/  
+PermutationsII - https://leetcode.com/problems/permutations-ii/submissions/  
+SearchInRotatedArray - https://leetcode.com/problems/search-in-rotated-sorted-array/  
