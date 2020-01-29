@@ -16,7 +16,7 @@ AssignCookies - https://leetcode.com/problems/assign-cookies/
 BinaryMatrix - https://leetcode.com/problems/reconstruct-a-2-row-binary-matrix/  
 MinimumSwaps - https://leetcode.com/problems/minimum-swaps-to-make-strings-equal/  
 ValidParenthesis - https://leetcode.com/problems/valid-parentheses/  
-MinCostClimbingStairs - https://leetcode.com/problems/min-cost-climbing-stairs/
+MinCostClimbingStairs - https://leetcode.com/problems/min-cost-climbing-stairs/  
 MinFallingPathSum - https://leetcode.com/problems/minimum-falling-path-sum/  
 KnightDialer - https://leetcode.com/problems/knight-dialer/  
 DivisorGame - https://leetcode.com/problems/divisor-game/  
@@ -36,9 +36,9 @@ CandyDistribution - https://leetcode.com/problems/candy/
 PerfectRectangle - https://leetcode.com/problems/perfect-rectangle/  
 WordBreakII - https://leetcode.com/problems/word-break-ii/  
 MinimumPath4DSum - https://leetcode.com/problems/minimum-path-sum/ (Modified)  
-LargestIsland - Find largest island in a boolean grid of land & sea  
+LargestIsland - Find largest island in a boolean grid of land & sea (interview question)  
 PalindromeSubstring - https://leetcode.com/problems/longest-palindromic-substring/  
-RectCounter - https://www.youtube.com/watch?v=EuPSibuIKIg  (first half)
+RectCounter - https://www.youtube.com/watch?v=EuPSibuIKIg  (first half)  
 ZigZagConverter - https://leetcode.com/problems/zigzag-conversion/  
 ContainerWithMostWater - https://leetcode.com/problems/container-with-most-water/  
 IntToRoman - https://leetcode.com/problems/integer-to-roman/  
