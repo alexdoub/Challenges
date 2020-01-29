@@ -1,5 +1,6 @@
 package alex.com.challenges.dynamic
 
+
 /**
  * Created by Alex Doub on 11/22/2019.
  * https://leetcode.com/problems/divisor-game/
@@ -7,12 +8,12 @@ package alex.com.challenges.dynamic
 
 class DivisorGame {
     companion object {
-        private val DYNAMIC = true
+        private val DYNAMIC = false
         fun divisorGame(N: Int): Boolean {
             if (DYNAMIC) {
                 return divisorGame_dynamic(N)
             } else {
-                return divisorGame_search(N)
+                return divisorGame_recursive(N)
             }
         }
 
@@ -36,14 +37,29 @@ class DivisorGame {
             return winningStates[N]
         }
 
-        fun divisorGame_search(N: Int): Boolean {
-            return false
+        val memoized = mutableMapOf<Int, Boolean>()
+        fun divisorGame_recursive(N: Int): Boolean {
+
+            memoized[1] = false
+
+            fun recurse(myTurn: Boolean, n: Int): Boolean {
+
+                memoized[n]?.let { return it }
+
+                val subIterationHasAWinner = (1..n/2)
+                    .filter { n % it == 0 }
+                    .map {
+                        recurse(!myTurn, n - it)
+                    }
+                    .any{!it}
+
+                memoized[n] = subIterationHasAWinner
+                return subIterationHasAWinner
+            }
+
+            return recurse(true, N)
         }
 
-        val debug = false
-        fun printDebug(string: String) {
-            if (debug) println(string)
-        }
     }
 }
 

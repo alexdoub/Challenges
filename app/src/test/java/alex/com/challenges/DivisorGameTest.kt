@@ -8,6 +8,11 @@ import org.junit.Test
  */
 
 class DivisorGameTest {
+    //1 - F
+    //2 -  T
+    //3 - F
+    //4 -  T
+    //5 - F
 
     @Test
     fun test1() {
@@ -24,12 +29,14 @@ class DivisorGameTest {
     @Test
     fun test3() {
         //From question
+        // you take 1, he takes 1, you left with 1
         assert(DivisorGame.divisorGame(3) == false)
     }
 
     @Test
     fun test4() {
         //From question
+        //You pick 1, they pick 3 or 1 which are loss states
         assert(DivisorGame.divisorGame(4) == true)
     }
 
