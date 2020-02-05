@@ -4,12 +4,15 @@ package alex.com.challenges
  * Created by Alex Doub on 2/4/2020.
  * https://leetcode.com/problems/multiply-strings/
  *
- * Use intArray to store partial sums. Do N^2 loop filling out intArray
+ * Use intArray to store partial sums. Do N*M loop filling out intArray
  * Lastly, normalize intArray & build final string
  *
  * Takeaways:
  *   -In multiplying a number, the result has a max digit count of: x.len + y.len - 1
  *   -Reverse input to keep it aligned. Do not reverse again on final enumeration
+ *
+ * Time Complexity: O(num1.size * num2.size)
+ * Space Complexity: O(num1.size + num2.size)
  */
 
 class StringMultiply  {
