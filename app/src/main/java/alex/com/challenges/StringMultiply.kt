@@ -59,3 +59,6 @@ class StringMultiply  {
         }
     }
 }
+
+// How many digits would it take to int overflow?
+// digits * 81 > Int_MAX... 26512143 + 1 digits
