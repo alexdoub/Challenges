@@ -90,15 +90,15 @@ A collection of solutions to various programming challenges I found online.
 # Strategies
 
 ## Graph
-Recursive DFS - CourseSchedule, NumIslands, CourseSchedule, KeysAndRooms, FindGrasshopper, IsValidBST
-Dynamic - MinFallingPathSum
+Recursive DFS - CourseSchedule, NumIslands, CourseSchedule, KeysAndRooms, FindGrasshopper, IsValidBST  
+Dynamic - MinFallingPathSum  
 
 ## Matrix
-2-way sweep - DistanceFromZeroes
+2-way sweep - DistanceFromZeroes  
 
 ## Points
 
 ## Arrays
-Sliding Window - SearchInRotatedArray
-Partial sums - StringMultiply
-Partial sort - SortPartiallySortedArray
+Sliding Window - SearchInRotatedArray  
+Partial sums - StringMultiply  
+Partial sort - SortPartiallySortedArray  
