@@ -1,6 +1,6 @@
-# Challenges
 A collection of solutions to various programming challenges I found online.
 
+# Challenges
 Maze - Simple maze navigation problem. Shortest solution wins  
 BoxMaze - A twist on maze, where you push a box around a maze. Shortest solution wins. Similar to the game Sokoban  
 SimilarWords - Find similar words in a sentence. A word is similar if they both contain the same set of letters  
@@ -57,11 +57,48 @@ JumpGame - https://leetcode.com/problems/jump-game/
 Permutations - https://leetcode.com/problems/permutations/  
 PermutationsII - https://leetcode.com/problems/permutations-ii/submissions/  
 SearchInRotatedArray - https://leetcode.com/problems/search-in-rotated-sorted-array/  
+	"Given a rotated sorted array, find the target or return -1"
+	Use sliding window + tricky checks to determine where to search
 IsValidBST - https://leetcode.com/problems/validate-binary-search-tree/  
+	"Given a binary tree, determine if it is a valid binary search tree (BST)."
+	Recurisvely enumerate nodes (DFS) with greater/less than parameters passed down.
+	Gotcha: Use nullable lt/gt parameters
 FindGrasshopper - https://leetcode.com/discuss/interview-question/494186/google-onsite-grasshopper-position  
+	"Given a graph and an int N, determine the probability that you will be in each node if you did hops at random"
+	Recursively (DFS) get list of nodes after N hops. Evenly distribute probabilities accounting for duplicate nodes. 
 CourseSchedule - https://leetcode.com/problems/course-schedule/  
+	"Given a dependency map representing college courses, return T/F if you can take them all"
+	Return false if any circular dependencies
+	Transform inputs into dependency & accessibility maps. Make BoolArr for taken courses. Do recursive (DFS) search and fill out BoolArr. 
 CourseScheduleII - https://leetcode.com/problems/course-schedule-ii/  
+	"Given a dependency map representing college courses, print the order in which you take them all & satisfy prerequisites"
+	Similar to previous, but also print the progress.
 StringMultiply - https://leetcode.com/problems/multiply-strings/  
+	"Given two strings representing integers, multiply them"
+	Oldschool multiply, digit by digit. Store partial sums in IntArray
+	Finally, loop over IntArray & fill out string
 NumIslands - https://leetcode.com/problems/number-of-islands/  
+	"Given a 2d binary matrix of islands, count the total amount of islands."
+	Loop matrix, BFS to zero out found islands
 DistanceFromZeroes - https://leetcode.com/problems/01-matrix/  
+	"Given a matrix consists of 0 and 1, find the distance of the nearest 0 for each cell"
+	2-way matrix sweep
 SortPartiallySortedArray - https://leetcode.com/discuss/interview-question/378774/  
+	"Given an array of positive integers (possibly with duplicates) such that the numbers have been sorted only by 28 most significant bits. Sort the array completely"
+	Bucket Sort
+
+#Strategies
+
+##Graph
+Recursive DFS - CourseSchedule, NumIslands, CourseSchedule, KeysAndRooms, FindGrasshopper, IsValidBST
+Dynamic - MinFallingPathSum
+
+##Matrix
+2-way sweep - DistanceFromZeroes
+
+##Points
+
+##Arrays
+Sliding Window - SearchInRotatedArray
+Partial sums - StringMultiply
+Partial sort - SortPartiallySortedArray
