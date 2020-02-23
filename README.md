@@ -63,3 +63,5 @@ CourseSchedule - https://leetcode.com/problems/course-schedule/
 CourseScheduleII - https://leetcode.com/problems/course-schedule-ii/  
 StringMultiply - https://leetcode.com/problems/multiply-strings/  
 NumIslands - https://leetcode.com/problems/number-of-islands/  
+DistanceFromZeroes - https://leetcode.com/problems/01-matrix/  
+SortPartiallySortedArray - https://leetcode.com/discuss/interview-question/378774/  
