@@ -22,17 +22,15 @@ class SortPartiallySortedArrayTest {
         assertTrue(output.isSorted())
     }
 
-    private fun IntArray.isSorted() : Boolean {
+    private fun IntArray.isSorted(): Boolean {
         if (isEmpty()) {
             return true
         }
-        var temp = this[0]
+        var prev = this[0]
 
         for (x in this) {
-            if (x < temp) {
-                return false
-            }
-            else temp = x
+            if (x < prev) return false
+            else prev = x
         }
         return true
     }
