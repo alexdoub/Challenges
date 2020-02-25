@@ -152,7 +152,7 @@ A collection of solutions to various programming challenges I found online.
 **Loop (BFS)** - MinimumPath4DSum(modified)  
 
 ## Points
-**Hashmap Tricks** - CountRectangles
+**Loop + Hashmap** - CountRectangles
 
 ## Arrays
 **Single Loop** - PhoneNumberCombos, TwoSums, RomanToInt, ZigZagConverter, PalindromeSubstring  
