@@ -140,25 +140,25 @@ A collection of solutions to various programming challenges I found online.
 # Strategies
 
 ## Graph
-Single loop - RemoveNthNodeFromEnd  
-Recursive DFS - CourseSchedule, NumIslands, CourseSchedule, KeysAndRooms, FindGrasshopper, IsValidBST, WordBreakII(pt2)  
-Recursive - InvertBinaryTree  
-DP Array - MinFallingPathSum  
+**Single loop** - RemoveNthNodeFromEnd  
+**Recursive DFS** - CourseSchedule, NumIslands, CourseSchedule, KeysAndRooms, FindGrasshopper, IsValidBST, WordBreakII(pt2)  
+**Recursive** - InvertBinaryTree  
+**DP Array** - MinFallingPathSum  
 
 ## Matrix
-1-way sweep DP matrix - MinimumPath4DSum  
-2-way sweep DP matrix - DistanceFromZeroes  
-Recursive (BFS) - FindLargestIsland  
-Loop (BFS) - MinimumPath4DSum(modified)  
+**1-way sweep DP matrix** - MinimumPath4DSum  
+**2-way sweep DP matrix** - DistanceFromZeroes  
+**Recursive (BFS)** - FindLargestIsland  
+**Loop (BFS)** - MinimumPath4DSum(modified)  
 
 ## Points
-Hashmap Tricks - CountRectangles
+**Hashmap Tricks** - CountRectangles
 
 ## Arrays
-Single Loop - PhoneNumberCombos, TwoSums, RomanToInt, ZigZagConverter, PalindromeSubstring  
-Recursive DFS -  Permutations, GenerateParentheses, CombinationSum  
-Sliding Window - SearchInRotatedArray, FindNumInRange, 3-Sum, 3-SumClosests, ContainerWithMostWater  
-Partial Sums - StringMultiply  
-Partial Sort - SortPartiallySortedArray  
-DP Array - JumpGame  
-DP Graph - WordBreakII(pt1)  
+**Single Loop** - PhoneNumberCombos, TwoSums, RomanToInt, ZigZagConverter, PalindromeSubstring  
+**Recursive DFS** -  Permutations, GenerateParentheses, CombinationSum  
+**Sliding Window** - SearchInRotatedArray, FindNumInRange, 3-Sum, 3-SumClosests, ContainerWithMostWater  
+**Partial Sums** - StringMultiply  
+**Partial Sort** - SortPartiallySortedArray  
+**DP Array** - JumpGame  
+**DP Graph** - WordBreakII(pt1)  
