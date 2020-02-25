@@ -12,13 +12,13 @@ class JumpGame {
             val reachable = BooleanArray(nums.size)
             var lastReachable = 0
             reachable[0] = true
-            reachable.forEachIndexed { index, x ->
+            reachable.forEachIndexed { index, thisIndexReachable ->
                 if (index > lastReachable) {
                     println("Past last reachable. index:$index lr:$lastReachable")
                     return false
                 }
 
-                if (x) {
+                if (thisIndexReachable) {
                     val newIndex = nums[index] + index
                     reachable.fill(true, index, Math.min(newIndex + 1, reachable.size))
                     lastReachable = Math.max(newIndex, lastReachable)

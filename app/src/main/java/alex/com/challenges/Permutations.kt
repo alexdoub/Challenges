@@ -3,6 +3,9 @@ package alex.com.challenges
 /**
  * Created by Alex Doub on 1/9/2020.
  * https://leetcode.com/problems/permutations/
+ *
+ * Total permutations (Simple) = N!
+ * Total Permutations = N! / (N - R)!
  */
 
 class Permutations {

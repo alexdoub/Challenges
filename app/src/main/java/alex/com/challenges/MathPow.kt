@@ -2,7 +2,7 @@ package alex.com.challenges
 
 /**
  * Created by Alex Doub on 1/8/2020.
- * https://leetcode.com/problems/powx-n/submissions/
+ * https://leetcode.com/problems/powx-n/
  */
 
 class MathPow {
