@@ -149,10 +149,10 @@ A collection of solutions to various programming challenges I found online.
 	Loop matrix, BFS to zero out found islands  
 **DistanceFromZeroes** - https://leetcode.com/problems/01-matrix/  
 	"Given a matrix consists of 0 and 1, find the distance of the nearest 0 for each cell"  
-	2-way matrix sweep  
+	2-way DP matrix sweep. Enumerate matrix forwards and backwards, setting values based on previous values. Base case in first sweep.   
 **SortPartiallySortedArray** - https://leetcode.com/discuss/interview-question/378774/  
 	"Given an array of positive integers (possibly with duplicates) such that the numbers have been sorted only by 28 most significant bits. Sort the array completely"  
-	Bucket Sort  
+	Bucket Sort. Loop and add values into bucket. On new bucket found, unroll last bucket. Finally unroll bucket again.  
 
 # Strategies
 
@@ -169,7 +169,7 @@ A collection of solutions to various programming challenges I found online.
 **Loop (BFS)** - MinimumPath4DSum(modified)  
 
 ## Points
-**Loop + Hashmap** - CountRectangles, PerfectRectangle  
+**Tricky Hashmap** - CountRectangles, PerfectRectangle  
 
 ## Arrays
 **Single Loop** - PhoneNumberCombos, TwoSums, RomanToInt, ZigZagConverter, PalindromeSubstring, ShortestDistanceToChar(mediocre), MixedWordsConcatenated  
