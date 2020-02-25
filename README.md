@@ -181,4 +181,4 @@ A collection of solutions to various programming challenges I found online.
 **DP Graph** - WordBreakII(pt1)  
 **2 Way Sweep** - CandyDistribution, ShortestDistanceToChar  
 **Tricky Math** - RepeatedSubstringPattern  
-**Loop + Hashmap** - StringIncludesPermutation, MinWindowSubstring  
+**Tricky Hashmap** - StringIncludesPermutation, MinWindowSubstring  
