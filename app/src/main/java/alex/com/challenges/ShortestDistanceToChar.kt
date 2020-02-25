@@ -11,6 +11,28 @@ class ShortestDistanceToChar {
             if (false) println(string)
         }
 
+        // Simpler, uses less memory
+        fun shortestToChar2(S: String, C: Char): IntArray {
+            val solution = IntArray(S.length) { Int.MAX_VALUE }
+
+            // Left to Right
+            (0 until S.length).forEach {
+                if (S[it] == C) {
+                    solution[it] = 0
+                } else if (it > 0 && solution[it - 1] < solution[it]) {
+                    solution[it] = solution[it - 1] + 1
+                }
+            }
+            // Right to Left
+            (0 until S.length).reversed().forEach {
+                if (it < S.length - 1 && solution[it + 1] < solution[it]) {
+                    solution[it] = solution[it + 1] + 1
+                }
+            }
+
+            return solution
+        }
+
         //Time = S
         //Space = C count in S,
         fun shortestToChar(S: String, C: Char): IntArray {

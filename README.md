@@ -26,13 +26,30 @@ A collection of solutions to various programming challenges I found online.
 **KeysAndRooms** - https://leetcode.com/problems/keys-and-rooms/  
 **FindEventualSafeStates** - https://leetcode.com/problems/find-eventual-safe-states/  
 **MinWindowSubstring** - https://leetcode.com/problems/minimum-window-substring/  
+	"Given an input string and a target string, return the smallest substring that contains all the letters in the target string"  
+	Loop + Hashmap tracking indexes.  Similar to StringIncludesPermutation. Make hashmap that maps chars to counts. Make 2nd hashmap that maps chars to index locations. Loop input and tally up characters. If over-tallyd, pop off last. Store solutions when tallys are full.  
 **StringIncludesPermutation** - https://leetcode.com/problems/permutation-in-string/  
+	"Given an input string and a target string, return T/F if the input string contains a permutation of the target string in it"  
+	Loop + Hashmap tracking indexes. Similar to MinWindowSubstring. Make hashmap of char -> count of the target string. Loop over input string and tally characters as they match. Prune indexes when they get too far. Check for solution each step  
 **RepeatedSubstringPattern** - https://leetcode.com/problems/repeated-substring-pattern/  
+	"Given a string, return T/F if its just a repeat of a single substring"  
+	Tricky math. Get all divisors of input string. For each divisor, enumerate input string in chunks and see if its a full match.  
 **LongPressedName** - https://leetcode.com/problems/long-pressed-name/  
+	"Given an input string and a target string, return T/F if the input string is the target string with repeated characters (sticky keys)"  
+	Single loop. Loop over input char with a pointer along the target string. Try to advance target string first OR check for sticky letter repeat (In that order).  
 **MixedWordsConcatenated** - https://leetcode.com/problems/substring-with-concatenation-of-all-words/  
+	"Given a string and a list of words, return ALL the starting indexes of substrings that contain all the listed words."  
+	Loop + Map + Lookahead. Prepare map that maps words to counts. Loop over characters, from start to logical last index. On each char, see if there is a substring match & keep searching for matches along that pattern. If its successful, add to results list.  
 **ShortestDistanceToChar** - https://leetcode.com/problems/shortest-distance-to-a-character/  
+	"Given a string and a char, return an IntArray represnting how far away each digit is from a target letter"  
+	1) Simple loop x2. Loop & build list of indexes for target char. Loop again and compare each char to the 2 lowest indexes from the index list. If the 2nd index is closer, pop the first from the arraylist.  
+	2) DP 2-way sweep.  Loop from LtR then RtL and build off previous solution. Only first iteration has base case that checks original string & sets 0  
 **CandyDistribution** - https://leetcode.com/problems/candy/  
+	"Given an IntArray of children priorities, return the minimum amount of candy to satisfy them all"  
+	DP 2-way sweep. Make IntArray solution and fill out by sweeping LtR then RtL, making sure priorities are satisfied.  
 **PerfectRectangle** - https://leetcode.com/problems/perfect-rectangle/  
+	"Given a list of rectangles, return T/F if the area perfectly makes a single rectangle with no gaps or overlaps."  
+	Loop + Hashmap. Enumerate rects and build a hashmap to count points. Also track min/max X/Y & sum up area. Check 1 = the total area must equal the expected area. Check 2 = enumerate hashmap and verify theres 1 point in the corners, 2 points on the side, and either 2 or 4 points in the inner area.  
 **WordBreakII** - https://leetcode.com/problems/word-break-ii/  
 	"Given a sentence string and a list of words, return all combinations of the sentence such that the words are from the word list with spaces inbetween"  
 	DP Graph construction. Enumerate chars in sentence & see if this char starts off any words from the word list. Build a graph, starting from initial node, and place new nodes at index of DP array. DP Array contains arraylist of nodes that are valid up to that character. Nodes point back to previous nodes. Early terminate if too far past last node. After enumeration, recursively (DFS) enumerate from final nodes to build sentences.  
@@ -44,7 +61,7 @@ A collection of solutions to various programming challenges I found online.
 	Simple loop + recursive (BFS). On every cell in the matrix, use BFS to find the total area. Then zero it out to prevent re-computing the same island.  
 **PalindromeSubstring** - https://leetcode.com/problems/longest-palindromic-substring/  
 	"Given a string, find the longest palindrome within it"  
-	Simple loop. Loop over string and on each character, try to 'expand outwards' to find the longest palindome from this char. Also account for even length palindromes. Store the best ne.  
+	Simple loop. Loop over string and on each character, try to 'expand outwards' to find the longest palindome from this char. Also account for even length palindromes. Store & return the best one.  
 **CountRectangles** - https://www.youtube.com/watch?v=EuPSibuIKIg  (first half)  
 	"Given a list of points, count how many rectangles can be made"  
 	Double loop over points, record only forward lines on the same Y axis. In a hashmap with the key as the start-end X coords, increment your count and add to sum.  
@@ -152,13 +169,16 @@ A collection of solutions to various programming challenges I found online.
 **Loop (BFS)** - MinimumPath4DSum(modified)  
 
 ## Points
-**Loop + Hashmap** - CountRectangles
+**Loop + Hashmap** - CountRectangles, PerfectRectangle  
 
 ## Arrays
-**Single Loop** - PhoneNumberCombos, TwoSums, RomanToInt, ZigZagConverter, PalindromeSubstring  
+**Single Loop** - PhoneNumberCombos, TwoSums, RomanToInt, ZigZagConverter, PalindromeSubstring, ShortestDistanceToChar(mediocre), MixedWordsConcatenated  
 **Recursive DFS** -  Permutations, GenerateParentheses, CombinationSum  
 **Sliding Window** - SearchInRotatedArray, FindNumInRange, 3-Sum, 3-SumClosests, ContainerWithMostWater  
 **Partial Sums** - StringMultiply  
 **Partial Sort** - SortPartiallySortedArray  
 **DP Array** - JumpGame  
 **DP Graph** - WordBreakII(pt1)  
+**2 Way Sweep** - CandyDistribution, ShortestDistanceToChar  
+**Tricky Math** - RepeatedSubstringPattern  
+**Loop + Hashmap** - StringIncludesPermutation, MinWindowSubstring  
