@@ -21,10 +21,20 @@ A collection of solutions to various programming challenges I found online.
 **DivisorGame** - https://leetcode.com/problems/divisor-game/  
 **DiceRollsWithTargetSum** - https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/  
 **ValidParenthesisString** - https://leetcode.com/problems/valid-parenthesis-string/  
+	"Given a string of open & closed perenthesis & wildcards that can represent either or nothing, return T/F if the string has valid perenthesis."  
+	Loop + Stack count + recursive branching (BFS). Loop and maintain stack. On wildcard, branch 3 ways with ||. Dont let stack go negative.  
 **WildcardMatching** - https://leetcode.com/problems/wildcard-matching/  
+	"Given an input string and a pattern that may contain an asterisk, return T/F if the input matches the pattern"  
+	DP Matrix. Make a 2D boolean matrix & fill out in order. Horizontal represents 'match so far' in input string and vertical represents how far in the pattern you are. On every row, smartly update the matrix by chaining from previous row. Asterisks fill the rest of the row. Return the last value in the matrix.  
 **SmallestSpanningRange** - https://www.careercup.com/question?id=16759664  
+	"Given an array of Int arrays, find the smallest range that spans all the int arrays."  
+	2D - Sliding window. Starting at the 0th index of all the arrays, endlessly loop & push up the index of the minimum value. Compare & store best value. Finish when all indexes are at end.  
 **KeysAndRooms** - https://leetcode.com/problems/keys-and-rooms/  
+	"Given a flattened graph (array of Int arrays, representing nodes & paths to new nodes), return T/F if all the nodes can be visited."  
+	Recursive DFS OR loop BFS. Simply start at node 0 and enumerate as far as possible. Return T if all nodes visited.  
 **FindEventualSafeStates** - https://leetcode.com/problems/find-eventual-safe-states/  
+	"Find all the terminal nodes in a graph. A terminal node will not lead to any loops"  
+	Recursive DFS. Maintain BoolArray of bad nodes and safe nodes. Loop over unchecked nodes and recursively check for loops. If a loop is found, mark all those as loop nodes. If no loop is found, mark all those as safe nodes.  
 **MinWindowSubstring** - https://leetcode.com/problems/minimum-window-substring/  
 	"Given an input string and a target string, return the smallest substring that contains all the letters in the target string"  
 	Loop + Hashmap tracking indexes.  Similar to StringIncludesPermutation. Make hashmap that maps chars to counts. Make 2nd hashmap that maps chars to index locations. Loop input and tally up characters. If over-tallyd, pop off last. Store solutions when tallys are full.  
@@ -158,7 +168,8 @@ A collection of solutions to various programming challenges I found online.
 
 ## Graph
 **Single loop** - RemoveNthNodeFromEnd  
-**Recursive DFS** - CourseSchedule, NumIslands, CourseSchedule, KeysAndRooms, FindGrasshopper, IsValidBST, WordBreakII(pt2)  
+**Recursive DFS** - CourseSchedule, NumIslands, CourseSchedule, KeysAndRooms, FindGrasshopper, IsValidBST, WordBreakII(pt2), FindEventualSafeStates, KeysAndRooms  
+**Loop BFS** - KeysAndRooms  
 **Recursive** - InvertBinaryTree  
 **DP Array** - MinFallingPathSum  
 
@@ -173,11 +184,14 @@ A collection of solutions to various programming challenges I found online.
 
 ## Arrays
 **Single Loop** - PhoneNumberCombos, TwoSums, RomanToInt, ZigZagConverter, PalindromeSubstring, ShortestDistanceToChar(mediocre), MixedWordsConcatenated  
-**Recursive DFS** -  Permutations, GenerateParentheses, CombinationSum  
+**Recursive DFS** -  Permutations, GenerateParentheses, CombinationSum, ValidParenthesisString  
+**Recursive Stack** - ValidParenthesisString  
 **Sliding Window** - SearchInRotatedArray, FindNumInRange, 3-Sum, 3-SumClosests, ContainerWithMostWater  
+**2D Sliding Window** - SmallestSpanningRange  
 **Partial Sums** - StringMultiply  
 **Partial Sort** - SortPartiallySortedArray  
 **DP Array** - JumpGame  
+**DP Matrix** - WildcardMatching  
 **DP Graph** - WordBreakII(pt1)  
 **2 Way Sweep** - CandyDistribution, ShortestDistanceToChar  
 **Tricky Math** - RepeatedSubstringPattern  
