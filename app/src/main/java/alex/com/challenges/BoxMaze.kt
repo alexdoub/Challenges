@@ -13,7 +13,7 @@ class BoxMaze {
 
         private val WRONG_STEP = Int.MAX_VALUE
 
-        fun solve(map: List<String>): Solution? {
+        fun solve(map: List<String>): BoxMazeSolution? {
 
             mapToUse = map
 
@@ -42,17 +42,17 @@ class BoxMaze {
             val pushes: Int,
             val playerPath: String
         ) {
-            fun toWinState() = Solution(playerPath, moves, pushes)
+            fun toWinState() = BoxMazeSolution(playerPath, moves, pushes)
         }
 
-        class Solution(val playerPath: String, val moves: Int, val pushes: Int)
+        class BoxMazeSolution(val playerPath: String, val moves: Int, val pushes: Int)
 
         //must be BFS, not DFS! Simply because of endless loops
 
         fun getMinimumPushes(
             boxStartPosition: Pair<Int, Int>,
             playerStartPosition: Pair<Int, Int>
-        ): Solution? {
+        ): BoxMazeSolution? {
 
             val potentialStates = ArrayList<ProgressState>()
 

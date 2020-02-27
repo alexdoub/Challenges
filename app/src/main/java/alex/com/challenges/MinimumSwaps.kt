@@ -1,5 +1,6 @@
 package alex.com.challenges
 
+
 /**
  * Created by Alex Doub on 11/17/2019.
  * https://leetcode.com/problems/minimum-swaps-to-make-strings-equal/
@@ -7,7 +8,43 @@ package alex.com.challenges
 
 class MinimumSwaps {
     companion object {
+
         fun minimumSwap(s1: String, s2: String): Int {
+            // String lengths must be equal. You cannot change the length with swaps.
+            if (s1.length != s2.length) {
+                return -1
+            }
+
+            var xyCount = 0
+            var yxCount = 0
+            for (i in 0 until s1.length) {
+                if (s1[i] == s2[i]) continue
+                if (s1[i] == 'x') {
+                    xyCount++
+                } else {
+                    yxCount++
+                }
+            }
+
+            println("xy: $xyCount   yx:$yxCount")
+
+            // Early return - Check for mismatches of xy's and yx's
+            // They must BOTH be either ODD or EVEN or its impossible to balance them
+            if (xyCount % 2 + yxCount % 2 == 1)
+                return -1
+
+            // Initial result: Add the sum of half of each swaps.
+            // Do half because 1 swap will fix another mismatch of the same type
+            var res = (xyCount / 2) + (yxCount / 2)
+
+            // Edge case - If they were both odd, then you have to double swap to achieve a horizontal swap on the same line
+            println("res before final check: $res")
+            res += xyCount % 2 + yxCount % 2
+            println("res after final check: $res")
+            return res
+        }
+
+        fun minimumSwap_UGLY(s1: String, s2: String): Int {
 
             // Fail case 1: Unequal lengths
             if (s1.length != s2.length) {
@@ -55,7 +92,7 @@ class MinimumSwaps {
                             val nextTopChar = mutableS1[nextIndex]
                             val nextBotChar = mutableS2[nextIndex]
                             if (
-                                //Matches in current position
+                            //Matches in current position
                                 botChar == nextBotChar
                                 //Doesnt break an already matching pair
                                 && nextTopChar != nextBotChar

@@ -7,10 +7,36 @@ package alex.com.challenges.dynamic
 
 class DiceRollsWithTargetSum {
     companion object {
+
         fun numRollsToTarget(d: Int, f: Int, target: Int): Int {
+            val mod = 1_000_000_007
+
+            //1st iteration - base case -- fill
+            var solution = IntArray(target + 1)
+            solution.fill(1, 1, Math.min(target, f) + 1)
+
+            //Loop iteration -- Replace DP array with updated array including this dice
+            (2..d).forEach { _ ->
+                val newSolution = IntArray(target + 1)
+                (1..solution.size).forEach { index ->
+                    (1..f).forEach { newRoll ->
+                        if (index + newRoll <= target) {
+                            val newTotal = (solution[index] + newSolution[index + newRoll]) % mod
+                            newSolution[index + newRoll] = newTotal
+                        }
+                    }
+                }
+                solution = newSolution
+            }
+
+            return solution.last()
+        }
+
+        fun numRollsToTarget_2Dmatrix(d: Int, f: Int, target: Int): Int {
 
             val mod = 1_000_000_007
-            val solutionGraph = Array<IntArray>(d) { IntArray(target + 1) } //Represents "unique ways to arrive at this number" for this dice count
+            val solutionGraph =
+                Array<IntArray>(d) { IntArray(target + 1) } //Represents "unique ways to arrive at this number" for this dice count
 
             // Base case
             (1..f).forEach {

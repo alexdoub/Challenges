@@ -1,6 +1,7 @@
 package alex.com.challenges
 
 import alex.com.challenges.dynamic.DiceRollsWithTargetSum
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 /**
@@ -10,31 +11,31 @@ import org.junit.Test
 class DiceRollsWithTargetSumTest {
     @Test
     fun test1() {
-        assert(1 == DiceRollsWithTargetSum.numRollsToTarget(d = 1, f = 6, target = 3))
+        assertEquals(1, DiceRollsWithTargetSum.numRollsToTarget(d = 1, f = 6, target = 3))
     }
 
     @Test
     fun test2() {
-        assert(6 == DiceRollsWithTargetSum.numRollsToTarget(d = 2, f = 6, target = 7))
+        assertEquals(6, DiceRollsWithTargetSum.numRollsToTarget(d = 2, f = 6, target = 7))
     }
 
     @Test
     fun test3() {
-        assert(1 == DiceRollsWithTargetSum.numRollsToTarget(d = 2, f = 5, target = 10))
+        assertEquals(1, DiceRollsWithTargetSum.numRollsToTarget(d = 2, f = 5, target = 10))
     }
 
     @Test
     fun test4() {
-        assert(0 == DiceRollsWithTargetSum.numRollsToTarget(d = 1, f = 2, target = 3))
+        assertEquals(0, DiceRollsWithTargetSum.numRollsToTarget(d = 1, f = 2, target = 3))
     }
 
     @Test
     fun test42() {
-        assert(2 == DiceRollsWithTargetSum.numRollsToTarget(d = 2, f = 6, target = 3))
+        assertEquals(2, DiceRollsWithTargetSum.numRollsToTarget(d = 2, f = 6, target = 3))
     }
 
     @Test
     fun test5() {
-        assert(222616187 == DiceRollsWithTargetSum.numRollsToTarget(d = 30, f = 30, target = 500))
+        assertEquals(222616187, DiceRollsWithTargetSum.numRollsToTarget(d = 30, f = 30, target = 500))
     }
 }

@@ -6,7 +6,7 @@ import org.junit.Test
  * Created by Alex Doub on 11/18/2019.
  */
 
-class ValidParenthesisStringTest {
+class ValidParenthesesStringTest {
     @Test
     fun test1() {
         assert(ValidParenthesisString.checkValidString("()"))

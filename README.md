@@ -7,25 +7,51 @@ A collection of solutions to various programming challenges I found online.
 **LightsOut** - Find a solution to the lights out problem. NP-Hard  
 **LinkedListAdder** - https://leetcode.com/problems/add-two-numbers/  
 **IntegerDivision** - https://leetcode.com/problems/divide-two-integers/  
-**IsNumber** - https://leetcode.com/problems/valid-number/  
+**ValidNumber** - https://leetcode.com/problems/valid-number/  
+	"Given a string, return T if its a valid number that can be parsed directly"  
+	TODO: Redo without BigDecimal lol  
 **BinaryTreeMaxPath** - https://leetcode.com/problems/binary-tree-maximum-path-sum/  
 **MaxPointsOnALine** - https://leetcode.com/problems/max-points-on-a-line/  
 **LongestSubstringWithoutRepeatingCharacters** - https://leetcode.com/problems/longest-substring-without-repeating-characters/  
+	"Given a string, return the length of the longest substring without repeating characters"  
+	Greedy loop + hashmap. Enumerate chars and store their positions in a hashmap. Upon seeing a duplicate, null out all the positions before it. On every loop, record the max length substring thus far.  
 **AssignCookies** - https://leetcode.com/problems/assign-cookies/  
+	"Given an IntArray of children who want cookies of at least a specific size and an IntArray representing cookies of some size, return how many children can be happy."  
+	Greedy loop. Sort cookies and children in descending order. Enumerate children and try to give them the biggest cookie available or skip them.  
 **BinaryMatrix** - https://leetcode.com/problems/reconstruct-a-2-row-binary-matrix/  
+	"Reconstruct a matrix as follow: The matrix has 2 rows containing either 0s or 1s. You've given the sum of 1s on the top and bottom, and additionally given an array representing the sum of the column."  
+	Greedy loop. Do not do DFS. Loop over sums and smartly put 1s or 0s according to the colsum. Keep track of remaining upper/lower 1s & evenly distribute them. If you go over the upper/lower limit, its impossible  
 **MinimumSwaps** - https://leetcode.com/problems/minimum-swaps-to-make-strings-equal/  
-**ValidParenthesis** - https://leetcode.com/problems/valid-parentheses/  
+	"Given two strings containing any amount of X or Y, return an int representing the minimum number of swaps to make them equal. You can swap any element from string 1 with any element from string 2"
+	Greedy loop. Do not do DFS or multi loops. Do not actually manipulate the strings.  
+	Loop and count the Y/X and X/Y mismatches. Early return if they aren't the same oddity. Add half of each sum to the result and another 2 if they were both odd.  
+**ValidParentheses** - https://leetcode.com/problems/valid-parentheses/  
+	"Given a string with 3 kinds of parentheses, {}[](), return T if they are valid. Brackets must be closed in order"  
+	Loop + Stack.  Loop over chars and add to the stack if open brackets. Attempt to remove from the stack on closed brackets. Fail on mismatch. Ignore other chars. Return T if stack is empty at end.  
 **MinCostClimbingStairs** - https://leetcode.com/problems/min-cost-climbing-stairs/  
+	"Given an IntArray of costs, find the minimum sum to get to the end of the array. You can step in increments of 1 or 2."  
+	DP Array. Make IntArray representing 'min cost to get to here'. Fill out base case of 0 at index 0 & 1. Loop over every cost and fill out the next 1 & 2 steps, adding the cost and the previous sum. Only keep mins. Return cost in last cell.  
 **MinFallingPathSum** - https://leetcode.com/problems/minimum-falling-path-sum/  
+	"Given an X by Y DAG with values, find the minimum sum from top to bottom. When moving down, you can only go left or right at max once per step."  
+	Simple DP Matrix. Fill out base case of values on the first row. For each additional row, fill out each cell by setting the min of the previous options + this cells value. Return min in last row.  
 **KnightDialer** - https://leetcode.com/problems/knight-dialer/  
+	"Imagine a knight from chess. Given 1 placement & N-1 hops, return the total number of possibilities of phone number strings that can be generated"  
+	Simple DP Matrix. Build a hashmap represnting which numbers can be reached from where. Make IntArray representing options that end up on this index. Make base case of filling array with 1s. For each hop, make a new IntArray row that adds every value from the previous positions & set it on the new position. Most positions can jump 2 places so values will repeatedly double or triple. Mod the new sums or overflow. Lastly, sum up total.  
 **DivisorGame** - https://leetcode.com/problems/divisor-game/  
+	"Read the divisor game rules at the link (long). Assuming both players play perfectly, return T if a given number is a guaranteed win, F if its a loss."  
+	DP Array OR recursive with memoization.  
+	DP: Starting with the base case that 0 and 1 are losses, count up to N & fill out the solution array. This solution is a winner if it leaves the opponent with only losing options.  
+	Memoized Recursion: This may check less total numbers, thus making it faster. Starting with N, see if any of your options are winners. Check options recursively and account for whos turn it is. Store result for each option after it has been calculated.  
 **DiceRollsWithTargetSum** - https://leetcode.com/problems/number-of-dice-rolls-with-target-sum/  
+	"Given D dice with F faces, calculate how many different combinations of rolls results in a target sum T"  
+	Simple DP Matrix. Make solution matrix with T columns and D rows. Fill out base case with 1s (1 to face). Loop over dice count and fill out next row. Set values that += the previous rows individual counts after accounting for this dice roll. Mod the stored values or they overflow. Note: Can be simplified to multiple DP-Arrays where the old solution is replaced every iteration.  
+	3 Loops: Dice -> Previous array values -> Each dice roll.  
 **ValidParenthesisString** - https://leetcode.com/problems/valid-parenthesis-string/  
 	"Given a string of open & closed perenthesis & wildcards that can represent either or nothing, return T/F if the string has valid perenthesis."  
 	Loop + Stack count + recursive branching (BFS). Loop and maintain stack. On wildcard, branch 3 ways with ||. Dont let stack go negative.  
 **WildcardMatching** - https://leetcode.com/problems/wildcard-matching/  
 	"Given an input string and a pattern that may contain an asterisk, return T/F if the input matches the pattern"  
-	DP Matrix. Make a 2D boolean matrix & fill out in order. Horizontal represents 'match so far' in input string and vertical represents how far in the pattern you are. On every row, smartly update the matrix by chaining from previous row. Asterisks fill the rest of the row. Return the last value in the matrix.  
+	Simple DP Matrix. Make a 2D boolean matrix & fill out in order. Horizontal represents 'match so far' in input string and vertical represents how far in the pattern you are. On every row, smartly update the matrix by chaining from previous row. Asterisks fill the rest of the row. Return the last value in the matrix.  
 **SmallestSpanningRange** - https://www.careercup.com/question?id=16759664  
 	"Given an array of Int arrays, find the smallest range that spans all the int arrays."  
 	2D - Sliding window. Starting at the 0th index of all the arrays, endlessly loop & push up the index of the minimum value. Compare & store best value. Finish when all indexes are at end.  
@@ -183,16 +209,20 @@ A collection of solutions to various programming challenges I found online.
 **Tricky Hashmap** - CountRectangles, PerfectRectangle  
 
 ## Arrays
-**Single Loop** - PhoneNumberCombos, TwoSums, RomanToInt, ZigZagConverter, PalindromeSubstring, ShortestDistanceToChar(mediocre), MixedWordsConcatenated  
+**Greedy Loop** - PhoneNumberCombos, TwoSums, RomanToInt, ZigZagConverter, PalindromeSubstring, ShortestDistanceToChar(mediocre), MixedWordsConcatenated, MinimumSwaps, BinaryMatrix, AssignCookies  
+TODO: FURTHER CATEGORIZE THESE ^^^
+**Loop + Stack** - ValidParentheses  
 **Recursive DFS** -  Permutations, GenerateParentheses, CombinationSum, ValidParenthesisString  
 **Recursive Stack** - ValidParenthesisString  
 **Sliding Window** - SearchInRotatedArray, FindNumInRange, 3-Sum, 3-SumClosests, ContainerWithMostWater  
 **2D Sliding Window** - SmallestSpanningRange  
 **Partial Sums** - StringMultiply  
 **Partial Sort** - SortPartiallySortedArray  
-**DP Array** - JumpGame  
-**DP Matrix** - WildcardMatching  
+**Single DP Array** - JumpGame, DivisorGame, KnightDialer, Fibonacci, MinCostClimbingStairs  
+**Recursive + Memoization** - DivisorGame, Fibonacci  
+**Simple DP Matrix** - WildcardMatching, DiceRollsWithTargetSum, MinFallingPathSum  
+Note: Simple means that this can be optimized to replace each array after processing, saving memory.  
 **DP Graph** - WordBreakII(pt1)  
 **2 Way Sweep** - CandyDistribution, ShortestDistanceToChar  
 **Tricky Math** - RepeatedSubstringPattern  
-**Tricky Hashmap** - StringIncludesPermutation, MinWindowSubstring  
+**Tricky Hashmap** - StringIncludesPermutation, MinWindowSubstring, LongestSubstringWithoutRepeatingCharacters  

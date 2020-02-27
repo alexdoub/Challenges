@@ -5,7 +5,7 @@ package alex.com.challenges
  * https://leetcode.com/problems/valid-parentheses/
  */
 
-class ValidParenthesis {
+class ValidParentheses {
     companion object {
         fun isValid(s: String): Boolean {
 

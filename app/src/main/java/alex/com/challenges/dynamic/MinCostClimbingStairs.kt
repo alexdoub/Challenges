@@ -5,6 +5,7 @@ package alex.com.challenges.dynamic
  * https://leetcode.com/problems/min-cost-climbing-stairs/
  */
 
+@Deprecated("Use MinCostClimbingStairs2")
 class MinCostClimbingStairs {
     companion object {
         fun minCostClimbingStairs(cost: IntArray): Int {

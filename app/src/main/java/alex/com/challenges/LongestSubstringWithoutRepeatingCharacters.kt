@@ -14,8 +14,7 @@ class LongestSubstringWithoutRepeatingCharacters {
                 val char = s[x]
                 val oldIndex = charHashTable[char] ?: -1
 
-
-                //after a repeat comes in, null out evertyhing before it
+                //after a repeat comes in, null out everything before it
                 charHashTable.keys.forEach { key ->
                     val checkChar = charHashTable[key]!!
                     if (checkChar <= oldIndex) {
