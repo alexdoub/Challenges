@@ -210,7 +210,7 @@ A collection of solutions to various programming challenges I found online.
 
 ## Arrays
 **Greedy Loop** - PhoneNumberCombos, TwoSums, RomanToInt, ZigZagConverter, PalindromeSubstring, ShortestDistanceToChar(mediocre), MixedWordsConcatenated, MinimumSwaps, BinaryMatrix, AssignCookies  
-TODO: FURTHER CATEGORIZE THESE ^^^
+TODO: FURTHER CATEGORIZE THESE ^^^  
 **Loop + Stack** - ValidParentheses  
 **Recursive DFS** -  Permutations, GenerateParentheses, CombinationSum, ValidParenthesisString  
 **Recursive Stack** - ValidParenthesisString  
