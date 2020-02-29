@@ -102,7 +102,7 @@ A collection of solutions to various programming challenges I found online.
 	"Given a list of points, count how many rectangles can be made"  
 	Double loop over points, record only forward lines on the same Y axis. In a hashmap with the key as the start-end X coords, increment your count and add to sum.  
 	Explaination: This reduces our search space by not counting duplicate rects (inverted, rotated, etc). Adding a matching line below a rect creates a 2nd rect. Adding another one adds 2 more rects, etc.  
-**ZigZagConverter** - https://leetcode.com/problems/zigzag-conversion/  
+**ZigzagConversion** - https://leetcode.com/problems/zigzag-conversion/  
 	"Given a string & an int, produce a zigzag pattern of that string"  
 	Simple loop. Maintain list of stringbuilders for each row. Loop over chars & put in the right row. Extra variables for going up/down.  
 **ContainerWithMostWater** - https://leetcode.com/problems/container-with-most-water/  
@@ -189,6 +189,9 @@ A collection of solutions to various programming challenges I found online.
 **SortPartiallySortedArray** - https://leetcode.com/discuss/interview-question/378774/  
 	"Given an array of positive integers (possibly with duplicates) such that the numbers have been sorted only by 28 most significant bits. Sort the array completely"  
 	Bucket Sort. Loop and add values into bucket. On new bucket found, unroll last bucket. Finally unroll bucket again.  
+**ReverseLinkedList** - https://leetcode.com/problems/reverse-linked-list/  
+	"Reverse a linked list"  
+	Simple Loop. Keep 3 pointers, prev/current/next. Advance next, swap current, then advance prev & current.  
 
 # Strategies
 
@@ -209,9 +212,12 @@ A collection of solutions to various programming challenges I found online.
 **Tricky Hashmap** - CountRectangles, PerfectRectangle  
 
 ## Arrays
-**Greedy Loop** - PhoneNumberCombos, TwoSums, RomanToInt, ZigZagConverter, PalindromeSubstring, ShortestDistanceToChar(mediocre), MixedWordsConcatenated, MinimumSwaps, BinaryMatrix, AssignCookies  
-TODO: FURTHER CATEGORIZE THESE ^^^  
+**Greedy Loop** - RomanToInt, ZigzagConversion, MinimumSwaps, BinaryMatrix, ReverseLinkedList  
+**Loop + Hashmap** - TwoSums  
+**Loop + Branch** - PhoneNumberCombos  
 **Loop + Stack** - ValidParentheses  
+**Loop + Inner Loop** - PalindromeSubstring, MixedWordsConcatenated  
+**Loop + Queues** - AssignCookies  
 **Recursive DFS** -  Permutations, GenerateParentheses, CombinationSum, ValidParenthesisString  
 **Recursive Stack** - ValidParenthesisString  
 **Sliding Window** - SearchInRotatedArray, FindNumInRange, 3-Sum, 3-SumClosests, ContainerWithMostWater  

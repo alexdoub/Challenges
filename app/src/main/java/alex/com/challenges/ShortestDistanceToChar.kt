@@ -11,6 +11,7 @@ class ShortestDistanceToChar {
             if (false) println(string)
         }
 
+        //2 way sweep
         // Simpler, uses less memory
         fun shortestToChar2(S: String, C: Char): IntArray {
             val solution = IntArray(S.length) { Int.MAX_VALUE }

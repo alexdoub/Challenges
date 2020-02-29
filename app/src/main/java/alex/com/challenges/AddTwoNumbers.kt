@@ -1,22 +1,9 @@
 package alex.com.challenges
 
+import alex.com.challenges.common.ListNode
+
 //https://leetcode.com/problems/add-two-numbers/
 class AddTwoNumbers {
-
-    class ListNode(var `val`: Int) {
-        var next: ListNode? = null
-
-        fun toProperString(): String {
-            var item: ListNode? = this
-            var printString = StringBuilder()
-            while (item != null) {
-                printString.append(item.`val`)
-                item = item.next
-            }
-
-            return printString.reverse().toString()
-        }
-    }
 
     companion object {
 

@@ -1,16 +1,13 @@
 package alex.com.challenges
 
+import alex.com.challenges.common.ListNode
+
 /**
  * Created by Alex Doub on 1/5/2020.
  * https://leetcode.com/problems/remove-nth-node-from-end-of-list/
  */
 
 class RemoveNthFromEnd {
-
-    class ListNode(var `val`: Int) {
-        var next: ListNode? = null
-    }
-
     companion object {
 
         //1 pass mode
