@@ -12,10 +12,10 @@ A collection of solutions to various programming challenges I found online.
 	TODO: Redo without BigDecimal lol  
 **BinaryTreeMaxPath** - https://leetcode.com/problems/binary-tree-maximum-path-sum/  
 	"Given a binary tree, find the max path sum. A path connects 2 nodes that are reachable from the starting node."  
-	Recursive DFS.  
+	Recursive DFS. Tricky, but can be solved in a few lines. Define 2 recursive functions, one that finds the max sum with branching and one that does not. The branching function returns the max of a) the branching functions applied to either child or b) the non-branching function of both children + the value of this node.  The non-branching function has already branched, so an existing sum must be passed down.  
 **MaxPointsOnALine** - https://leetcode.com/problems/max-points-on-a-line/  
 	"Given a list of points, how many lie on a single line?"  
-	Double loop + Hashmap. Double loop over all points to find lines and duplicates of this point. Dont do a full N^2 loop or else you get the reverse (duplicate) of each line. Calculate the slope of all those lines, adjusted for GCD, and store them in a hashmap representing with Key/Values <Slope, Count>. The maximum intersecting line for this point is the max from the hashmap + duplicates of this point. Function returns the highest max.    
+	Double loop + Hashmap. Double loop over all points to find lines and duplicates of this point. Dont do a full N^2 loop or else you get the reverse (duplicate) of each line. Calculate the slope of all those lines, adjusted for GCD, and store them in a hashmap representing with Key/Values <Slope, Count>. The maximum intersecting line for this point is the max from the hashmap + duplicates of this point. Function returns the highest max.  
 **LongestSubstringWithoutRepeatingCharacters** - https://leetcode.com/problems/longest-substring-without-repeating-characters/  
 	"Given a string, return the length of the longest substring without repeating characters"  
 	Greedy loop + hashmap. Enumerate chars and store their positions in a hashmap. Upon seeing a duplicate, null out all the positions before it. On every loop, record the max length substring thus far.  
