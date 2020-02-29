@@ -1,5 +1,7 @@
 package alex.com.challenges
 
+import alex.com.challenges.common.TreeNode
+
 /**
  * Created by Alex Doub on 1/31/2020.
  * https://leetcode.com/problems/validate-binary-search-tree/
@@ -24,7 +26,3 @@ class IsValidBST {
     }
 }
 
-class TreeNode(var `val`: Int) {
-    var left: TreeNode? = null
-    var right: TreeNode? = null
-}

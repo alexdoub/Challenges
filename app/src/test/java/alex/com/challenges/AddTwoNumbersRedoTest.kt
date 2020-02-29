@@ -1,5 +1,6 @@
 package alex.com.challenges
 
+import alex.com.challenges.common.ListNode
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -61,10 +62,10 @@ class AddTwoNumbersRedoTest {
     }
 
     //2,4,3 = 342
-    private fun List<Int>.toListNode(): AddTwoNumbersRedo.ListNode? {
-        var head: AddTwoNumbersRedo.ListNode? = null
+    private fun List<Int>.toListNode(): ListNode? {
+        var head: ListNode? = null
         reversed().forEach {
-            val node = AddTwoNumbersRedo.ListNode(it)
+            val node = ListNode(it)
             node.next = head
             head = node
         }

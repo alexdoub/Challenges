@@ -11,7 +11,11 @@ A collection of solutions to various programming challenges I found online.
 	"Given a string, return T if its a valid number that can be parsed directly"  
 	TODO: Redo without BigDecimal lol  
 **BinaryTreeMaxPath** - https://leetcode.com/problems/binary-tree-maximum-path-sum/  
+	"Given a binary tree, find the max path sum. A path connects 2 nodes that are reachable from the starting node."  
+	Recursive DFS.  
 **MaxPointsOnALine** - https://leetcode.com/problems/max-points-on-a-line/  
+	"Given a list of points, how many lie on a single line?"  
+	Double loop + Hashmap. Double loop over all points to find lines and duplicates of this point. Dont do a full N^2 loop or else you get the reverse (duplicate) of each line. Calculate the slope of all those lines, adjusted for GCD, and store them in a hashmap representing with Key/Values <Slope, Count>. The maximum intersecting line for this point is the max from the hashmap + duplicates of this point. Function returns the highest max.    
 **LongestSubstringWithoutRepeatingCharacters** - https://leetcode.com/problems/longest-substring-without-repeating-characters/  
 	"Given a string, return the length of the longest substring without repeating characters"  
 	Greedy loop + hashmap. Enumerate chars and store their positions in a hashmap. Upon seeing a duplicate, null out all the positions before it. On every loop, record the max length substring thus far.  
@@ -197,9 +201,8 @@ A collection of solutions to various programming challenges I found online.
 
 ## Graph
 **Single loop** - RemoveNthNodeFromEnd  
-**Recursive DFS** - CourseSchedule, NumIslands, CourseSchedule, KeysAndRooms, FindGrasshopper, IsValidBST, WordBreakII(pt2), FindEventualSafeStates, KeysAndRooms  
+**Recursive DFS** - CourseSchedule, NumIslands, CourseSchedule, KeysAndRooms, FindGrasshopper, IsValidBST, WordBreakII(pt2), FindEventualSafeStates, KeysAndRooms, BinaryTreeMaxPath, InvertBinaryTree  
 **Loop BFS** - KeysAndRooms  
-**Recursive** - InvertBinaryTree  
 **DP Array** - MinFallingPathSum  
 
 ## Matrix

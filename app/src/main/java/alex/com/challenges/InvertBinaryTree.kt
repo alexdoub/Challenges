@@ -1,13 +1,13 @@
 package alex.com.challenges
 
-import alex.com.challenges.BinaryTreeMaxPathSum.TreeNode
+import alex.com.challenges.common.TreeNode
 
 /**
  * Created by Alex Doub on 1/7/2020.
  * https://leetcode.com/problems/invert-binary-tree/
  */
 
-class InvertBinaryTree  {
+class InvertBinaryTree {
     companion object {
         fun invertTree(root: TreeNode?): TreeNode? {
             fun invertChildren(node: TreeNode?) {

@@ -10,21 +10,21 @@ object ReverseLinkedList {
     fun reverseList(initialHead: ListNode?): ListNode? {
         var prev: ListNode? = null
         var current = initialHead
-        var next = current?.next
+        var next: ListNode? = null
 
-        while (next != null) {
+        while (current != null) {
             // Move next
-            next = current?.next;
+            next = current.next;
 
             // Swap
-            current?.next = prev;
+            current.next = prev;
 
             //Advance
             prev = current;
             current = next;
         }
 
-        return current
+        return prev
     }
 
 
