@@ -208,7 +208,7 @@ A collection of solutions to various programming challenges I found online.
 	"Reverse a linked list"  
 	Simple Loop. Keep 3 pointers, prev/current/next. Advance next, swap current, then advance prev & current.  
 
-# Strategies
+# Strategy Categories
 
 ## Graph
 **Recursive DFS** - CourseSchedule, NumIslands, CourseSchedule, KeysAndRooms, FindGrasshopper, IsValidBST, WordBreakII(pt2), FindEventualSafeStates, KeysAndRooms, BinaryTreeMaxPath, InvertBinaryTree  
