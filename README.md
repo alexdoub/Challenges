@@ -214,11 +214,13 @@ A collection of solutions to various programming challenges I found online.
 	Double recursive DFS
 **BinaryTreePathSumII** - https://leetcode.com/problems/path-sum-ii  
 	Recursive DFS. Pass down path traversed & only return when the correct conditions are met, else return empty list. Recursive function returns left + right lists joined.  
+**BinaryTreeAllPaths** - https://leetcode.com/problems/binary-tree-paths  
+	Recursive DFS. Same as BinaryTreePathSumII  
 
 # Strategy Categories
 
 ## Graph
-**Recursive DFS** - CourseSchedule, NumIslands, CourseSchedule, KeysAndRooms, FindGrasshopper, IsValidBST, WordBreakII(pt2), FindEventualSafeStates, KeysAndRooms, InvertBinaryTree, BinaryTreePathSumI, BinaryTreePathSumII  
+**Recursive DFS** - CourseSchedule, NumIslands, CourseSchedule, KeysAndRooms, FindGrasshopper, IsValidBST, WordBreakII(pt2), FindEventualSafeStates, KeysAndRooms, InvertBinaryTree, BinaryTreePathSumI, BinaryTreePathSumII, BinaryTreeAllPaths  
 **Loop BFS** - KeysAndRooms  
 **Double Recursive DFS** - BinaryTreeMaxPathSum, BinaryTreePathSumIII  
 **DP Array** - MinFallingPathSum  
