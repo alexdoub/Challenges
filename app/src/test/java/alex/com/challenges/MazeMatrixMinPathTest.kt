@@ -2,7 +2,7 @@ package alex.com.challenges
 
 import org.junit.Test
 
-class MazeTest {
+class MazeMatrixMinPathTest {
 
     companion object {
         val simplePath = mutableListOf<String>().apply {
@@ -19,14 +19,14 @@ class MazeTest {
     @Test
     fun testSimplePath() {
         // Try to solve
-        val moves = Maze.getMinimumMoves(simplePath)
+        val moves = MazeMatrixMinPath.getMinimumMoves(simplePath)
         assert(moves == 10)
     }
 
     @Test
     fun testZigZag() {
         // Try to solve
-        val moves = Maze.getMinimumMoves(zigZag)
+        val moves = MazeMatrixMinPath.getMinimumMoves(zigZag)
         assert(moves == 18)
     }
 

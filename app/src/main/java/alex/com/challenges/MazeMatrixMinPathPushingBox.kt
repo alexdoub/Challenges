@@ -1,7 +1,7 @@
 package alex.com.challenges
 
 
-class BoxMaze {
+class MazeMatrixMinPathPushingBox {
 
     companion object {
         private var mapToUse = emptyList<String>()

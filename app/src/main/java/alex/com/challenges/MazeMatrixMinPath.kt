@@ -1,6 +1,6 @@
 package alex.com.challenges
 
-class Maze {
+class MazeMatrixMinPath {
 
     companion object {
         private var mapToUse: List<String> = emptyList()
@@ -9,7 +9,7 @@ class Maze {
         private val PLAYER_GOAL = "G"
         private val WALL = "#"
 
-        private val WRONG_STEP = 50000
+        private val WRONG_STEP = Int.MAX_VALUE
 
         fun getMinimumMoves(map: List<String>) : Int {
             mapToUse = map
@@ -34,8 +34,8 @@ class Maze {
 
         private fun getMinimumMoves(startPosition: Pair<Int, Int>, endPosition: Pair<Int, Int>, blockedLocations: ArrayList<Pair<Int, Int>>): Int {
 
-            val newBlockedLocations: ArrayList<Pair<Int, Int>> = ArrayList<Pair<Int, Int>>(blockedLocations)
-            newBlockedLocations.add(startPosition)
+            val visitedLocations: ArrayList<Pair<Int, Int>> = ArrayList<Pair<Int, Int>>(blockedLocations)
+            visitedLocations.add(startPosition)
 
             if (startPosition == endPosition) {
                 return 0
@@ -43,32 +43,32 @@ class Maze {
 
             val topPosition = startPosition.getTop()
             val topPathMoves =
-                if (topPosition.isValid(newBlockedLocations)) {
-                    1 + getMinimumMoves(topPosition, endPosition, newBlockedLocations)
+                if (topPosition.isValid(visitedLocations)) {
+                    1 + getMinimumMoves(topPosition, endPosition, visitedLocations)
                 } else {
                     WRONG_STEP
                 }
 
             val botPosition = startPosition.getBottom()
             val botPathMoves =
-                if (botPosition.isValid(newBlockedLocations)) {
-                    1 + getMinimumMoves(botPosition, endPosition, newBlockedLocations)
+                if (botPosition.isValid(visitedLocations)) {
+                    1 + getMinimumMoves(botPosition, endPosition, visitedLocations)
                 } else {
                     WRONG_STEP
                 }
 
             val leftPosition = startPosition.getLeft()
             val leftPathMoves =
-                if (leftPosition.isValid(newBlockedLocations)) {
-                    1 + getMinimumMoves(leftPosition, endPosition, newBlockedLocations)
+                if (leftPosition.isValid(visitedLocations)) {
+                    1 + getMinimumMoves(leftPosition, endPosition, visitedLocations)
                 } else {
                     WRONG_STEP
                 }
 
             val rightPosition = startPosition.getRight()
             val rightPathMoves =
-                if (rightPosition.isValid(newBlockedLocations)) {
-                    1 + getMinimumMoves(rightPosition, endPosition, newBlockedLocations)
+                if (rightPosition.isValid(visitedLocations)) {
+                    1 + getMinimumMoves(rightPosition, endPosition, visitedLocations)
                 } else {
                     WRONG_STEP
                 }

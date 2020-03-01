@@ -4,13 +4,13 @@ import alex.com.challenges.common.ListNode
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class AddTwoNumbersRedoTest {
+class LinkedListAdderRedoTest {
 
     @Test
     fun test_basic() {
         val left= listOf(2,4,3).toListNode()
         val right = listOf(5,6,4).toListNode()
-        val sum = AddTwoNumbersRedo.addTwoNumbers(left, right)
+        val sum = LinkedListAdderRedo.addTwoNumbers(left, right)
 
         // Check input parsing
         assertEquals(2, left!!.`val`)
@@ -36,7 +36,7 @@ class AddTwoNumbersRedoTest {
 
         assertEquals(1, right!!.`val`)
 
-        val sum = AddTwoNumbersRedo.addTwoNumbers(left, right)
+        val sum = LinkedListAdderRedo.addTwoNumbers(left, right)
 
         assertEquals(listOf(0,0,0,0,0,0,0,0,0,0,1), sum!!.toList())
     }
@@ -46,7 +46,7 @@ class AddTwoNumbersRedoTest {
         val left = listOf(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1).toListNode()
         val right = listOf(1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1).toListNode()
 
-        val sum = AddTwoNumbersRedo.addTwoNumbers(left, right)
+        val sum = LinkedListAdderRedo.addTwoNumbers(left, right)
 
         assertEquals(listOf(2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2), sum!!.toList())
     }
@@ -56,7 +56,7 @@ class AddTwoNumbersRedoTest {
         val left = listOf(9,9,9).toListNode()
         val right = listOf(1).toListNode()
 
-        val sum = AddTwoNumbersRedo.addTwoNumbers(left, right)
+        val sum = LinkedListAdderRedo.addTwoNumbers(left, right)
 
         assertEquals(listOf(0,0,0,1), sum!!.toList())
     }

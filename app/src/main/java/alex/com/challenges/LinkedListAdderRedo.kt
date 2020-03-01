@@ -2,7 +2,7 @@ package alex.com.challenges
 
 import alex.com.challenges.common.ListNode
 
-class AddTwoNumbersRedo {
+class LinkedListAdderRedo {
     //Head low, Tail high
     //1 -> 2 -> 3 = 321
     companion object {

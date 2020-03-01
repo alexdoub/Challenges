@@ -4,13 +4,13 @@ import alex.com.challenges.common.ListNode
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class AddTwoNumbersTest {
+class LinkedListAdderTest {
     @Test
     fun testAddTwoNumber1() {
         // Test 5 + 5
         val left = ListNode(5)
         val right = ListNode(5)
-        val sum = AddTwoNumbersRedo.addTwoNumbers(left, right)
+        val sum = LinkedListAdderRedo.addTwoNumbers(left, right)
 
         assertEquals("10", sum!!.toProperString())
     }
@@ -23,7 +23,7 @@ class AddTwoNumbersTest {
         left!!.next!!.next = ListNode(1)
 
         val right = ListNode(1)
-        val sum = AddTwoNumbersRedo.addTwoNumbers(left, right)
+        val sum = LinkedListAdderRedo.addTwoNumbers(left, right)
 
         assertEquals("200", sum!!.toProperString())
     }
@@ -36,7 +36,7 @@ class AddTwoNumbersTest {
         left!!.next!!.next = ListNode(9)
 
         val right = ListNode(1)
-        val sum = AddTwoNumbersRedo.addTwoNumbers(left, right)
+        val sum = LinkedListAdderRedo.addTwoNumbers(left, right)
 
         assertEquals("1000", sum!!.toProperString())
     }
@@ -51,7 +51,7 @@ class AddTwoNumbersTest {
         left!!.next!!.next!!.next!!.next = ListNode(5)
 
         val right = ListNode(1)
-        val sum = AddTwoNumbersRedo.addTwoNumbers(left, right)
+        val sum = LinkedListAdderRedo.addTwoNumbers(left, right)
 
         assertEquals("54322", sum!!.toProperString())
     }
@@ -67,7 +67,7 @@ class AddTwoNumbersTest {
         val right = ListNode(5)
         right.next = ListNode(6)
         right.next!!.next = ListNode(4)
-        val sum = AddTwoNumbersRedo.addTwoNumbers(left, right)
+        val sum = LinkedListAdderRedo.addTwoNumbers(left, right)
 
         assertEquals("807", sum!!.toProperString())
     }

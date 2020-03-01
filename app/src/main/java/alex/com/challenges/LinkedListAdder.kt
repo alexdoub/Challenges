@@ -3,7 +3,7 @@ package alex.com.challenges
 import alex.com.challenges.common.ListNode
 
 //https://leetcode.com/problems/add-two-numbers/
-class AddTwoNumbers {
+class LinkedListAdder {
 
     companion object {
 

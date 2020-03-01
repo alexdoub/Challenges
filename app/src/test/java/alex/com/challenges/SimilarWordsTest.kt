@@ -5,21 +5,21 @@ import org.junit.Test
 
 class SimilarWordsTest {
     @Test
-    fun test_similar() {
+    fun same_char_set() {
         val word = "love"
-        val wordList = "velo low vole lovee volvell lowly lower lover levo loved love lovee lowe lowes lovey lowan lowa evolve loves volvelle lowed love"
+        val wordList = "velo low vole lovee volvell lowly lower lover levo loved love lovee lowe lowes lovey lowan lowa evolve loves volvelle lowed love".split(" ")
 
-        val count = SimilarWords.solve_quick(word, wordList)
-        assert(count == 8)
+        val count = SimilarWords2.solve_same_char_set2(word, wordList)
+        assertEquals(8, count)
     }
 
     @Test
-    fun test_exact() {
+    fun with_same_char_count() {
         val word = "love"
-        val wordList = "velo low vole lovee volvell lowly lower lover levo loved love lovee lowe lowes lovey lowan lowa evolve loves volvelle lowed love"
+        val wordList = "velo low vole lovee volvell lowly lower lover levo loved love lovee lowe lowes lovey lowan lowa evolve loves volvelle lowed love".split(" ")
 
-        //velo vole love levo
-        val count = SimilarWords.solve_exact(word, wordList)
+        // same chars AND count
+        val count = SimilarWords2.solve_with_same_char_count(word, wordList)
         assertEquals(4, count)
     }
 }

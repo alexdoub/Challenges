@@ -1,12 +1,21 @@
 A collection of solutions to various programming challenges I found online.  
 
 # Challenges
-**Maze** - Simple maze navigation problem. Shortest solution wins  
-**BoxMaze** - A twist on maze, where you push a box around a maze. Shortest solution wins. Similar to the game Sokoban  
+**MazeMatrixMinPath** - Simple maze navigation problem. Shortest solution wins  
+	Recurisve BFS. Don't go to the same location twice.  
+**MazeMatrixMinPathPushingBox** - A twist on maze, where you push a box around a maze. Shortest solution wins. Similar to the game Sokoban.  
+	BFS (naive).  
 **SimilarWords** - Find similar words in a sentence. A word is similar if they both contain the same set of letters  
+	Loop + Hashset. Transform input strings into hashSets of their characters. Keep only the matching sets. Filter duplicates by transforming wordList into a set.  
 **LightsOut** - Find a solution to the lights out problem. NP-Hard  
+	"Solve the lights out game in the minimum amount of turns. (Google the description)"  
+	BFS. Loop over matrix and toggle each one, save that matrix to a state. Enumerate states, check if solved, and do the same thing. Don't toggle the same cell twice.  
 **LinkedListAdder** - https://leetcode.com/problems/add-two-numbers/  
+	"Given a linked list representing single digits to a number, where the head of the linked list is the low value, return a linked list of the same style containing the sum of both linked lists."  
+	Simple Loop. Starting at both heads, add the values together and keep the sum. Create a new node & put the sum in there, %10. If sum was over 10 then set a carry bit, which will add +1 to the next iteration.  
 **IntegerDivision** - https://leetcode.com/problems/divide-two-integers/  
+	"Given two integers, divide them without using the * or / operators."  
+	Recursive + Bitshift. Do 4th grade style division but in binary -- Double divisor (and result) until its as large as it can be without being greater than the dividend. Subtract that from the dividend & recursively call divide on that, adding its result to our result. Also account for negatives & int_min/max edge cases.  
 **ValidNumber** - https://leetcode.com/problems/valid-number/  
 	"Given a string, return T if its a valid number that can be parsed directly"  
 	TODO: Redo without BigDecimal lol  
@@ -93,9 +102,11 @@ A collection of solutions to various programming challenges I found online.
 **WordBreakII** - https://leetcode.com/problems/word-break-ii/  
 	"Given a sentence string and a list of words, return all combinations of the sentence such that the words are from the word list with spaces inbetween"  
 	DP Graph construction. Enumerate chars in sentence & see if this char starts off any words from the word list. Build a graph, starting from initial node, and place new nodes at index of DP array. DP Array contains arraylist of nodes that are valid up to that character. Nodes point back to previous nodes. Early terminate if too far past last node. After enumeration, recursively (DFS) enumerate from final nodes to build sentences.  
-**MinimumPath4DSum** - https://leetcode.com/problems/minimum-path-sum/ (Including modified solution)  
+**MinimumPath2DSum** - https://leetcode.com/problems/minimum-path-sum/   
 	"Given a matrix of numbers, find the minimum path sum from the top left to the bottom right. You can only move down or right."  
 	1-way sweep + DP. 2D-loop in order and fill out solution graph. Return bottom right value.  
+**MinimumPath4DSum** - Similar to MinimumPath2DSum, but you can move in 4 directions. 
+	BFS. Maintain an array of states. Start with a single state representing the top left cell. Loop over states and expand in the other directions, excluding cells you've been to. Return the first solution you find.  
 **LargestIsland** - Find largest island in a boolean grid of land & sea (interview question) 
 	"Given a boolean matrix, find the largest island"  
 	Simple loop + recursive (BFS). On every cell in the matrix, use BFS to find the total area. Then zero it out to prevent re-computing the same island.  
@@ -200,16 +211,18 @@ A collection of solutions to various programming challenges I found online.
 # Strategies
 
 ## Graph
-**Single loop** - RemoveNthNodeFromEnd  
 **Recursive DFS** - CourseSchedule, NumIslands, CourseSchedule, KeysAndRooms, FindGrasshopper, IsValidBST, WordBreakII(pt2), FindEventualSafeStates, KeysAndRooms, BinaryTreeMaxPath, InvertBinaryTree  
 **Loop BFS** - KeysAndRooms  
 **DP Array** - MinFallingPathSum  
 
+## Linked List
+**Single loop** - RemoveNthNodeFromEnd, LinkedListAdder  
+
 ## Matrix
-**1-way sweep DP matrix** - MinimumPath4DSum  
+**1-way sweep DP matrix** - MinimumPath2DSum  
 **2-way sweep DP matrix** - DistanceFromZeroes  
-**Recursive (BFS)** - FindLargestIsland  
-**Loop (BFS)** - MinimumPath4DSum(modified)  
+**Recursive BFS** - FindLargestIsland  
+**BFS** - MazeMatrixMinPath, MazeMatrixMinPathPushingBox, LightsOut, MinimumPath4DSum  
 
 ## Points
 **Tricky Hashmap** - CountRectangles, PerfectRectangle  
@@ -235,3 +248,10 @@ Note: Simple means that this can be optimized to replace each array after proces
 **2 Way Sweep** - CandyDistribution, ShortestDistanceToChar  
 **Tricky Math** - RepeatedSubstringPattern  
 **Tricky Hashmap** - StringIncludesPermutation, MinWindowSubstring, LongestSubstringWithoutRepeatingCharacters  
+
+## Numbers
+**Recursive + Tricky Math** - IntegerDivision  
+**Loop + Tricky Math** - ValidNumber  
+
+## Strings
+**Loop + Hashset** - SimilarWords  

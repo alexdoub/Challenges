@@ -3,7 +3,7 @@ package alex.com.challenges
 
 import org.junit.Test
 
-class BoxMazeTest {
+class BoxMazeMatrixMinPathTest {
 
     companion object {
         private val hardBoxMap = mutableListOf<String>().apply {
@@ -46,7 +46,7 @@ class BoxMazeTest {
     @Test
     fun testSimpleMap() {
         // Try to solve
-        val solution = BoxMaze.solve(simpleBoxMap)!!
+        val solution = MazeMatrixMinPathPushingBox.solve(simpleBoxMap)!!
         assert(solution.moves == 6)
         assert(solution.pushes == 4)
     }
@@ -54,7 +54,7 @@ class BoxMazeTest {
     @Test
     fun testLooparoundBoxMap() {
         // Try to solve
-        val solution = BoxMaze.solve(looparoundBoxMap)!!
+        val solution = MazeMatrixMinPathPushingBox.solve(looparoundBoxMap)!!
         assert(solution.moves == 9)
         assert(solution.pushes == 6)
     }
