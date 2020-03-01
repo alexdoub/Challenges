@@ -19,9 +19,9 @@ A collection of solutions to various programming challenges I found online.
 **ValidNumber** - https://leetcode.com/problems/valid-number/  
 	"Given a string, return T if its a valid number that can be parsed directly"  
 	TODO: Redo without BigDecimal lol  
-**BinaryTreeMaxPath** - https://leetcode.com/problems/binary-tree-maximum-path-sum/  
+**BinaryTreeMaxPathSum** - https://leetcode.com/problems/binary-tree-maximum-path-sum/  
 	"Given a binary tree, find the max path sum. A path connects 2 nodes that are reachable from the starting node."  
-	Recursive DFS. Tricky, but can be solved in a few lines. Define 2 recursive functions, one that finds the max sum with branching and one that does not. The branching function returns the max of a) the branching functions applied to either child or b) the non-branching function of both children + the value of this node.  The non-branching function has already branched, so an existing sum must be passed down.  
+	Double Recursive DFS. Tricky, but can be solved in a few lines. Define 2 recursive functions, one that finds the max sum with branching and one that does not. The branching function returns the max of a) the branching functions applied to either child or b) the non-branching function of both children + the value of this node.  The non-branching function has already branched, so an existing sum must be passed down.  
 **MaxPointsOnALine** - https://leetcode.com/problems/max-points-on-a-line/  
 	"Given a list of points, how many lie on a single line?"  
 	Double loop + Hashmap. Double loop over all points to find lines and duplicates of this point. Dont do a full N^2 loop or else you get the reverse (duplicate) of each line. Calculate the slope of all those lines, adjusted for GCD, and store them in a hashmap representing with Key/Values <Slope, Count>. The maximum intersecting line for this point is the max from the hashmap + duplicates of this point. Function returns the highest max.  
@@ -211,12 +211,16 @@ A collection of solutions to various programming challenges I found online.
 	"Given a binary tree, return T if there is a path from root to a leaf node that sums up to the target"  
 	Recursive DFS. 
 **BinaryTreePathSumIII** - https://leetcode.com/problems/path-sum-iii/  
+	Double recursive DFS
+**BinaryTreePathSumII** - https://leetcode.com/problems/path-sum-ii  
+	Recursive DFS. Pass down path traversed & only return when the correct conditions are met, else return empty list. Recursive function returns left + right lists joined.  
 
 # Strategy Categories
 
 ## Graph
-**Recursive DFS** - CourseSchedule, NumIslands, CourseSchedule, KeysAndRooms, FindGrasshopper, IsValidBST, WordBreakII(pt2), FindEventualSafeStates, KeysAndRooms, BinaryTreeMaxPath, InvertBinaryTree, BinaryTreePathSum  
+**Recursive DFS** - CourseSchedule, NumIslands, CourseSchedule, KeysAndRooms, FindGrasshopper, IsValidBST, WordBreakII(pt2), FindEventualSafeStates, KeysAndRooms, InvertBinaryTree, BinaryTreePathSum  
 **Loop BFS** - KeysAndRooms  
+**Double Recursive DFS** - BinaryTreeMaxPathSum, BinaryTreePathSumIII  
 **DP Array** - MinFallingPathSum  
 
 ## Linked List

@@ -26,7 +26,7 @@ object BinaryMatrix2 {
                     reconstructed[1].add(0)
                 }
                 1 -> {
-                    if (upperRemaining > 0) {
+                    if (upperRemaining > lowerRemaining) {
                         reconstructed[0].add(1)
                         reconstructed[1].add(0)
                         upperRemaining -= 1

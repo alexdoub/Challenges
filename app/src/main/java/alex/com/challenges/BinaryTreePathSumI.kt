@@ -7,7 +7,7 @@ import alex.com.challenges.common.TreeNode
  * https://leetcode.com/problems/path-sum/
  */
 
-object BinaryTreePathSum {
+object BinaryTreePathSumI {
     fun hasPathSum(root: TreeNode?, sum: Int): Boolean {
         if (root == null) {
             return false
