@@ -38,8 +38,6 @@ class BinaryTreeMaxPathSum1 {
 
     }
 
-    class TreeNodeWithId(val id: Int, value: Int) : TreeNode(value)
-
     //REDO this with top down approach. Parent passes value down, gets returned max possible value
 
     companion object {
@@ -89,7 +87,7 @@ class BinaryTreeMaxPathSum1 {
                 options.add(rightOrphanPath)
             }
             val maxValue = options.mapNotNull { it }.max()!!
-            if ((this as? TreeNodeWithId)?.id == 2) {
+            if ((this as? TreeNode)?.id == 2) {
                 return maxValue
             }
 

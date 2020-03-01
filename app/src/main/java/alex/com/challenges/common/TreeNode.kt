@@ -3,7 +3,9 @@ package alex.com.challenges.common
 import java.util.*
 import kotlin.collections.ArrayList
 
-open class TreeNode(var `val`: Int) {
+class TreeNodePath(val pathString: String, val sum: Int)
+
+open class TreeNode(val id: Int, var `val`: Int) {
     var left: TreeNode? = null
     var right: TreeNode? = null
 
@@ -39,7 +41,9 @@ open class TreeNode(var `val`: Int) {
 
             // Build build first node
             val nodes = ArrayDeque<TreeNode>()
-            val firstNode = TreeNode(inputQueue.removeAt(0)!!)
+            var idCounter = 0
+            val firstNode = TreeNode(idCounter, inputQueue.removeAt(0)!!)
+            idCounter++
             nodes.add(firstNode)
 
             // Iterate and build child nodes
@@ -49,12 +53,14 @@ open class TreeNode(var `val`: Int) {
                 val parent = nodes.pop()
 
                 leftInput?.let {
-                    val newNode = TreeNode(leftInput)
+                    val newNode = TreeNode(idCounter, leftInput)
+                    idCounter++
                     parent.left = newNode
                     nodes.addLast(newNode)
                 }
                 rightInput?.let {
-                    val newNode = TreeNode(rightInput)
+                    val newNode = TreeNode(idCounter, rightInput)
+                    idCounter++
                     parent.right = newNode
                     nodes.addLast(newNode)
                 }

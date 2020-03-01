@@ -16,7 +16,6 @@ object BinaryTreeMaxPathSum3 {
 
         val notIncludingRoot = Math.max(maxPathSumWithBranching(root.left), maxPathSumWithBranching(root.right))
         val includingRoot = root.`val` + maxPathSumWithoutBranching(root.left, 0) + maxPathSumWithoutBranching(root.right, 0)
-//        println("Node: ${root.`val`} -- maxPathSumWithBranching has values $notIncludingRoot, $includingRoot")
         return Math.max(includingRoot, notIncludingRoot)
     }
 
@@ -26,7 +25,6 @@ object BinaryTreeMaxPathSum3 {
         val maxLeft = maxPathSumWithoutBranching(root.left, sum + root.`val`)
         val maxRight = maxPathSumWithoutBranching(root.right, sum + root.`val`)
         val maxSumFromChildren = Math.max(maxLeft, maxRight)
-//        println("Node: ${root.`val`} -- maxPathSumWithoutBranching has values $sum, $maxLeft, $maxRight")
         return Math.max(sum, maxSumFromChildren)
     }
 }

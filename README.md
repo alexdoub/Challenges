@@ -210,7 +210,7 @@ A collection of solutions to various programming challenges I found online.
 **BinaryTreePathSum** - https://leetcode.com/problems/path-sum/  
 	"Given a binary tree, return T if there is a path from root to a leaf node that sums up to the target"  
 	Recursive DFS. 
-
+**BinaryTreePathSumIII** - https://leetcode.com/problems/path-sum-iii/  
 
 # Strategy Categories
 
