@@ -1,5 +1,8 @@
 package alex.com.challenges.common
 
+import java.util.*
+import kotlin.collections.ArrayList
+
 open class TreeNode(var `val`: Int) {
     var left: TreeNode? = null
     var right: TreeNode? = null
@@ -23,6 +26,41 @@ open class TreeNode(var `val`: Int) {
             }
             println("----")
             nodes = newList
+        }
+    }
+
+    companion object {
+        fun buildTree(inputs: Array<Int?>): TreeNode? {
+
+            if (inputs.isEmpty() || inputs[0] == null) {
+                return null
+            }
+            val inputQueue = inputs.toMutableList()
+
+            // Build build first node
+            val nodes = ArrayDeque<TreeNode>()
+            val firstNode = TreeNode(inputQueue.removeAt(0)!!)
+            nodes.add(firstNode)
+
+            // Iterate and build child nodes
+            while (inputQueue.isNotEmpty() && nodes.isNotEmpty()) {
+                val leftInput = inputQueue.removeAt(0)
+                val rightInput = if (inputQueue.isNotEmpty()) inputQueue.removeAt(0) else null
+                val parent = nodes.pop()
+
+                leftInput?.let {
+                    val newNode = TreeNode(leftInput)
+                    parent.left = newNode
+                    nodes.addLast(newNode)
+                }
+                rightInput?.let {
+                    val newNode = TreeNode(rightInput)
+                    parent.right = newNode
+                    nodes.addLast(newNode)
+                }
+            }
+
+            return firstNode
         }
     }
 }
