@@ -207,9 +207,9 @@ A collection of solutions to various programming challenges I found online.
 **ReverseLinkedList** - https://leetcode.com/problems/reverse-linked-list/  
 	"Reverse a linked list"  
 	Simple Loop. Keep 3 pointers, prev/current/next. Advance next, swap current, then advance prev & current.  
-**BinaryTreePathSum** - https://leetcode.com/problems/path-sum/  
+**BinaryTreePathSumI** - https://leetcode.com/problems/path-sum/  
 	"Given a binary tree, return T if there is a path from root to a leaf node that sums up to the target"  
-	Recursive DFS. 
+	Recursive DFS.  
 **BinaryTreePathSumIII** - https://leetcode.com/problems/path-sum-iii/  
 	Double recursive DFS
 **BinaryTreePathSumII** - https://leetcode.com/problems/path-sum-ii  
@@ -218,7 +218,7 @@ A collection of solutions to various programming challenges I found online.
 # Strategy Categories
 
 ## Graph
-**Recursive DFS** - CourseSchedule, NumIslands, CourseSchedule, KeysAndRooms, FindGrasshopper, IsValidBST, WordBreakII(pt2), FindEventualSafeStates, KeysAndRooms, InvertBinaryTree, BinaryTreePathSum  
+**Recursive DFS** - CourseSchedule, NumIslands, CourseSchedule, KeysAndRooms, FindGrasshopper, IsValidBST, WordBreakII(pt2), FindEventualSafeStates, KeysAndRooms, InvertBinaryTree, BinaryTreePathSumI, BinaryTreePathSumII  
 **Loop BFS** - KeysAndRooms  
 **Double Recursive DFS** - BinaryTreeMaxPathSum, BinaryTreePathSumIII  
 **DP Array** - MinFallingPathSum  
