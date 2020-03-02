@@ -219,6 +219,8 @@ A collection of solutions to various programming challenges I found online.
 **BinaryTreeMinLexographicalPath** - https://leetcode.com/problems/smallest-string-starting-from-leaf/  
 	Recursive DFS + Tricky filtering.  
 	Get all valid paths via DFS. Find best path by iterating 1 index at a time and filtering early. Lastly, transform into string.  
+**ReverseInt** - https://leetcode.com/problems/reverse-integer/  
+	Tricky Math. Mark if negative, re-apply it at the end. Parse last digit with %10. Multiply sum * 10 then add new digit. Repeat for each digit while dividing input by 10.  
 
 # Strategy Categories
 
