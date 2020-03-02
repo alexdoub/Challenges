@@ -9,6 +9,8 @@ import alex.com.challenges.common.TreeNode
 
 object BinaryTreeMinLexographicalPath {
     fun smallestFromLeaf(root: TreeNode?): String {
+        if (root == null) return ""
+
         fun getValidPaths(root: TreeNode, path: List<Int>): List<List<Int>> {
             val newPathTraversed = listOf(root.`val`) + path    //Note: Reversed. Leaf in front
 
@@ -27,8 +29,6 @@ object BinaryTreeMinLexographicalPath {
             }
             return paths
         }
-
-        if (root == null) return ""
 
         val allPaths = getValidPaths(root, emptyList())
         val bestPath = getBestPath(allPaths)
