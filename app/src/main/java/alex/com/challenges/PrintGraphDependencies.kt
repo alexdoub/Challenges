@@ -75,6 +75,7 @@ object PrintGraphDependenciesRX {
     }
 }
 
+// BROKEN -- compilation error wtf
 object PrintGraphDependenciesKotlin {
 
     private val main = Thread()
@@ -102,35 +103,35 @@ object PrintGraphDependenciesKotlin {
     }
 }
 
-// BROKEN -- compilation error wtf
 object PrintGraphDependenciesCr {
     fun printDependencyGraph() {
-        println("{")
-        val explored = ArrayList<String>()
-
-
-        fun printDependencies(id: String, deps: List<String>) {
-            for (d in deps) { println("  $id -> $d") }
-        }
-
-        suspend fun explore(scope: CoroutineScope, id: String) {
-            println("             Exploring $id")
-            explored.add(id)
-
-            val deps = MyApi.getDependencyCr(id)
-            printDependencies(id, deps)
-
-//            val newDeps = deps - explored
-//            val newJobs = newDeps.map { newDep ->
-//                scope.launch { explore(this, newDep) }
-//            }
-//            newJobs.joinAll()
-        }
-
         // Kick off & block until its finished
         runBlocking {
-            explore(this, "A")
+            val startTime = System.currentTimeMillis()
+            println("{")
+            explore(this, ArrayList(), "A")
+            println("}")
+            println("Finished! in ${System.currentTimeMillis() - startTime}ms")
         }
-        println("}")
+    }
+
+    private suspend fun explore(scope: CoroutineScope, explored: ArrayList<String>, id: String) {
+        println("             Exploring $id ............ ${Thread.currentThread().name}")
+        explored.add(id)
+
+        val deps = MyApi.getDependencyCr(id)
+        printDependencies(id, deps)
+
+        val newDeps = deps - explored
+        val newJobs: Collection<Job> = newDeps.map { newDep ->
+            scope.launch {
+                explore(this, explored, newDep)
+            }
+        }
+        newJobs.joinAll()
+    }
+
+    private fun printDependencies(id: String, deps: List<String>) {
+        for (d in deps) { println("  $id -> $d ............ ${Thread.currentThread().name}") }
     }
 }
