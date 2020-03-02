@@ -32,8 +32,7 @@ object BinaryTreeMinLexographicalPath {
 
         val allPaths = getValidPaths(root, emptyList())
         val bestPath = getBestPath(allPaths)
-        val rVal = getStringFromPath(bestPath)
-        return rVal
+        return getStringFromPath(bestPath)
     }
 
     private fun getBestPath(paths: List<List<Int>>): List<Int> {
@@ -41,12 +40,10 @@ object BinaryTreeMinLexographicalPath {
 
         var index = 0
         while (options.size > 1) {
-            // Get the best option for this index. Or null
-            val bestValueOptions = options.map {
+            // Get the best single value for this index. Ascending, null first
+            val bestValue = options.map {
                 if (it.size == index) null else it[index]
-            }
-            // Get
-            val bestValue = bestValueOptions.sortedWith(Comparator { o1, o2 ->
+            }.sortedWith(Comparator { o1, o2 ->
                 (o1 ?: -1) - (o2 ?: -1)
             }).first()
 
