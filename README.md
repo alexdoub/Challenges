@@ -220,7 +220,11 @@ A collection of solutions to various programming challenges I found online.
 	Recursive DFS + Tricky filtering.  
 	Get all valid paths via DFS. Find best path by iterating 1 index at a time and filtering early. Lastly, transform into string.  
 **ReverseInt** - https://leetcode.com/problems/reverse-integer/  
-	Tricky Math. Mark if negative, re-apply it at the end. Parse last digit with %10. Multiply sum * 10 then add new digit. Repeat for each digit while dividing input by 10.  
+	Tricky Math.  
+	Mark if negative, re-apply it at the end. Parse last digit with %10. Multiply sum * 10 then add new digit. Repeat for each digit while dividing input by 10.  
+**StringsAreInterleaved** - https://leetcode.com/problems/interleaving-string/  
+	Recursive DFS.  Make recursive function with indexes as parameters. Try to advance left and right if possible. Do checks to make sure you don't push too far.  
+
 
 # Strategy Categories
 
@@ -266,7 +270,7 @@ Note: Simple means that this can be optimized to replace each array after proces
 
 ## Numbers
 **Recursive + Tricky Math** - IntegerDivision  
-**Loop + Tricky Math** - ValidNumber  
+**Loop + Tricky Math** - ReverseInt  
 
 ## Strings
 **Loop + Hashset** - SimilarWords  
