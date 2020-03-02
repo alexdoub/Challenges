@@ -216,11 +216,14 @@ A collection of solutions to various programming challenges I found online.
 	Recursive DFS. Pass down path traversed & only return when the correct conditions are met, else return empty list. Recursive function returns left + right lists joined.  
 **BinaryTreeAllPaths** - https://leetcode.com/problems/binary-tree-paths  
 	Recursive DFS. Same as BinaryTreePathSumII  
+**BinaryTreeMinLexographicalPath** - https://leetcode.com/problems/smallest-string-starting-from-leaf/  
+	Recursive DFS + Tricky filtering.  
+	Get all valid paths via DFS. Find best path by iterating 1 index at a time and filtering early. Lastly, transform into string.  
 
 # Strategy Categories
 
 ## Graph
-**Recursive DFS** - CourseSchedule, NumIslands, CourseSchedule, KeysAndRooms, FindGrasshopper, IsValidBST, WordBreakII(pt2), FindEventualSafeStates, KeysAndRooms, InvertBinaryTree, BinaryTreePathSumI, BinaryTreePathSumII, BinaryTreeAllPaths  
+**Recursive DFS** - CourseSchedule, NumIslands, CourseSchedule, KeysAndRooms, FindGrasshopper, IsValidBST, WordBreakII(pt2), FindEventualSafeStates, KeysAndRooms, InvertBinaryTree, BinaryTreePathSumI, BinaryTreePathSumII, BinaryTreeAllPaths, BinaryTreeMinLexographicalPath  
 **Loop BFS** - KeysAndRooms  
 **Double Recursive DFS** - BinaryTreeMaxPathSum, BinaryTreePathSumIII  
 **DP Array** - MinFallingPathSum  
