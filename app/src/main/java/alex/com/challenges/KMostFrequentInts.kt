@@ -5,15 +5,17 @@ package alex.com.challenges
  * https://www.youtube.com/watch?v=t0OQAD5gjd8
  */
 
-object MostFrequentInts {
+object KMostFrequentInts {
 
-    fun approach1a(input: List<Int>, k: Int) {
+    //Speed = O(n log n)
+    //Mem = O(n)    //Worst case: individually groups everything separately into hashmap
+    fun groupIntoMap1(input: List<Int>, k: Int) {
 
         // Group lists into map of lists, map those values to their size
         val grouped = input.groupBy { it }.mapValues { it.value.size }  //O(n)
 
         // Transform into sorted list
-        val sorted = grouped.entries.sortedByDescending { it.value }    //O(n log n) because sorting
+        val sorted = grouped.entries.sortedByDescending { it.value }    //O(n log n) because sorting.. or O(n+m)    //@@TODO: Implement
 
         // Early return on bad input
         if (sorted.size < k) {
@@ -33,13 +35,15 @@ object MostFrequentInts {
         }")
     }
 
-    fun approach1b(input: List<Int>, k: Int) {
+    //Speed = O(n log n)
+    //Mem = O(n)    //Worst case: individually groups everything separately into hashmap
+    fun groupIntoMap2(input: List<Int>, k: Int) {
 
         // Group list into a map of lists
         val grouped = input.groupBy { it }
 
         // Enumerate values and find largest list
-        val sorted = grouped.entries.sortedByDescending { it.value.size }
+        val sorted = grouped.entries.sortedByDescending { it.value.size }   //O(n log n) because sorting.. or O(n+m)
 
         // Early return on bad input
         if (sorted.size < k) {

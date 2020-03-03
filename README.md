@@ -224,7 +224,11 @@ A collection of solutions to various programming challenges I found online.
 	Mark if negative, re-apply it at the end. Parse last digit with %10. Multiply sum * 10 then add new digit. Repeat for each digit while dividing input by 10.  
 **StringsAreInterleaved** - https://leetcode.com/problems/interleaving-string/  
 	Recursive DFS.  Make recursive function with indexes as parameters. Try to advance left and right if possible. Do checks to make sure you don't push too far.  
-
+**MostFrequentInts**  
+	"Given a list of integers and a single int K, print out the top K most occurring elements"  
+	Hashmap + Sorting. Group inputs into a map by their values, where the value is the occurence count. Convert entries to sorted list descending by value. Print the first K entries (input int, occurence).  
+**CountSort** - O(Count + MaxIntValue) speed & size  
+	Make flat IntArray of size 0. Loop inputs and increment each corresponding value in the flat array. Extend array on each new large input. Finally, loop over flat array and decrement values while putting the value (from index) into an arraylist. Return arraylist.  
 
 # Strategy Categories
 
