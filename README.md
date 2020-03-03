@@ -227,6 +227,7 @@ A collection of solutions to various programming challenges I found online.
 **MostFrequentInts**  
 	"Given a list of integers and a single int K, print out the top K most occurring elements"  
 	Hashmap + Sorting. Group inputs into a map by their values, where the value is the occurence count. Convert entries to sorted list descending by value. Print the first K entries (input int, occurence).  
+	Linear time: Hashmap grouping + Buckets. Group values into map with key=number, value=count. Transform that into array of buckets, where index=count, value=list of numbers at that occurrence. Finally, reverse loop over buckets array and pop values.  
 **CountSort** - O(Count + MaxIntValue) speed & size  
 	Make flat IntArray of size 0. Loop inputs and increment each corresponding value in the flat array. Extend array on each new large input. Finally, loop over flat array and decrement values while putting the value (from index) into an arraylist. Return arraylist.  
 

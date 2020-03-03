@@ -7,6 +7,46 @@ package alex.com.challenges
 
 object KMostFrequentInts {
 
+    //Runs in linear time! No sorting required
+    fun groupIntoMapThenBucket(input: IntArray, k: Int) {
+
+        // Group lists into map of lists, map those values to their size
+        val grouped = input.groupBy { it }.mapValues { it.value.size }  //O(n)
+
+        //transform into buckets. index = occurrence, value = list of ints
+        var buckets = Array<ArrayList<Int>?>(0) { null }
+        for (entry in grouped.entries) {
+
+            //expand buckets array
+            if (buckets.size < entry.value) {
+                buckets = buckets.copyOf(entry.value + 1)
+            }
+
+            //initialize bucket
+            if (buckets[entry.value] == null) buckets[entry.value] = ArrayList()
+
+            //add to bucket
+            buckets[entry.value]!!.add(entry.key)
+        }
+
+        println("The most common entries are...")
+        var k = k
+
+        //reverse enumerate bucket & print k
+        for (x in buckets.indices.reversed()) {
+            val bucket = buckets[x]
+            while (bucket != null && bucket.isNotEmpty()) {
+                val value = bucket.removeAt(0)
+                println("..${value} with ${x} occurences")
+                k--
+
+                if (k == 0) {
+                    return
+                }
+            }
+        }
+    }
+
     //Speed = O(n log n)
     //Mem = O(n)    //Worst case: individually groups everything separately into hashmap
     fun groupIntoMap1(input: List<Int>, k: Int) {
