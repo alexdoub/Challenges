@@ -26,7 +26,7 @@ object MyApi {
 //        }
 
         return when (id) {
-            "A" -> listOf("B", "C", "D", "Z")
+            "A" -> listOf("B", "C", "D", "Z", "ZZ")
             "B" -> listOf("C", "D")
             "C" -> listOf("D")
             "D" -> listOf("Z")
@@ -35,8 +35,12 @@ object MyApi {
     }
 
     suspend fun getDependencyCr(id:String): List<String> {
-        delay(delay)
-        return getResult(id)
+        var result: List<String>? = null
+        withContext(Dispatchers.IO) {
+            delay(delay)    // simulate network library fetching data on separate thread
+            result = getResult(id)
+        }
+        return result!!
     }
 
     fun getDependencyRx(id: String): Single<List<String>> {
