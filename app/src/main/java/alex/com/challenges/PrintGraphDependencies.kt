@@ -34,7 +34,7 @@ object MyApi {
         }
     }
 
-    suspend fun getDependencyCr(id:String): List<String> {
+    suspend fun getDependencyCr(id: String): List<String> {
         var result: List<String>? = null
         withContext(Dispatchers.IO) {
             delay(delay)    // simulate network library fetching data on separate thread
@@ -48,20 +48,26 @@ object MyApi {
             .delay(delay, TimeUnit.MILLISECONDS)
             .subscribeOn(Schedulers.io())
     }
+
+    fun getDependencyKotlin(id: String, callback: (List<String>) -> Unit) {
+        getDependencyRx(id).subscribe { newDeps -> callback(newDeps) }
+    }
 }
 
 object PrintGraphDependenciesRX {
 
+    private fun printDependencies(id: String, deps: List<String>) {
+        for (d in deps) {
+            println("  $id -> $d ............ ${Thread.currentThread().name}")
+        }
+    }
+
     fun printDependencyGraph() {
         val explored = ArrayList<String>()
 
-        fun printDependencies(id: String, deps: List<String>) {
-            for (d in deps) { println("  $id -> $d ............ ${Thread.currentThread().name}") }
-        }
-
         fun explore(id: String): Completable {
             explored.add(id)
-            println("             Exploring $id")
+            println("             Exploring $id ............ ${Thread.currentThread().name}")
             return MyApi.getDependencyRx(id)
                 .observeOn(Schedulers.single())
                 .flatMapCompletable { thoseDeps ->
@@ -79,33 +85,57 @@ object PrintGraphDependenciesRX {
     }
 }
 
-// BROKEN -- compilation error wtf
-object PrintGraphDependenciesKotlin {
-
-    private val main = Thread()
-    private val explored = ArrayList<String>()
-
-    fun topologicalSort_kotlin() {
-        println("{")
-        fetchDepsAsync("A")
-        println("}")
-    }
-
-    private fun markPrintThenFetchSeparately(id: String, deps: List<String>) {
-        explored.add(id)
-        for (d in deps-explored) {
-            println("  $id -> $d")
-            fetchDepsAsync(d)
-        }
-    }
-
-    private fun fetchDepsAsync(id: String) {
-        Thread.currentThread().run {
-            val theseDeps = MyApi.getDependencyRx(id).blockingGet()
-            markPrintThenFetchSeparately(id, theseDeps)
-        }
-    }
-}
+//BROKEN: Cant kick off a bunch of async callbacks on the same thread & know when they're done
+//object PrintGraphDependenciesKotlin {
+//
+//    val thread = Thread()
+//
+//    private val explored = ArrayList<String>()
+//    var jobs = 0
+//
+//    fun printDependencyGraph() {
+//        val startTime = System.currentTimeMillis()
+//        println("{")
+//        thread.run {
+//            fetchDepsAsync("A") {
+//                if (jobs == 0) {
+//                    println("}")
+//                    println("Finished in ${System.currentTimeMillis() - startTime}ms")
+//                    thread.stop()
+//                } else {
+//                    println("Still waiting on $jobs jobs")
+//                }
+//            }
+//        }
+//        println("b4 join")
+//        thread.join()
+//        println("past join")
+//    }
+//
+//    private fun fetchDepsAsync(id: String, checkIfDone: () -> Unit) {
+//        Thread.currentThread().run {
+//            if (explored.contains(id)) return
+//
+//            jobs++
+//            explored.add(id)
+//            println("             Exploring $id ............ Explored:${explored.joinToString()}")
+//
+//            MyApi.getDependencyKotlin(id) { newDeps ->
+//                printDependencies(id, newDeps)
+//                for (d in newDeps) {
+//                    fetchDepsAsync(d, checkIfDone)
+//                }
+//                checkIfDone()
+//            }
+//        }
+//    }
+//
+//    private fun printDependencies(id: String, deps: List<String>) {
+//        for (d in deps) {
+//            println("  $id -> $d ............ ${Thread.currentThread().name}")
+//        }
+//    }
+//}
 
 object PrintGraphDependenciesCr {
     fun printDependencyGraph() {
@@ -136,6 +166,8 @@ object PrintGraphDependenciesCr {
     }
 
     private fun printDependencies(id: String, deps: List<String>) {
-        for (d in deps) { println("  $id -> $d ............ ${Thread.currentThread().name}") }
+        for (d in deps) {
+            println("  $id -> $d ............ ${Thread.currentThread().name}")
+        }
     }
 }
