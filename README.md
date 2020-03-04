@@ -233,6 +233,12 @@ A collection of solutions to various programming challenges I found online.
 **MergeTwoLinkedLists** - https://leetcode.com/problems/merge-two-sorted-lists/  
 	"Given two sorted linked lists, merge them into a single one."
 	Single Loop. Maintain pointers for head, tail, leftHead and rightHead. Early return if either input is empty. Handle both not null case - loop and pull best head+tail once else advance the best option. Handle 1 not null case - unroll that list. Advance tail after every push. Lastly, return head which was set earlier.  
+**MergeIntoPaddedArrayAndSort** - https://leetcode.com/problems/merge-sorted-array/  
+	"Given an array with extra space and a 2nd array, merge the 2nd into the first and sort the values, excluding the padding."  
+	Sort. Since array#1 has padding, all copying and sorting must only go until m+n-1.  
+**QuickSort** - https://www.geeksforgeeks.org/quick-sort/  
+	Make recursive sort function. If low < high, get adjusted partition index and call sort on the left & right sides. When getting adjusted partition index, choose a pivot (last element) and a smallIndex (start). Loop up to the pivot index, if any element was smaller than the pivot then swap it with the smallIndex & ++ it (this puts items smaller than the pivot to the left of the partition). Swap smallIndex with highIndex & return that as the pivot point.  
+	To reiterate, partition splits the array according to the pivot and returns the index of the split.    
 
 # Strategy Categories
 
