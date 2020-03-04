@@ -224,12 +224,15 @@ A collection of solutions to various programming challenges I found online.
 	Mark if negative, re-apply it at the end. Parse last digit with %10. Multiply sum * 10 then add new digit. Repeat for each digit while dividing input by 10.  
 **StringsAreInterleaved** - https://leetcode.com/problems/interleaving-string/  
 	Recursive DFS.  Make recursive function with indexes as parameters. Try to advance left and right if possible. Do checks to make sure you don't push too far.  
-**MostFrequentInts**  
+**KMostFrequentInts**  
 	"Given a list of integers and a single int K, print out the top K most occurring elements"  
 	Hashmap + Sorting. Group inputs into a map by their values, where the value is the occurence count. Convert entries to sorted list descending by value. Print the first K entries (input int, occurence).  
 	Linear time: Hashmap grouping + Buckets. Group values into map with key=number, value=count. Transform that into array of buckets, where index=count, value=list of numbers at that occurrence. Finally, reverse loop over buckets array and pop values.  
 **CountSort** - O(Count + MaxIntValue) speed & size  
 	Make flat IntArray of size 0. Loop inputs and increment each corresponding value in the flat array. Extend array on each new large input. Finally, loop over flat array and decrement values while putting the value (from index) into an arraylist. Return arraylist.  
+**MergeTwoLinkedLists** - https://leetcode.com/problems/merge-two-sorted-lists/  
+	"Given two sorted linked lists, merge them into a single one."
+	Single Loop. Maintain pointers for head, tail, leftHead and rightHead. Early return if either input is empty. Handle both not null case - loop and pull best head+tail once else advance the best option. Handle 1 not null case - unroll that list. Advance tail after every push. Lastly, return head which was set earlier.  
 
 # Strategy Categories
 

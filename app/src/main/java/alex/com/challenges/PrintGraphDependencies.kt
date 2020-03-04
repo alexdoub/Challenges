@@ -27,9 +27,9 @@ object MyApi {
 
         return when (id) {
             "A" -> listOf("B", "C", "D", "Z", "ZZ")
-            "B" -> listOf("C", "D")
-            "C" -> listOf("D")
-            "D" -> listOf("Z")
+            "B" -> listOf("C", "D", "Z", "ZZ")
+            "C" -> listOf("D", "Z", "ZZ")
+            "D" -> listOf("Z", "ZZ")
             else -> emptyList()
         }
     }
@@ -138,8 +138,9 @@ object PrintGraphDependenciesRX {
 //}
 
 object PrintGraphDependenciesCr {
+
     fun printDependencyGraph() {
-        // Kick off & block until its finished
+        //Kick off & block until its finished
         runBlocking {
             val startTime = System.currentTimeMillis()
             println("{")
