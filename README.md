@@ -159,7 +159,7 @@ A collection of solutions to various programming challenges I found online.
 	"Invert a binary tree"
 	Inverting a tree just means reversing it. 
 	Do SIMPLE recursive loop where you swap L and R. Initially call on head.  
-**FindNumRange** - https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/  
+**GetRangeOfNumInArray** - https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/  
 	"In a sorted array, find the range (start/end index) of a specific int"  
 	Do two slightly different sliding window approaches. One to find the first occurrence, one to find the last. Early return if no first occurrence.  
 **MathPow** - https://leetcode.com/problems/powx-n/  
@@ -168,7 +168,7 @@ A collection of solutions to various programming challenges I found online.
 **JumpGame** - https://leetcode.com/problems/jump-game/  
 	"Given an IntArray, start at the 0th index. Hop UP TO as many times as the value you're on. Return T/F if you can hop to the end"  
 	Make BoolArray representing reachable states. Enumerate BoolArr filling out reachability from known reachable states (push ahead). Maintain int variable of 'furthest reachable' and early terminate if you go past.  
-**Permutations** - https://leetcode.com/problems/permutations/  
+**PermutationsI** - https://leetcode.com/problems/permutations/  
 	"Given an IntArray, find all possible permutations"  
 	Inner Recursive (DFS) loop to fill out options list. Pass in used & remaining items thru parameters.  
 **PermutationsII** - https://leetcode.com/problems/permutations-ii/submissions/  
@@ -249,7 +249,7 @@ A collection of solutions to various programming challenges I found online.
 **DP Array** - MinFallingPathSum  
 
 ## Linked List
-**Single loop** - RemoveNthNodeFromEnd, LinkedListAdder  
+**Single loop** - RemoveNthNodeFromEnd, LinkedListAdder, MergeTwoLinkedLists, ReverseLinkedList  
 
 ## Matrix
 **1-way sweep DP matrix** - MinimumPath2DSum  
@@ -258,29 +258,31 @@ A collection of solutions to various programming challenges I found online.
 **BFS** - MazeMatrixMinPath, MazeMatrixMinPathPushingBox, LightsOut, MinimumPath4DSum  
 
 ## Points
-**Tricky Hashmap** - CountRectangles, PerfectRectangle  
+**Tricky Hashmap** - CountRectangles, PerfectRectangle, MaxPointsOnALine  
 
 ## Arrays
-**Greedy Loop** - RomanToInt, ZigzagConversion, MinimumSwaps, BinaryMatrix, ReverseLinkedList  
+**Greedy Loop** - RomanToInt, ZigzagConversion, MinimumSwaps, BinaryMatrix, MergeIntoPaddedArrayAndSort  
 **Loop + Hashmap** - TwoSums  
 **Loop + Branch** - PhoneNumberCombos  
 **Loop + Stack** - ValidParentheses  
 **Loop + Inner Loop** - PalindromeSubstring, MixedWordsConcatenated  
 **Loop + Queues** - AssignCookies  
-**Recursive DFS** -  Permutations, GenerateParentheses, CombinationSum, ValidParenthesisString  
+**Recursive DFS** -  PermutationsI, PermutationsII, GenerateParentheses, CombinationSum, ValidParenthesisString  
 **Recursive Stack** - ValidParenthesisString  
-**Sliding Window** - SearchInRotatedArray, FindNumInRange, 3-Sum, 3-SumClosests, ContainerWithMostWater  
+**Sliding Window** - SearchInRotatedArray, GetRangeOfNumInArray, 3-Sum, 3-SumClosests, ContainerWithMostWater  
 **2D Sliding Window** - SmallestSpanningRange  
 **Partial Sums** - StringMultiply  
 **Partial Sort** - SortPartiallySortedArray  
-**Single DP Array** - JumpGame, DivisorGame, KnightDialer, Fibonacci, MinCostClimbingStairs  
 **Recursive + Memoization** - DivisorGame, Fibonacci  
+**Tricky Math** - RepeatedSubstringPattern  
+**Tricky Hashmap** - StringIncludesPermutation, MinWindowSubstring, LongestSubstringWithoutRepeatingCharacters  
+
+## Dynamic Programming  
+**Single DP Array** - JumpGame, DivisorGame, KnightDialer, Fibonacci, MinCostClimbingStairs  
 **Simple DP Matrix** - WildcardMatching, DiceRollsWithTargetSum, MinFallingPathSum  
 Note: Simple means that this can be optimized to replace each array after processing, saving memory.  
 **DP Graph** - WordBreakII(pt1)  
 **2 Way Sweep** - CandyDistribution, ShortestDistanceToChar  
-**Tricky Math** - RepeatedSubstringPattern  
-**Tricky Hashmap** - StringIncludesPermutation, MinWindowSubstring, LongestSubstringWithoutRepeatingCharacters  
 
 ## Numbers
 **Recursive + Tricky Math** - IntegerDivision  

@@ -1,8 +1,8 @@
 package alex.com.challenges
 
+import alex.com.challenges.dynamic.StringMultiply
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import kotlin.math.exp
 
 /**
  * Created by Alex Doub on 2/4/2020.

@@ -1,5 +1,6 @@
 package alex.com.challenges
 
+import alex.com.challenges.matrix.MazeMatrixMinPath
 import org.junit.Test
 
 class MazeMatrixMinPathTest {

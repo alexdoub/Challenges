@@ -1,8 +1,8 @@
 package alex.com.challenges
 
+import alex.com.challenges.dynamic.ShortestDistanceToChar
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import kotlin.math.exp
 
 /**
  * Created by Alex Doub on 12/3/2019.

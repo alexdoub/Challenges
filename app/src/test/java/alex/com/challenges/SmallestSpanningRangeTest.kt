@@ -1,5 +1,6 @@
 package alex.com.challenges
 
+import alex.com.challenges.arrays.SmallestSpanningRange
 import org.junit.Test
 
 /**

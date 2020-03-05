@@ -1,5 +1,6 @@
 package alex.com.challenges
 
+import alex.com.challenges.arrays.ThreeSum
 import junit.framework.TestCase.assertTrue
 import org.junit.Assert.assertEquals
 import org.junit.Test

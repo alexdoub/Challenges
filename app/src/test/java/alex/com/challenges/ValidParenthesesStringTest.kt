@@ -1,5 +1,6 @@
 package alex.com.challenges
 
+import alex.com.challenges.strings.ValidParenthesisString
 import org.junit.Test
 
 /**

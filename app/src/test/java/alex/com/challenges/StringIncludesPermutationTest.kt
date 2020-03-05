@@ -1,5 +1,6 @@
 package alex.com.challenges
 
+import alex.com.challenges.strings.StringIncludesPermutation
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import java.lang.StringBuilder

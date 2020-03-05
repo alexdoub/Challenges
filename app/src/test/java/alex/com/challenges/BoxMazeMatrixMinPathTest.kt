@@ -1,6 +1,7 @@
 package alex.com.challenges
 
 
+import alex.com.challenges.matrix.MazeMatrixMinPathPushingBox
 import org.junit.Test
 
 class BoxMazeMatrixMinPathTest {

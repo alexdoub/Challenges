@@ -1,5 +1,6 @@
 package alex.com.challenges
 
+import alex.com.challenges.matrix.LightsOut
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

@@ -1,5 +1,6 @@
 package alex.com.challenges
 
+import alex.com.challenges.two_d_points.PerfectRectangle
 import org.junit.Test
 
 /**

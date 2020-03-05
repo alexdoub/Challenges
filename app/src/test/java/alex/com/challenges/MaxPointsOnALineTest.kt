@@ -1,5 +1,6 @@
 package alex.com.challenges
 
+import alex.com.challenges.two_d_points.MaxPointsOnALine
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

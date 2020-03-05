@@ -1,5 +1,6 @@
 package alex.com.challenges
 
+import alex.com.challenges.strings.LongestSubstringWithoutRepeatingCharacters
 import junit.framework.TestCase.assertEquals
 import org.junit.Test
 

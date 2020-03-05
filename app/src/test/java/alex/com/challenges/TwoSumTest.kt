@@ -1,5 +1,6 @@
 package alex.com.challenges
 
+import alex.com.challenges.arrays.TwoSum
 import org.junit.Test
 
 class TwoSumTest {

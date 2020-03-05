@@ -1,5 +1,6 @@
 package alex.com.challenges
 
+import alex.com.challenges.cs.IntegerDivision
 import org.junit.Test
 
 class IntegerDivisionTest {

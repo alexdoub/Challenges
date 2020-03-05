@@ -1,5 +1,6 @@
 package alex.com.challenges
 
+import alex.com.challenges.arrays.SortPartiallySortedArray
 import org.junit.Assert.assertTrue
 import org.junit.Test
 

@@ -1,5 +1,6 @@
 package alex.com.challenges
 
+import alex.com.challenges.strings.RepeatedSubstringPattern
 import org.junit.Test
 
 /**
