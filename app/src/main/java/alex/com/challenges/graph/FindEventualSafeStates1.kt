@@ -1,4 +1,4 @@
-package alex.com.challenges.dynamic
+package alex.com.challenges.graph
 
 import kotlin.math.abs
 
@@ -12,7 +12,7 @@ import kotlin.math.abs
  *
  */
 
-class FindEventualSafeStates {
+class FindEventualSafeStates1 {
     companion object {
         private fun debugPrint(string: String) {
             if (false) println(string)
@@ -58,7 +58,13 @@ class FindEventualSafeStates {
 
                     //Enumerate paths and search for loops
                     for (path in graph[nodeId]) {
-                        if (isLoopNode(path, graph, loopNodes, safeNodes)) {
+                        if (isLoopNode(
+                                path,
+                                graph,
+                                loopNodes,
+                                safeNodes
+                            )
+                        ) {
                             return true
                         }
                     }

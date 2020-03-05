@@ -73,7 +73,7 @@ A collection of solutions to various programming challenges I found online.
 	Recursive DFS OR loop BFS. Simply start at node 0 and enumerate as far as possible. Return T if all nodes visited.  
 **FindEventualSafeStates** - https://leetcode.com/problems/find-eventual-safe-states/  
 	"Find all the terminal nodes in a graph. A terminal node will not lead to any loops"  
-	Recursive DFS. Maintain BoolArray of bad nodes and safe nodes. Loop over unchecked nodes and recursively check for loops. If a loop is found, mark all those as loop nodes. If no loop is found, mark all those as safe nodes.  
+	Recursive DFS. Maintain list of states for each node. Loop over all nodes and explore them with DFS. Explore function recursively checks all next nodes & checks for loops according to the visited list that was passed in. If a visited node is seen again, then this path looped. If any child paths looped, they return false & it sets this node to unsafe.  
 **MinWindowSubstring** - https://leetcode.com/problems/minimum-window-substring/  
 	"Given an input string and a target string, return the smallest substring that contains all the letters in the target string"  
 	Loop + Hashmap tracking indexes.  Similar to StringIncludesPermutation. Make hashmap that maps chars to counts. Make 2nd hashmap that maps chars to index locations. Loop input and tally up characters. If over-tallyd, pop off last. Store solutions when tallys are full.  
@@ -237,8 +237,8 @@ A collection of solutions to various programming challenges I found online.
 	"Given an array with extra space and a 2nd array, merge the 2nd into the first and sort the values, excluding the padding."  
 	Sort. Since array#1 has padding, all copying and sorting must only go until m+n-1.  
 **QuickSort** - https://www.geeksforgeeks.org/quick-sort/  
-	Make recursive sort function. If low < high, get adjusted partition index and call sort on the left & right sides. When getting adjusted partition index, choose a pivot (last element) and a smallIndex (start). Loop up to the pivot index, if any element was smaller than the pivot then swap it with the smallIndex & ++ it (this puts items smaller than the pivot to the left of the partition). Swap smallIndex with highIndex & return that as the pivot point.  
-	To reiterate, partition splits the array according to the pivot and returns the index of the split.    
+	Make recursive sort function. If low < high, get adjusted partition index and call sort on the left & right sides. When getting adjusted partition index, choose a pivot (last element) and a smallIndex (start). Loop up to the pivot index, if any element was smaller than the pivot then swap it with the smallIndex & ++ it (this puts items smaller than the pivot to the left of the partition). Finally swap the pivot with the small index, making it separate the left & right sides.  
+	To reiterate, partition splits the array according to the pivot and returns the index of the split.  
 
 # Strategy Categories
 

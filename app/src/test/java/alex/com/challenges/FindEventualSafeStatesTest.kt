@@ -1,6 +1,6 @@
 package alex.com.challenges
 
-import alex.com.challenges.dynamic.FindEventualSafeStates
+import alex.com.challenges.graph.FindEventualSafeStates2
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -22,7 +22,7 @@ class FindEventualSafeStatesTest {
 
             intArrayOf()
         )
-        val output = FindEventualSafeStates.eventualSafeNodes(graph)
+        val output = FindEventualSafeStates2.eventualSafeNodes(graph)
         assert(output == listOf(2, 4, 5, 6))
     }
 
@@ -35,7 +35,7 @@ class FindEventualSafeStatesTest {
             intArrayOf(2),
             intArrayOf()
         )
-        val output = FindEventualSafeStates.eventualSafeNodes(graph)
+        val output = FindEventualSafeStates2.eventualSafeNodes(graph)
         assertEquals(listOf(0, 4), output)
     }
 
@@ -49,7 +49,7 @@ class FindEventualSafeStatesTest {
             intArrayOf(4),
             intArrayOf()
         )
-        val output = FindEventualSafeStates.eventualSafeNodes(graph)
+        val output = FindEventualSafeStates2.eventualSafeNodes(graph)
         assertEquals(listOf(0, 1, 2, 3, 4), output)
     }
 
@@ -63,7 +63,7 @@ class FindEventualSafeStatesTest {
             intArrayOf(4),              //3
             intArrayOf()                //4
         )
-        val output = FindEventualSafeStates.eventualSafeNodes(graph)
+        val output = FindEventualSafeStates2.eventualSafeNodes(graph)
         assertEquals(listOf(1, 2, 3, 4), output)
     }
 
@@ -110,7 +110,7 @@ class FindEventualSafeStatesTest {
         val output =
             listOf(0, 3, 9, 10, 11, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29)
 
-        assertEquals(output, FindEventualSafeStates.eventualSafeNodes(input))
+        assertEquals(output, FindEventualSafeStates2.eventualSafeNodes(input))
     }
 
     // This test exposes a flaw: my sortedSet queue only works from left to right
@@ -125,7 +125,7 @@ class FindEventualSafeStatesTest {
             intArrayOf(0, 1, 2),              //3
             intArrayOf(0, 1, 2, 3)                //4
         )
-        val output = FindEventualSafeStates.eventualSafeNodes(graph)
+        val output = FindEventualSafeStates2.eventualSafeNodes(graph)
         assertEquals(listOf(0, 1, 2, 3, 4), output)
     }
 
@@ -138,7 +138,7 @@ class FindEventualSafeStatesTest {
             intArrayOf(2),              //3
             intArrayOf()                //4
         )
-        val output = FindEventualSafeStates.eventualSafeNodes(graph)
+        val output = FindEventualSafeStates2.eventualSafeNodes(graph)
         assertEquals(listOf(0, 1, 2, 3, 4), output)
     }
 
@@ -151,7 +151,7 @@ class FindEventualSafeStatesTest {
             intArrayOf(2),              //3
             intArrayOf()                //4
         )
-        val output = FindEventualSafeStates.eventualSafeNodes(graph)
+        val output = FindEventualSafeStates2.eventualSafeNodes(graph)
         assertEquals(listOf(0, 1, 2, 3, 4), output)
     }
 
@@ -165,7 +165,7 @@ class FindEventualSafeStatesTest {
             intArrayOf(2,5),       //4
             intArrayOf()       //5
         )
-        val output = FindEventualSafeStates.eventualSafeNodes(graph)
+        val output = FindEventualSafeStates2.eventualSafeNodes(graph)
         assertEquals(listOf(0, 1, 2, 3, 4, 5), output)
     }
 
@@ -180,7 +180,7 @@ class FindEventualSafeStatesTest {
             intArrayOf(3,5),       //4
             intArrayOf()       //5
         )
-        val output = FindEventualSafeStates.eventualSafeNodes(graph)
+        val output = FindEventualSafeStates2.eventualSafeNodes(graph)
         assertEquals(listOf(0, 1, 2, 3, 4, 5), output)
     }
 
@@ -214,7 +214,7 @@ class FindEventualSafeStatesTest {
 
         println("Done building expected result")
 
-        val output = FindEventualSafeStates.eventualSafeNodes(graph.toTypedArray())
+        val output = FindEventualSafeStates2.eventualSafeNodes(graph.toTypedArray())
         assertEquals(expected, output)
     }
 }
