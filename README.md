@@ -152,7 +152,7 @@ A collection of solutions to various programming challenges I found online.
 **CombinationSum** - https://leetcode.com/problems/combination-sum/  
 	"(Modified Subset Sum Problem) - Given a set of numbers and a target, return all combinations that sum up to target. You can re-use numbers."
 	Do tricky recursive DFS. Limit scope & reduce duplicate combinations by having sub-searches only account for new possibilties in the array PAST the last used value's index.  
-**GenerateParenthesis** - https://leetcode.com/problems/generate-parentheses/  
+**GenerateParentheses** - https://leetcode.com/problems/generate-parentheses/  
 	"Given an int N, list all permutations of VALID parentheses"  
 	Simple recursive (DFS) loop. Base case adds the valid option to the options list  
 **InvertBinaryTree** - https://leetcode.com/problems/invert-binary-tree/  
@@ -184,7 +184,7 @@ A collection of solutions to various programming challenges I found online.
 **FindGrasshopper** - https://leetcode.com/discuss/interview-question/494186/google-onsite-grasshopper-position  
 	"Given a graph and an int N, determine the probability that you will be in each node if you did hops at random"  
 	Recursively (DFS) get list of nodes after N hops. Evenly distribute probabilities accounting for duplicate nodes.  
-**CourseSchedule** - https://leetcode.com/problems/course-schedule/  
+**CourseScheduleI** - https://leetcode.com/problems/course-schedule/  
 	"Given a dependency map representing college courses, return T/F if you can take them all"  
 	Return false if any circular dependencies  
 	Transform inputs into dependency & accessibility maps. Make BoolArr for taken courses. Do recursive (DFS) search and fill out BoolArr.  
@@ -239,11 +239,14 @@ A collection of solutions to various programming challenges I found online.
 **QuickSort** - https://www.geeksforgeeks.org/quick-sort/  
 	Make recursive sort function. If low < high, get adjusted partition index and call sort on the left & right sides. When getting adjusted partition index, choose a pivot (last element) and a smallIndex (start). Loop up to the pivot index, if any element was smaller than the pivot then swap it with the smallIndex & ++ it (this puts items smaller than the pivot to the left of the partition). Finally swap the pivot with the small index, making it separate the left & right sides.  
 	To reiterate, partition splits the array according to the pivot and returns the index of the split.  
+**IsIntPalindrome** - https://leetcode.com/problems/palindrome-number/submissions/  
+	"Return true if the int is a palindrome (treated like a string). You cannot use strings"  
+	Count how many digits the input is, by dividing by 10 and counting until the input is 0. Next, do the sliding window approach from end to end and compare digits. The compare function fetches specific digits by dividing by 10^digit (as int), then modding by 10.  
 
 # Strategy Categories
 
 ## Graph
-**Recursive DFS** - CourseSchedule, NumIslands, CourseSchedule, KeysAndRooms, FindGrasshopper, IsValidBST, WordBreakII(pt2), FindEventualSafeStates, KeysAndRooms, InvertBinaryTree, BinaryTreePathSumI, BinaryTreePathSumII, BinaryTreeAllPaths, BinaryTreeMinLexographicalPath  
+**Recursive DFS** - CourseScheduleI, NumIslands, CourseScheduleII, KeysAndRooms, FindGrasshopper, IsValidBST, WordBreakII(pt2), FindEventualSafeStates, KeysAndRooms, InvertBinaryTree, BinaryTreePathSumI, BinaryTreePathSumII, BinaryTreeAllPaths, BinaryTreeMinLexographicalPath  
 **Loop BFS** - KeysAndRooms  
 **Double Recursive DFS** - BinaryTreeMaxPathSum, BinaryTreePathSumIII  
 **DP Array** - MinFallingPathSum  
@@ -270,15 +273,14 @@ A collection of solutions to various programming challenges I found online.
 **Recursive DFS** -  PermutationsI, PermutationsII, GenerateParentheses, CombinationSum, ValidParenthesisString  
 **Recursive Stack** - ValidParenthesisString  
 **Sliding Window** - SearchInRotatedArray, GetRangeOfNumInArray, 3-Sum, 3-SumClosests, ContainerWithMostWater  
-**2D Sliding Window** - SmallestSpanningRange  
-**Partial Sums** - StringMultiply  
+**2D Sliding Window** - SmallestSpanningRange    
 **Partial Sort** - SortPartiallySortedArray  
 **Recursive + Memoization** - DivisorGame, Fibonacci  
 **Tricky Math** - RepeatedSubstringPattern  
 **Tricky Hashmap** - StringIncludesPermutation, MinWindowSubstring, LongestSubstringWithoutRepeatingCharacters  
 
 ## Dynamic Programming  
-**Single DP Array** - JumpGame, DivisorGame, KnightDialer, Fibonacci, MinCostClimbingStairs  
+**Single DP Array** - JumpGame, DivisorGame, KnightDialer, Fibonacci, MinCostClimbingStairs, StringMultiply  
 **Simple DP Matrix** - WildcardMatching, DiceRollsWithTargetSum, MinFallingPathSum  
 Note: Simple means that this can be optimized to replace each array after processing, saving memory.  
 **DP Graph** - WordBreakII(pt1)  
@@ -286,7 +288,7 @@ Note: Simple means that this can be optimized to replace each array after proces
 
 ## Numbers
 **Recursive + Tricky Math** - IntegerDivision  
-**Loop + Tricky Math** - ReverseInt  
+**Loop + Tricky Math** - ReverseInt, IsIntPalindrome  
 
 ## Strings
 **Loop + Hashset** - SimilarWords  
