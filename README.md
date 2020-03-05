@@ -242,6 +242,9 @@ A collection of solutions to various programming challenges I found online.
 **IsIntPalindrome** - https://leetcode.com/problems/palindrome-number/submissions/  
 	"Return true if the int is a palindrome (treated like a string). You cannot use strings"  
 	Count how many digits the input is, by dividing by 10 and counting until the input is 0. Next, do the sliding window approach from end to end and compare digits. The compare function fetches specific digits by dividing by 10^digit (as int), then modding by 10.  
+**InPlaceRemoveElements** - https://leetcode.com/problems/remove-element/  
+	"Given an array and an integer, adjust the array so all the values except that integer are in the front, and return the final index of the array. (Remove all the elements but return the end index of the sub-array)"  
+	Sliding window. Maintain start and end index. Loop over array, incremening startIndex until you find an instance of that value. Then, inner loop from the end index to find a non-match & swap them. Repeat until sliding window disappears, then return startIndex.  
 
 # Strategy Categories
 
@@ -273,7 +276,7 @@ A collection of solutions to various programming challenges I found online.
 **Recursive DFS** -  PermutationsI, PermutationsII, GenerateParentheses, CombinationSum, ValidParenthesisString  
 **Recursive Stack** - ValidParenthesisString  
 **Sliding Window** - SearchInRotatedArray, GetRangeOfNumInArray, 3-Sum, 3-SumClosests, ContainerWithMostWater  
-**2D Sliding Window** - SmallestSpanningRange    
+**2D Sliding Window** - SmallestSpanningRange, InPlaceRemoveElements    
 **Partial Sort** - SortPartiallySortedArray  
 **Recursive + Memoization** - DivisorGame, Fibonacci  
 **Tricky Math** - RepeatedSubstringPattern  
