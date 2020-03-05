@@ -8,7 +8,7 @@ package alex.com.challenges.matrix
  * */
 
 
-class LargestIsland {
+class FindLargestIsland {
     companion object {
         private fun debugPrint(string: String) {
             if (true) println(string)

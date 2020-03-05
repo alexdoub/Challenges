@@ -1,10 +1,10 @@
 package alex.com.challenges
 
-import alex.com.challenges.matrix.LargestIsland
+import alex.com.challenges.matrix.FindLargestIsland
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class LargestIslandTest {
+class FindLargestIslandTest {
 
     /**
 
@@ -26,7 +26,7 @@ class LargestIslandTest {
             booleanArrayOf(true, false, false, true, true)
         )
 
-        assertEquals(8, LargestIsland.areaOfLargestIsland(island))
+        assertEquals(8, FindLargestIsland.areaOfLargestIsland(island))
     }
     /**
 
@@ -45,7 +45,7 @@ class LargestIslandTest {
             booleanArrayOf(true, true, true, true)
         )
 
-        assertEquals(11, LargestIsland.areaOfLargestIsland(island))
+        assertEquals(11, FindLargestIsland.areaOfLargestIsland(island))
     }
 
     /**
@@ -65,7 +65,7 @@ class LargestIslandTest {
             booleanArrayOf(true, false, false, true)
         )
 
-        assertEquals(3, LargestIsland.areaOfLargestIsland(island))
+        assertEquals(3, FindLargestIsland.areaOfLargestIsland(island))
     }
 
     /**
@@ -83,6 +83,6 @@ class LargestIslandTest {
             booleanArrayOf(true, true)
         )
 
-        assertEquals(2, LargestIsland.areaOfLargestIsland(island))
+        assertEquals(2, FindLargestIsland.areaOfLargestIsland(island))
     }
 }
