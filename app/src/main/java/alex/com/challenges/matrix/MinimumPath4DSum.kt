@@ -31,7 +31,7 @@ class MinimumPath4DSum {
             }
         }
 
-        fun minPathSum_modified(grid: Array<IntArray>): Int {
+        fun minPathSum(grid: Array<IntArray>): Int {
             val states = PriorityQueue<State>()
 
             // Initial state
