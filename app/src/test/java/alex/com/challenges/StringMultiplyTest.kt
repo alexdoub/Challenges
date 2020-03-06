@@ -23,7 +23,7 @@ class StringMultiplyTest {
 
     private fun assertSame(x: Int, y: Int) {
         val expected = x * y
-        println("Testing ${x} and ${y}")
+//        println("Testing ${x} and ${y}")
         assertEquals(expected.toString(), StringMultiply.multiply(x.toString(), y.toString()))
     }
 

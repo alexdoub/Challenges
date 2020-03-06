@@ -18,7 +18,7 @@ class FourSum {
                 val filteredNums = nums.filterIndexed { index2, _ -> index != index2 }
                 val theseMatches =
                     threeSum(filteredNums.toIntArray(), target - x)
-                println("Enumerating $x    matches: ${theseMatches.joinToString()}")
+//                println("Enumerating $x    matches: ${theseMatches.joinToString()}")
                 val bakedResults = theseMatches.map { it.toMutableList().apply { add(x) }.sorted() }
                 results.addAll(bakedResults)
             }
@@ -30,7 +30,7 @@ class FourSum {
 
             val results = mutableSetOf<List<Int>>()
 
-            println("  ThreeSum: target: ${target}")
+//            println("  ThreeSum: target: ${target}")
 
             nums.sort()
             nums.forEachIndexed { xi, x ->
