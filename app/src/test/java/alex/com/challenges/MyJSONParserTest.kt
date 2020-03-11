@@ -8,9 +8,9 @@ import org.junit.Test
  */
 
 class MyJSONParserTest {
-//    @Test
+    @Test
     fun test1() {
-        MyJSONParser.parseJson(
+        MyJSONParser.parseJsonx(
             """
     
         "title": "my title",
