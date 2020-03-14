@@ -252,6 +252,8 @@ A collection of solutions to various programming challenges I found online.
 	Greedy loop. Main loop advances tail, inner loop skips next nodes that are duplicates.  
 **IntSquareRoot** - https://leetcode.com/problems/sqrtx/  
 	Sliding window. Every iteration close it in by mid +- 1. Left is the source of truth. Undo last -1 before returning.  
+**IsPerfectSquare** - https://leetcode.com/problems/valid-perfect-square/  
+	Sliding window. Same as previous solution but verify that root square == num  
 
 # Strategy Categories
 

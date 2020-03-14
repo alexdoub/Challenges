@@ -12,7 +12,7 @@ object IntSquareRoot {
         //Sliding window
         var left = 1
         var right = x / 2
-        while (left <= right) {
+        while (left <= right) { //<= so left always gets pushed 1 too high
             val mid = (left + right) / 2
             if (mid > (x / mid)) {  // dont do mid * mid! It will overflow
                 right = mid - 1
@@ -21,12 +21,6 @@ object IntSquareRoot {
             }
         }
         return left - 1
-    }
-
-    fun assertSame(x: Int): Boolean {
-        val mySqrt = mySqrt(x)
-        val calcSqrt = Math.sqrt(x.toDouble()).toInt()
-        return mySqrt == calcSqrt
     }
 }
 
