@@ -251,9 +251,12 @@ A collection of solutions to various programming challenges I found online.
 **RemoveDuplicates** - https://leetcode.com/problems/remove-duplicates-from-sorted-list  
 	Greedy loop. Main loop advances tail, inner loop skips next nodes that are duplicates.  
 **IntSquareRoot** - https://leetcode.com/problems/sqrtx/  
-	Sliding window. Every iteration close it in by mid +- 1. Left is the source of truth. Undo last -1 before returning.  
+	BST Sliding window. Every iteration close it in by mid +- 1. Left is the source of truth. Undo last -1 before returning.  
 **IsPerfectSquare** - https://leetcode.com/problems/valid-perfect-square/  
-	Sliding window. Same as previous solution but verify that root square == num  
+	Same as IntSquareRoot but verify that root square == num  
+**IsSumOfSquares** - https://leetcode.com/problems/sum-of-square-numbers/  
+	"Given a number, return T/F if its the sum of 2 other numbers squared  
+	Linear Sliding Window, from 0 to sqrt of input.  
 
 # Strategy Categories
 
