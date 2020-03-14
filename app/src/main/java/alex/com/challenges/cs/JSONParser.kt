@@ -67,12 +67,12 @@ object MyJSONParser {
         if (arrayIndex != null) {
 
         }
-        if (right.isInteger()) {
-
-        }
-        if (right.isFloat()) {
-
-        }
+//        if (right.isInteger()) {
+//
+//        }
+//        if (right.isFloat()) {
+//
+//        }
 
         return Pair(left, right)
     }
@@ -121,7 +121,7 @@ object MyJSONParser {
                 if (this[left] == '"') {
                     gotLeft = true
                 } else {
-                    left+=
+                    left++
                 }
             } else if (!gotRight) {
                 if (this[right] == '"') {

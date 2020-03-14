@@ -245,6 +245,11 @@ A collection of solutions to various programming challenges I found online.
 **InPlaceRemoveElements** - https://leetcode.com/problems/remove-element/  
 	"Given an array and an integer, adjust the array so all the values except that integer are in the front, and return the final index of the array. (Remove all the elements but return the end index of the sub-array)"  
 	Sliding window. Maintain start and end index. Loop over array, incremening startIndex until you find an instance of that value. Then, inner loop from the end index to find a non-match & swap them. Repeat until sliding window disappears, then return startIndex.  
+**ComposeRanges** - https://app.codesignal.com/interview-practice/task/cHYqbQ9DiWmejAdeG  
+	"Reduce an ascending intArray into a sequence of strings"  
+	Arrays + Greedy loop. Loop over array until a sequence break is detected, then fill out that sequence. Finally fill out any existing sequences in progress.  
+**RemoveDuplicates** - https://leetcode.com/problems/remove-duplicates-from-sorted-list  
+	Greedy loop. Main loop advances tail, inner loop skips next nodes that are duplicates.  
 
 # Strategy Categories
 
@@ -255,7 +260,7 @@ A collection of solutions to various programming challenges I found online.
 **DP Array** - MinFallingPathSum  
 
 ## Linked List
-**Single loop** - RemoveNthNodeFromEnd, LinkedListAdder, MergeTwoLinkedLists, ReverseLinkedList  
+**Single loop** - RemoveNthNodeFromEnd, LinkedListAdder, MergeTwoLinkedLists, ReverseLinkedList, RemoveDuplicates  
 
 ## Matrix
 **1-way sweep DP matrix** - MinimumPath2DSum  
@@ -267,7 +272,7 @@ A collection of solutions to various programming challenges I found online.
 **Tricky Hashmap** - CountRectangles, PerfectRectangle, MaxPointsOnALine  
 
 ## Arrays
-**Greedy Loop** - RomanToInt, ZigzagConversion, MinimumSwaps, BinaryMatrix, MergeIntoPaddedArrayAndSort  
+**Greedy Loop** - RomanToInt, ZigzagConversion, MinimumSwaps, BinaryMatrix, MergeIntoPaddedArrayAndSort, ComposeRanges  
 **Loop + Hashmap** - TwoSums  
 **Loop + Branch** - PhoneNumberCombos  
 **Loop + Stack** - ValidParentheses  
