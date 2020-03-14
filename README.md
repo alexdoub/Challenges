@@ -250,6 +250,8 @@ A collection of solutions to various programming challenges I found online.
 	Arrays + Greedy loop. Loop over array until a sequence break is detected, then fill out that sequence. Finally fill out any existing sequences in progress.  
 **RemoveDuplicates** - https://leetcode.com/problems/remove-duplicates-from-sorted-list  
 	Greedy loop. Main loop advances tail, inner loop skips next nodes that are duplicates.  
+**IntSquareRoot** - https://leetcode.com/problems/sqrtx/  
+	Sliding window. Every iteration close it in by mid +- 1. Left is the source of truth. Undo last -1 before returning.  
 
 # Strategy Categories
 
@@ -297,6 +299,7 @@ Note: Simple means that this can be optimized to replace each array after proces
 ## Numbers
 **Recursive + Tricky Math** - IntegerDivision  
 **Loop + Tricky Math** - ReverseInt, IsIntPalindrome  
+**Sliding Window** - IntSquareRoot  
 
 ## Strings
 **Loop + Hashset** - SimilarWords  
