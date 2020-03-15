@@ -245,6 +245,7 @@ A collection of solutions to various programming challenges I found online.
 **InPlaceRemoveElements** - https://leetcode.com/problems/remove-element/  
 	"Given an array and an integer, adjust the array so all the values except that integer are in the front, and return the final index of the array. (Remove all the elements but return the end index of the sub-array)"  
 	Sliding window. Maintain start and end index. Loop over array, incremening startIndex until you find an instance of that value. Then, inner loop from the end index to find a non-match & swap them. Repeat until sliding window disappears, then return startIndex.  
+	Edit: Single loop from anchor index is better! Full upgrade.  
 **ComposeRanges** - https://app.codesignal.com/interview-practice/task/cHYqbQ9DiWmejAdeG  
 	"Reduce an ascending intArray into a sequence of strings"  
 	Arrays + Greedy loop. Loop over array until a sequence break is detected, then fill out that sequence. Finally fill out any existing sequences in progress.  
@@ -257,12 +258,14 @@ A collection of solutions to various programming challenges I found online.
 **IsSumOfSquares** - https://leetcode.com/problems/sum-of-square-numbers/  
 	"Given a number, return T/F if its the sum of 2 other numbers squared  
 	Linear Sliding Window, from 0 to sqrt of input.  
-**SubarraySumEqualsK** - https://leetcode.com/problems/subarray-sum-equals-k/  
+**!SubarraySumEqualsK** - https://leetcode.com/problems/subarray-sum-equals-k/  
 	"Given an array of integers, return the total number of continuous subsets that sum up to a target K"  
 	Tricky Hashmap. Loop over values and maintain a rolling sum. Use a hashmap to mark counts of partial sums after each iteration, including a base case of 0->1. If ${rolling sum - target} exists in the hashmap then it means we had that many partial sub-arrays sum up to the target.  
-**MoveZeroes** - https://leetcode.com/problems/move-zeroes/  
+**!MoveZeroes** - https://leetcode.com/problems/move-zeroes/  
 	"Given an intArray with some 0s, in-place move all the 0s to the end)
 	Simple loop. Set index = 0. Loop over numbers, if that value is NOT zero, swap it with index, then increment index.  
+**ExclusiveTimeOfFunctions** - https://leetcode.com/problems/exclusive-time-of-functions/  
+	Stack. On each function start, push the stack & tally the time of the last function. On each stop, pop the stack and tally the time. Return tallied time.  
 
 # Strategy Categories
 
@@ -284,15 +287,17 @@ A collection of solutions to various programming challenges I found online.
 ## Points
 **Tricky Hashmap** - CountRectangles, PerfectRectangle, MaxPointsOnALine  
 
+## Stacks
+**Loop** - ValidParentheses, ExclusiveTimeOfFunctions  
+**Recursive DFS** - ValidParenthesesString  
+
 ## Arrays
 **Greedy Loop** - RomanToInt, ZigzagConversion, MinimumSwaps, BinaryMatrix, MergeIntoPaddedArrayAndSort, ComposeRanges  
 **Loop + Hashmap** - TwoSums  
 **Loop + Branch** - PhoneNumberCombos  
-**Loop + Stack** - ValidParentheses  
 **Loop + Inner Loop** - PalindromeSubstring, MixedWordsConcatenated  
 **Loop + Queues** - AssignCookies  
-**Recursive DFS** -  PermutationsI, PermutationsII, GenerateParentheses, CombinationSum, ValidParenthesisString  
-**Recursive Stack** - ValidParenthesisString  
+**Recursive DFS** -  PermutationsI, PermutationsII, GenerateParentheses, CombinationSum  
 **Sliding Window** - SearchInRotatedArray, GetRangeOfNumInArray, 3-Sum, 3-SumClosests, ContainerWithMostWater  
 **2D Sliding Window** - SmallestSpanningRange, InPlaceRemoveElements    
 **Partial Sort** - SortPartiallySortedArray  

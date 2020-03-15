@@ -1,6 +1,6 @@
 package alex.com.challenges
 
-import alex.com.challenges.strings.ValidParenthesisString
+import alex.com.challenges.stack.ValidParenthesesString
 import org.junit.Test
 
 /**
@@ -10,57 +10,57 @@ import org.junit.Test
 class ValidParenthesesStringTest {
     @Test
     fun test1() {
-        assert(ValidParenthesisString.checkValidString("()"))
+        assert(ValidParenthesesString.checkValidString("()"))
     }
 
     @Test
     fun test2() {
-        assert(ValidParenthesisString.checkValidString("(*)"))
+        assert(ValidParenthesesString.checkValidString("(*)"))
     }
 
     @Test
     fun test3() {
-        assert(ValidParenthesisString.checkValidString("(*))"))
+        assert(ValidParenthesesString.checkValidString("(*))"))
     }
 
     @Test
     fun test4() {
-        assert(ValidParenthesisString.checkValidString("((*)"))
+        assert(ValidParenthesesString.checkValidString("((*)"))
     }
 
     @Test
     fun test5() {
-        assert(ValidParenthesisString.checkValidString(""))
+        assert(ValidParenthesesString.checkValidString(""))
     }
 
     @Test
     fun test6() {
-        assert(ValidParenthesisString.checkValidString("(") == false)
-        assert(ValidParenthesisString.checkValidString(")") == false)
+        assert(ValidParenthesesString.checkValidString("(") == false)
+        assert(ValidParenthesesString.checkValidString(")") == false)
     }
 
     @Test
     fun test7() {
-        assert(ValidParenthesisString.checkValidString("*****)))))"))
+        assert(ValidParenthesesString.checkValidString("*****)))))"))
     }
 
     @Test
     fun test8() {
-        assert(ValidParenthesisString.checkValidString("(((((*****"))
+        assert(ValidParenthesesString.checkValidString("(((((*****"))
     }
 
     @Test
     fun test9() {
-        assert(ValidParenthesisString.checkValidString("**************"))
+        assert(ValidParenthesesString.checkValidString("**************"))
     }
 
     @Test
     fun test10_OBSTACLE() {
-        assert(ValidParenthesisString.checkValidString("()(()(*(())()*)(*)))()))*)((()(*(((()())()))()()*)((*)))()))(*)(()()(((()*()()((()))((*((*)()") == false)
+        assert(ValidParenthesesString.checkValidString("()(()(*(())()*)(*)))()))*)((()(*(((()())()))()()*)((*)))()))(*)(()()(((()*()()((()))((*((*)()") == false)
     }
 
     @Test
     fun test11_OBSTACLE() {
-        assert(ValidParenthesisString.checkValidString("(((((*(()((((*((**(((()()*)()()()*((((**)())*)*)))))))(())(()))())((*()()(((()((()*(())*(()**)()(())") == false)
+        assert(ValidParenthesesString.checkValidString("(((((*(()((((*((**(((()()*)()()()*((((**)())*)*)))))))(())(()))())((*()()(((()((()*(())*(()**)()(())") == false)
     }
 }

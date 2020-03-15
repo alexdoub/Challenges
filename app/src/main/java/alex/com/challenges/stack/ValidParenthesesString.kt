@@ -1,11 +1,11 @@
-package alex.com.challenges.strings
+package alex.com.challenges.stack
 
 /**
  * Created by Alex Doub on 11/18/2019.
  * https://leetcode.com/problems/valid-parenthesis-string/
  */
 
-class ValidParenthesisString {
+class ValidParenthesesString {
     companion object {
         fun checkValidString(s: String): Boolean {
             fun stringIsValid(position: Int, stackSize: Int): Boolean {

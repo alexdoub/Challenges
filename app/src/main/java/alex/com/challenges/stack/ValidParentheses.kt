@@ -1,4 +1,4 @@
-package alex.com.challenges.strings
+package alex.com.challenges.stack
 
 /**
  * Created by Alex Doub on 11/18/2019.
