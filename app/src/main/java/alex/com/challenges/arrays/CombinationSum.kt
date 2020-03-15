@@ -8,7 +8,24 @@ package alex.com.challenges.arrays
 //Notes: If paths only branch 'right' and not left, you dont need to worry about uniqueness anymore. It removes a LOT of computational overhead
 class CombinationSum {
     companion object {
+
+        // Blind redo -- same approach but simpler
         fun combinationSum(candidates: IntArray, target: Int): List<List<Int>> {
+
+            fun getSums(used: List<Int>, searchIndex: Int): List<List<Int>> {
+                val sum = used.sum()
+                if (sum > target) return emptyList()
+                if (sum == target) return listOf(used)
+
+                return (searchIndex until candidates.size).map { index ->
+                    getSums(used + candidates[index], index)
+                }.flatten()
+            }
+            return getSums(emptyList(), 0)
+        }
+
+
+        fun combinationSum_OLD(candidates: IntArray, target: Int): List<List<Int>> {
             //DFS
             fun getPathToTarget(inputSoFar: List<Int>, index: Int): List<List<Int>>? {
 
