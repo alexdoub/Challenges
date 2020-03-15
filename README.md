@@ -269,7 +269,7 @@ A collection of solutions to various programming challenges I found online.
 **AddBinaryStrings** - https://leetcode.com/problems/add-binary/  
 	Simple loop. Starting at the end of both strings, add them up and put the new binary sum in a stringbuilder. Loop until at the end of inputs & no carry bit left. Lastly prune extra 0s (but leave at least 1 character in the SB). Return reversed SB.  
 **CombinationSumII** - https://leetcode.com/problems/combination-sum-ii  
-	DFS. O(2^(n-1)) speed & runtime. Similar to CombinationSumI except the index always moves forward each branch. Assert unique combos by containing solution in HashSet and sort all solutions before inserting.  
+	DFS. O(2^(n-1)) speed & runtime. Similar to CombinationSumI except the index always moves forward each branch. Notes: Sort values ascendingly so we can early-terminate search trees. Don't copy lists over and over, use a single arraylist & copy only when a solution is found. Don't use a hashset.  
 
 # Strategy Categories
 
@@ -301,7 +301,7 @@ A collection of solutions to various programming challenges I found online.
 **Loop + Branch** - PhoneNumberCombos  
 **Loop + Inner Loop** - PalindromeSubstring, MixedWordsConcatenated  
 **Loop + Queues** - AssignCookies  
-**Recursive DFS** -  PermutationsI, PermutationsII, GenerateParentheses, CombinationSum  
+**Recursive DFS** -  PermutationsI, PermutationsII, GenerateParentheses, CombinationSum, CombinationSumII  
 **Sliding Window** - SearchInRotatedArray, GetRangeOfNumInArray, 3-Sum, 3-SumClosests, ContainerWithMostWater  
 **2D Sliding Window** - SmallestSpanningRange, InPlaceRemoveElements    
 **Partial Sort** - SortPartiallySortedArray  
