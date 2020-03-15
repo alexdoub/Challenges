@@ -259,7 +259,10 @@ A collection of solutions to various programming challenges I found online.
 	Linear Sliding Window, from 0 to sqrt of input.  
 **SubarraySumEqualsK** - https://leetcode.com/problems/subarray-sum-equals-k/  
 	"Given an array of integers, return the total number of continuous subsets that sum up to a target K"  
-	Simple loop + Hashmap. Loop over values and maintain a rolling sum. Use a hashmap to mark counts of partial sums after each iteration, including a base case of 0->1. If ${rolling sum - target} exists in the hashmap then it means we had that many partial sub-arrays sum up to the target.  
+	Tricky Hashmap. Loop over values and maintain a rolling sum. Use a hashmap to mark counts of partial sums after each iteration, including a base case of 0->1. If ${rolling sum - target} exists in the hashmap then it means we had that many partial sub-arrays sum up to the target.  
+**MoveZeroes** - https://leetcode.com/problems/move-zeroes/  
+	"Given an intArray with some 0s, in-place move all the 0s to the end)
+	Simple loop. Set index = 0. Loop over numbers, if that value is NOT zero, swap it with index, then increment index.  
 
 # Strategy Categories
 
@@ -295,7 +298,7 @@ A collection of solutions to various programming challenges I found online.
 **Partial Sort** - SortPartiallySortedArray  
 **Recursive + Memoization** - DivisorGame, Fibonacci  
 **Tricky Math** - RepeatedSubstringPattern  
-**Tricky Hashmap** - StringIncludesPermutation, MinWindowSubstring, LongestSubstringWithoutRepeatingCharacters  
+**Tricky Hashmap** - StringIncludesPermutation, MinWindowSubstring, LongestSubstringWithoutRepeatingCharacters, SubarraySumEqualsK  
 
 ## Dynamic Programming  
 **Single DP Array** - JumpGame, DivisorGame, KnightDialer, Fibonacci, MinCostClimbingStairs, StringMultiply  
@@ -307,8 +310,9 @@ Note: Simple means that this can be optimized to replace each array after proces
 ## Numbers
 **Recursive + Tricky Math** - IntegerDivision  
 **Loop + Tricky Math** - ReverseInt, IsIntPalindrome  
-**Binary Sliding Window** - IntSquareRoot  
+**Binary Sliding Window** - IntSquareRoot, IsPerfectSquare  
 **Linear Sliding Window** - IsSumOfSquares  
+**Simple Loop** - MoveZeroes  
 
 ## Strings
 **Loop + Hashset** - SimilarWords  
