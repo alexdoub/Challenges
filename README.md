@@ -266,6 +266,8 @@ A collection of solutions to various programming challenges I found online.
 	Simple loop. Set index = 0. Loop over numbers, if that value is NOT zero, swap it with index, then increment index.  
 **ExclusiveTimeOfFunctions** - https://leetcode.com/problems/exclusive-time-of-functions/  
 	Stack. On each function start, push the stack & tally the time of the last function. On each stop, pop the stack and tally the time. Return tallied time.  
+**AddBinaryStrings** - https://leetcode.com/problems/add-binary/  
+	Simple loop. Starting at the end of both strings, add them up and put the new binary sum in a stringbuilder. Loop until at the end of inputs & no carry bit left. Lastly prune extra 0s (but leave at least 1 character in the SB). Return reversed SB.  
 
 # Strategy Categories
 
@@ -317,7 +319,7 @@ Note: Simple means that this can be optimized to replace each array after proces
 **Loop + Tricky Math** - ReverseInt, IsIntPalindrome  
 **Binary Sliding Window** - IntSquareRoot, IsPerfectSquare  
 **Linear Sliding Window** - IsSumOfSquares  
-**Simple Loop** - MoveZeroes  
+**Simple Loop** - MoveZeroes, AddBinaryStrings  
 
 ## Strings
 **Loop + Hashset** - SimilarWords  

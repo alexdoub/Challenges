@@ -23,9 +23,6 @@ object ExclusiveTimeOfFunctions {
                     val lastId = stack.last()
                     val duration = time - lastTime
                     exclusiveTime[lastId] += duration
-                    println("Pushing $id at $time. Function $lastId got duration $duration")
-                } else {
-                    println("Pushing $id at $time")
                 }
                 stack.add(id)
                 lastTime = time
@@ -35,10 +32,8 @@ object ExclusiveTimeOfFunctions {
                 val duration = time - lastTime + 1  //extra 1 when ending
                 lastTime = time + 1
                 exclusiveTime[lastId] += duration
-                println("Popping $id at $time. Function $id got duration $duration")
             }
         }
-
         return exclusiveTime
     }
 }
