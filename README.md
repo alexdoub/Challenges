@@ -257,6 +257,9 @@ A collection of solutions to various programming challenges I found online.
 **IsSumOfSquares** - https://leetcode.com/problems/sum-of-square-numbers/  
 	"Given a number, return T/F if its the sum of 2 other numbers squared  
 	Linear Sliding Window, from 0 to sqrt of input.  
+**SubarraySumEqualsK** - https://leetcode.com/problems/subarray-sum-equals-k/  
+	"Given an array of integers, return the total number of continuous subsets that sum up to a target K"  
+	Simple loop + Hashmap. Loop over values and maintain a rolling sum. Use a hashmap to mark counts of partial sums after each iteration, including a base case of 0->1. If ${rolling sum - target} exists in the hashmap then it means we had that many partial sub-arrays sum up to the target.  
 
 # Strategy Categories
 
@@ -304,7 +307,8 @@ Note: Simple means that this can be optimized to replace each array after proces
 ## Numbers
 **Recursive + Tricky Math** - IntegerDivision  
 **Loop + Tricky Math** - ReverseInt, IsIntPalindrome  
-**Sliding Window** - IntSquareRoot  
+**Binary Sliding Window** - IntSquareRoot  
+**Linear Sliding Window** - IsSumOfSquares  
 
 ## Strings
 **Loop + Hashset** - SimilarWords  
