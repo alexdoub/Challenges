@@ -12,6 +12,7 @@ class CombinationSum {
         // Blind redo -- same approach but simpler
         fun combinationSum(candidates: IntArray, target: Int): List<List<Int>> {
 
+            candidates.sortDescending() // reduce search space
             fun getSums(used: List<Int>, searchIndex: Int): List<List<Int>> {
                 val sum = used.sum()
                 if (sum > target) return emptyList()
@@ -21,6 +22,7 @@ class CombinationSum {
                     getSums(used + candidates[index], index)
                 }.flatten()
             }
+
             return getSums(emptyList(), 0)
         }
 

@@ -268,6 +268,8 @@ A collection of solutions to various programming challenges I found online.
 	Stack. On each function start, push the stack & tally the time of the last function. On each stop, pop the stack and tally the time. Return tallied time.  
 **AddBinaryStrings** - https://leetcode.com/problems/add-binary/  
 	Simple loop. Starting at the end of both strings, add them up and put the new binary sum in a stringbuilder. Loop until at the end of inputs & no carry bit left. Lastly prune extra 0s (but leave at least 1 character in the SB). Return reversed SB.  
+**CombinationSumII** - https://leetcode.com/problems/combination-sum-ii  
+	DFS. O(2^(n-1)) speed & runtime. Similar to CombinationSumI except the index always moves forward each branch. Assert unique combos by containing solution in HashSet and sort all solutions before inserting.  
 
 # Strategy Categories
 
