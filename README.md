@@ -269,7 +269,9 @@ A collection of solutions to various programming challenges I found online.
 **AddBinaryStrings** - https://leetcode.com/problems/add-binary/  
 	Simple loop. Starting at the end of both strings, add them up and put the new binary sum in a stringbuilder. Loop until at the end of inputs & no carry bit left. Lastly prune extra 0s (but leave at least 1 character in the SB). Return reversed SB.  
 **CombinationSumII** - https://leetcode.com/problems/combination-sum-ii  
-	DFS. O(2^(n-1)) speed & runtime. Similar to CombinationSumI except the index always moves forward each branch. Notes: Sort values ascendingly so we can early-terminate search trees. Don't copy lists over and over, use a single arraylist & copy only when a solution is found. Don't use a hashset.  
+	DFS. O(2^(n-1)) speed & runtime. Similar to CombinationSumI except the index always moves forward each branch.  
+	Sort input values & recursively search for a sum. On each search, only branch among unique values (prune early). Since values are searched in order & skipping duplicate branches, final solutions are guaranteed to be unique.  
+	Notes: Sort values ascendingly so we can early-terminate search trees. Don't copy lists over and over, use a single arraylist & copy only when a solution is found. Don't use a hashset, its indicative of bad pruning. Don't make a custom datastructure, it just slows the algorithm down.  
 
 # Strategy Categories
 
