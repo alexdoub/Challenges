@@ -1,4 +1,4 @@
-package alex.com.challenges
+package alex.com.challenges.strings
 
 /**
  * Created by Alex Doub on 3/12/20.

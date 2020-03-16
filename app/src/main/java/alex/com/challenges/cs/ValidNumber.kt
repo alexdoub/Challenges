@@ -1,4 +1,4 @@
-package alex.com.challenges
+package alex.com.challenges.cs
 
 import java.lang.Exception
 import java.math.BigDecimal

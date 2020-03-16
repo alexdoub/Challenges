@@ -1,5 +1,6 @@
 package alex.com.challenges
 
+import alex.com.challenges.cs.ValidNumber
 import org.junit.Assert.assertFalse
 import org.junit.Test
 

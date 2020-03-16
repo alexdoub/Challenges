@@ -8,13 +8,86 @@ package alex.com.challenges.arrays
 class ThreeSum {
     companion object {
 
+        // Skip duplicate values in all 3 loops (x, left, right)
+        //432 ms	47.5 MB
+        fun threeSum(nums: IntArray): List<List<Int>> {
+            nums.sort()
+            val solutions = ArrayList<List<Int>>()
+            for (x in nums.indices) {
+
+                //skip duplicate values
+                if (x > 0 && nums[x] == nums[x - 1]) continue
+
+                var left = x + 1
+                var right = nums.size - 1
+                while (left < right) {
+
+                    val leftVal = nums[left]
+                    val rightVal = nums[right]
+                    val sum = nums[x] + nums[left] + nums[right]
+
+                    when {
+                        sum == 0 -> {
+                            solutions.add(listOf(nums[x], nums[left], nums[right]).sorted())
+                            while (left < right && nums[left] == leftVal) left++
+                        }
+                        sum > 0 -> {
+                            while (right > left && nums[right] == rightVal) right--
+                        }
+                        else -> {
+                            while (left < right && nums[left] == leftVal) left++
+                        }
+                    }
+                }
+            }
+            return solutions
+        }
+
+        /**
+         *  Approach 2: Sort. Loop input once, do sliding window check (2 sum) for compliment
+         *
+         *  Must use result set or else will get duplicates
+         *
+         *  Runtime: NLogN sort + (loop x sliding window == N^2)
+         *  RunSpace: 1 per pair, but limited by uniqueness...
+         *          If all input was same = 1
+         *          If all input was different = list / 3
+         * */
+        //1012 ms	49.7 MB
+        fun threeSum_set(nums: IntArray): List<List<Int>> {
+
+            val results = mutableSetOf<List<Int>>()
+
+            nums.sort()
+            nums.forEachIndexed { xi, x ->
+                var front = xi + 1
+                var back = nums.size - 1
+
+                while (front < back) {
+                    val sum = x + nums[front] + nums[back]
+                    when {
+                        sum == 0 -> {
+                            val entry = listOf(nums[front], nums[back], x).sorted()
+                            results.add(entry)
+                            front++
+                        }
+                        sum < 0 -> front++
+                        else -> back--
+                    }
+                }
+            }
+
+            return results.toList()
+        }
+
+
         /**
         Approach 1: Make table of pairs, do final enumeration searching for last pair
         n^2 pair matching, n^2/nlogn final enumeration
 
         Correct but not fast enough
          */
-        fun threeSum_0(nums: IntArray): List<List<Int>> {
+        fun threeSum_wut(nums: IntArray): List<List<Int>> {
             //do n^2 enumeration to build list of compliments
             val compliments = HashMap<Int, ArrayList<Pair<Int, Int>>>()
             nums.forEachIndexed { i1, x1 ->
@@ -49,44 +122,6 @@ class ThreeSum {
 
             return resultSet.toList()
         }
-
-
-        /**
-         *  Approach 2: Loop input once, do sliding window check (2 sum) for compliment
-         *
-         *  Must use result set or else will get duplicates
-         *
-         *  Runtime: NLogN sort + (loop x sliding window == N^2)
-         *  RunSpace: 1 per pair, but limited by uniqueness...
-         *          If all input was same = 1
-         *          If all input was different = list / 3
-         * */
-        fun threeSum(nums: IntArray): List<List<Int>> {
-
-            val results = mutableSetOf<List<Int>>()
-
-            nums.sort()
-            nums.forEachIndexed { xi, x ->
-                var front = xi + 1
-                var back = nums.size - 1
-
-                while (front < back) {
-                    val sum = x + nums[front] + nums[back]
-                    when {
-                        sum == 0 -> {
-                            val entry = listOf(nums[front], nums[back], x).sorted()
-                            results.add(entry)
-                            front++
-                        }
-                        sum < 0 -> front++
-                        else -> back--
-                    }
-                }
-            }
-
-            return results.toList()
-        }
-
 
         private fun printDebug(string: String) {
             if (false) println(string)
