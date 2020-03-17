@@ -1,5 +1,7 @@
 package alex.com.challenges.graph
 
+import java.util.Collections.emptyList
+
 /**
  * Created by Alex Doub on 3/4/2020.
  * https://leetcode.com/problems/find-eventual-safe-states/

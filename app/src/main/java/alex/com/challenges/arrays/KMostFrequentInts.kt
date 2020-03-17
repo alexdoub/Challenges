@@ -55,7 +55,7 @@ object KMostFrequentInts {
         val grouped = input.groupBy { it }.mapValues { it.value.size }  //O(n)
 
         // Transform into sorted list
-        val sorted = grouped.entries.sortedByDescending { it.value }    //O(n log n) because sorting.. or O(n+m)    //@@TODO: Implement
+        val sorted = grouped.entries.sortedByDescending { it.value }    //O(n log n) because sorting.. or O(n+m) 
 
         // Early return on bad input
         if (sorted.size < k) {
