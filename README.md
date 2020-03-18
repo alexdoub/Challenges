@@ -275,6 +275,10 @@ A collection of solutions to various programming challenges I found online.
 **LongestCommonPrefix** - https://leetcode.com/problems/longest-common-prefix/  
 	"Given a list of strings, find the longest common prefix"  
 	Double loop. Take the first string and loop over its indices. Inner loop across remaining strings & search for a mismatch or end of string, then return the substring so far.  
+**GroupedAnagrams** - https://leetcode.com/problems/group-anagrams  
+	"Given an array of strings, group them by anagrams"  
+	Group up input into a hashmap, where the key is the sorted string. Sort using countSort.  
+	Runtime & Mem: O(NL) where N is the number of strings, L is the avg length. Or O(M) where M is the total amount of characters in the entire array.  
 
 # Strategy Categories
 
@@ -330,3 +334,5 @@ Note: Simple means that this can be optimized to replace each array after proces
 
 ## Strings
 **Loop + Hashset** - SimilarWords  
+**Double Loop** - LongestCommonPrefix  
+**Loop + Countsort** - GroupedAnagrams  
