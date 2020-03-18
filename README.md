@@ -211,7 +211,7 @@ A collection of solutions to various programming challenges I found online.
 	"Given a binary tree, return T if there is a path from root to a leaf node that sums up to the target"  
 	Recursive DFS.  
 **BinaryTreePathSumIII** - https://leetcode.com/problems/path-sum-iii/  
-	Double recursive DFS
+	Double recursive DFS  
 **BinaryTreePathSumII** - https://leetcode.com/problems/path-sum-ii  
 	Recursive DFS. Pass down path traversed & only return when the correct conditions are met, else return empty list. Recursive function returns left + right lists joined.  
 **BinaryTreeAllPaths** - https://leetcode.com/problems/binary-tree-paths  
@@ -272,6 +272,9 @@ A collection of solutions to various programming challenges I found online.
 	DFS. O(2^(n-1)) speed & runtime. Similar to CombinationSumI except the index always moves forward each branch.  
 	Sort input values & recursively search for a sum. On each search, only branch among unique values (prune early). Since values are searched in order & skipping duplicate branches, final solutions are guaranteed to be unique.  
 	Notes: Sort values ascendingly so we can early-terminate search trees. Don't copy lists over and over, use a single arraylist & copy only when a solution is found. Don't use a hashset, its indicative of bad pruning. Don't make a custom datastructure, it just slows the algorithm down.  
+**LongestCommonPrefix** - https://leetcode.com/problems/longest-common-prefix/  
+	"Given a list of strings, find the longest common prefix"  
+	Double loop. Take the first string and loop over its indices. Inner loop across remaining strings & search for a mismatch or end of string, then return the substring so far.  
 
 # Strategy Categories
 
