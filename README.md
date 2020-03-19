@@ -281,6 +281,8 @@ A collection of solutions to various programming challenges I found online.
 	Runtime & Mem: O(NL) where N is the number of strings, L is the avg length. Or O(M) where M is the total amount of characters in the entire array.  
 **SimplifyUnixPath** - https://leetcode.com/problems/simplify-path  
 	Stacks. Loop over characters and either add to a temp path in progress OR end the stack if its a /. When ending stack, pop from pathstack on ".." or push it to the pathstack if its not "."  
+**CountDecodePaths** - https://leetcode.com/problems/decode-ways/discuss/543987/Kotlin-O(n)-speed-O(1)-memory  
+	Hopscotch DP. Maintain a variable for count & last count. Early terminate on impossible numbers. Split if 11-19 or 21-26. On split, add previous count to this count. On no-split, set previous count to this count.  
 
 # Strategy Categories
 
@@ -338,3 +340,4 @@ Note: Simple means that this can be optimized to replace each array after proces
 **Loop + Hashset** - SimilarWords  
 **Double Loop** - LongestCommonPrefix  
 **Loop + Countsort** - GroupedAnagrams  
+**Hopscotch DP** - CountDecodePaths  
