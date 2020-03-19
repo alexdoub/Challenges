@@ -279,6 +279,8 @@ A collection of solutions to various programming challenges I found online.
 	"Given an array of strings, group them by anagrams"  
 	Group up input into a hashmap, where the key is the sorted string. Sort using countSort.  
 	Runtime & Mem: O(NL) where N is the number of strings, L is the avg length. Or O(M) where M is the total amount of characters in the entire array.  
+**SimplifyUnixPath** - https://leetcode.com/problems/simplify-path  
+	Stacks. Loop over characters and either add to a temp path in progress OR end the stack if its a /. When ending stack, pop from pathstack on ".." or push it to the pathstack if its not "."  
 
 # Strategy Categories
 
@@ -301,7 +303,7 @@ A collection of solutions to various programming challenges I found online.
 **Tricky Hashmap** - CountRectangles, PerfectRectangle, MaxPointsOnALine  
 
 ## Stacks
-**Loop** - ValidParentheses, ExclusiveTimeOfFunctions  
+**Loop** - ValidParentheses, ExclusiveTimeOfFunctions, SimplifyUnixPath  
 **Recursive DFS** - ValidParenthesesString  
 
 ## Arrays

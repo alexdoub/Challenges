@@ -9,6 +9,7 @@ import alex.com.challenges.dynamic.WildcardMatching
 import alex.com.challenges.graph.*
 import alex.com.challenges.linkedlist.MergeTwoLinkedLists
 import alex.com.challenges.stack.ExclusiveTimeOfFunctions
+import alex.com.challenges.stack.SimplifyUnixPath
 import alex.com.challenges.strings.AddBinaryStrings
 import alex.com.challenges.strings.MinWindowSubstring
 
@@ -20,9 +21,6 @@ object Reference {
 
     fun main() {
 
-        MergeIntoPaddedArrayAndSort
-
-
         //CS
         CountSort
         QuickSort
@@ -30,7 +28,7 @@ object Reference {
 
         //Basic
         AddBinaryStrings
-        MoveZeroes
+        MoveZeroes; MergeIntoPaddedArrayAndSort
         InPlaceRemoveElements
         IsSumOfSquares
         IsIntPalindrome
@@ -38,6 +36,7 @@ object Reference {
 
         //Stack
         ExclusiveTimeOfFunctions
+        SimplifyUnixPath
 
         //Graph
         FindEventualSafeStates2
