@@ -13,6 +13,7 @@ import alex.com.challenges.stack.SimplifyUnixPath
 import alex.com.challenges.strings.AddBinaryStrings
 import alex.com.challenges.strings.CountDecodePaths
 import alex.com.challenges.strings.MinWindowSubstring
+import alex.com.challenges.strings.StringIncludesPermutation
 
 /**
  * Created by Alex Doub on 3/15/2020.
@@ -79,6 +80,7 @@ object Reference {
 
         //Strings
         MinWindowSubstring
+        StringIncludesPermutation
 
         //Linked List
         MergeTwoLinkedLists

@@ -77,6 +77,7 @@ A collection of solutions to various programming challenges I found online.
 **MinWindowSubstring** - https://leetcode.com/problems/minimum-window-substring/  
 	"Given an input string and a target string, return the smallest substring that contains all the letters in the target string"  
 	Loop + Hashmap tracking indexes.  Similar to StringIncludesPermutation. Make hashmap that maps chars to counts. Make 2nd hashmap that maps chars to index locations. Loop input and tally up characters. If over-tallyd, pop off last. Store solutions when tallys are full.  
+	Better: Sliding window. Maintain hashmap of ideal char counts & progress char counts. Have L & R pointers on the input string. Expand right when non-match, pull in left when matching. On each char, update the single char count & check if matching. Don't compare whole hashmaps, instead just check what changed. O(n).  
 **!StringIncludesPermutation** - https://leetcode.com/problems/permutation-in-string/  
 	"Given an input string and a target string, return T/F if the input string contains a permutation of the target string in it"  
 	Loop + Hashmap tracking indexes. Similar to MinWindowSubstring. Make hashmap of char -> count of the target string. Loop over input string and tally characters as they match. Prune indexes when they get too far. Check for solution each step  
@@ -318,7 +319,6 @@ A collection of solutions to various programming challenges I found online.
 **Recursive DFS** -  PermutationsI, PermutationsII, GenerateParentheses, CombinationSum, CombinationSumII  
 **Sliding Window** - SearchInRotatedArray, GetRangeOfNumInArray, 3-Sum, 3-SumClosests, ContainerWithMostWater  
 **2D Sliding Window** - SmallestSpanningRange, InPlaceRemoveElements  
-**Fixed Sliding Window** - StringIncludesPermutation  
 **Partial Sort** - SortPartiallySortedArray  
 **Recursive + Memoization** - DivisorGame, Fibonacci  
 **Tricky Math** - RepeatedSubstringPattern  
@@ -343,3 +343,5 @@ Note: Simple means that this can be optimized to replace each array after proces
 **Double Loop** - LongestCommonPrefix  
 **Loop + Countsort** - GroupedAnagrams  
 **Hopscotch DP** - CountDecodePaths  
+**Fixed Sliding Window** - StringIncludesPermutation  
+**Variable Sliding Window** - MinWindowSubstring  
