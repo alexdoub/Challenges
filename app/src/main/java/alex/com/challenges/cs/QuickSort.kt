@@ -12,6 +12,7 @@ object QuickSort {
         println("... partition starting. pivot:${smallIndex} -- ${arr.joinToString()}")
 
         //Loop & partition according to pivot
+        // (Anchored forward loop. See MoveZeroes)
         for (x in low until high) {
             // If current element is smaller than the pivot
             if (arr[x] < pivot) {

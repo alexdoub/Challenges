@@ -77,9 +77,10 @@ A collection of solutions to various programming challenges I found online.
 **MinWindowSubstring** - https://leetcode.com/problems/minimum-window-substring/  
 	"Given an input string and a target string, return the smallest substring that contains all the letters in the target string"  
 	Loop + Hashmap tracking indexes.  Similar to StringIncludesPermutation. Make hashmap that maps chars to counts. Make 2nd hashmap that maps chars to index locations. Loop input and tally up characters. If over-tallyd, pop off last. Store solutions when tallys are full.  
-**StringIncludesPermutation** - https://leetcode.com/problems/permutation-in-string/  
+**!StringIncludesPermutation** - https://leetcode.com/problems/permutation-in-string/  
 	"Given an input string and a target string, return T/F if the input string contains a permutation of the target string in it"  
 	Loop + Hashmap tracking indexes. Similar to MinWindowSubstring. Make hashmap of char -> count of the target string. Loop over input string and tally characters as they match. Prune indexes when they get too far. Check for solution each step  
+	Better Solution: Fixed sliding window. Make array of counts for full s2 & for s2.substring(s1.length). Loop from s1.length to end of s2. Every iteration, add the RHS to the s1 counts array and remove the LHS & check for win state.  Don't count full array on each iteration, instead have an int count & update it regarding each changed char. Similar to my solution but doesn't involve counting indexes & pruning them.  
 **RepeatedSubstringPattern** - https://leetcode.com/problems/repeated-substring-pattern/  
 	"Given a string, return T/F if its just a repeat of a single substring"  
 	Tricky math. Get all divisors of input string. For each divisor, enumerate input string in chunks and see if its a full match.  
@@ -268,7 +269,7 @@ A collection of solutions to various programming challenges I found online.
 	Stack. On each function start, push the stack & tally the time of the last function. On each stop, pop the stack and tally the time. Return tallied time.  
 **AddBinaryStrings** - https://leetcode.com/problems/add-binary/  
 	Simple loop. Starting at the end of both strings, add them up and put the new binary sum in a stringbuilder. Loop until at the end of inputs & no carry bit left. Lastly prune extra 0s (but leave at least 1 character in the SB). Return reversed SB.  
-**CombinationSumII** - https://leetcode.com/problems/combination-sum-ii  
+**!CombinationSumII** - https://leetcode.com/problems/combination-sum-ii  
 	DFS. O(2^(n-1)) speed & runtime. Similar to CombinationSumI except the index always moves forward each branch.  
 	Sort input values & recursively search for a sum. On each search, only branch among unique values (prune early). Since values are searched in order & skipping duplicate branches, final solutions are guaranteed to be unique.  
 	Notes: Sort values ascendingly so we can early-terminate search trees. Don't copy lists over and over, use a single arraylist & copy only when a solution is found. Don't use a hashset, its indicative of bad pruning. Don't make a custom datastructure, it just slows the algorithm down.  
@@ -316,7 +317,8 @@ A collection of solutions to various programming challenges I found online.
 **Loop + Queues** - AssignCookies  
 **Recursive DFS** -  PermutationsI, PermutationsII, GenerateParentheses, CombinationSum, CombinationSumII  
 **Sliding Window** - SearchInRotatedArray, GetRangeOfNumInArray, 3-Sum, 3-SumClosests, ContainerWithMostWater  
-**2D Sliding Window** - SmallestSpanningRange, InPlaceRemoveElements    
+**2D Sliding Window** - SmallestSpanningRange, InPlaceRemoveElements  
+**Fixed Sliding Window** - StringIncludesPermutation  
 **Partial Sort** - SortPartiallySortedArray  
 **Recursive + Memoization** - DivisorGame, Fibonacci  
 **Tricky Math** - RepeatedSubstringPattern  

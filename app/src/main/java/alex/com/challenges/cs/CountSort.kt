@@ -5,6 +5,7 @@ package alex.com.challenges.cs
  */
 
 object CountSort {
+    //Speed: O(N*M) where N = input size, M = max int size (constant!)
     fun sortByCountSort(ints: List<Int>): List<Int> {
         var array = IntArray(0)
 

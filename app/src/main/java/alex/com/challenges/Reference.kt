@@ -11,6 +11,7 @@ import alex.com.challenges.linkedlist.MergeTwoLinkedLists
 import alex.com.challenges.stack.ExclusiveTimeOfFunctions
 import alex.com.challenges.stack.SimplifyUnixPath
 import alex.com.challenges.strings.AddBinaryStrings
+import alex.com.challenges.strings.CountDecodePaths
 import alex.com.challenges.strings.MinWindowSubstring
 
 /**
@@ -68,6 +69,9 @@ object Reference {
 
         //Array DP
         WildcardMatching
+
+        //Array hopscotch DP
+        CountDecodePaths    // similar to fibonacci
 
         //Array DFS
         CombinationSum
