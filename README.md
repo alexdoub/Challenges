@@ -285,6 +285,8 @@ A collection of solutions to various programming challenges I found online.
 	Stacks. Loop over characters and either add to a temp path in progress OR end the stack if its a /. When ending stack, pop from pathstack on ".." or push it to the pathstack if its not "."  
 **CountDecodePaths** - https://leetcode.com/problems/decode-ways/discuss/543987/Kotlin-O(n)-speed-O(1)-memory  
 	Hopscotch DP. Maintain a variable for count & last count. Early terminate on impossible numbers. Split if 11-19 or 21-26. On split, add previous count to this count. On no-split, set previous count to this count.  
+**EvenOddLinkedList** - https://leetcode.com/problems/odd-even-linked-list/  
+	Single loop. Get heads for both sides & tails for both sides. Loop over main tail and alternate appending to each tail. Lastly null out the even tail and set the odd tail to the even head.  
 
 # Strategy Categories
 
@@ -295,7 +297,7 @@ A collection of solutions to various programming challenges I found online.
 **DP Array** - MinFallingPathSum  
 
 ## Linked List
-**Single loop** - RemoveNthNodeFromEnd, LinkedListAdder, MergeTwoLinkedLists, ReverseLinkedList, RemoveDuplicates  
+**Single loop** - RemoveNthNodeFromEnd, LinkedListAdder, MergeTwoLinkedLists, ReverseLinkedList, RemoveDuplicates, EvenOddLinkedList  
 
 ## Matrix
 **1-way sweep DP matrix** - MinimumPath2DSum  
