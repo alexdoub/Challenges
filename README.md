@@ -289,6 +289,8 @@ A collection of solutions to various programming challenges I found online.
 	Single loop. Get heads for both sides & tails for both sides. Loop over main tail and alternate appending to each tail. Lastly null out the even tail and set the odd tail to the even head.  
 **FindKthSmallestElementInBST** - https://leetcode.com/problems/kth-smallest-element-in-a-bst/  
 	Recursive DFS. Define a variable for count & a recursive algorithm. Recursive algorithm searches left, increments count, checks if matches k, then searches right. If any search yeilded a result then propagate that up the callsite, else return null.  
+**UniquePaths** - https://leetcode.com/problems/unique-paths/  
+	DP. This problem basically counts all the unique permutations of 2 values. For example, given 5 Ls and 1 R (5) or 5 Ls and 0 Rs (1). Build a matrix and enumerate cells. This value is equal to the value above it and left of it. Base case: edges are always 1. Simplification: dont store solution in a 2d matrix, instead replace rows as they are filled out.    
 
 
 # Strategy Categories
@@ -330,7 +332,7 @@ A collection of solutions to various programming challenges I found online.
 **Tricky Hashmap** - StringIncludesPermutation, MinWindowSubstring, LongestSubstringWithoutRepeatingCharacters, SubarraySumEqualsK  
 
 ## Dynamic Programming  
-**Single DP Array** - JumpGame, DivisorGame, KnightDialer, Fibonacci, MinCostClimbingStairs, StringMultiply  
+**Single DP Array** - JumpGame, DivisorGame, KnightDialer, Fibonacci, MinCostClimbingStairs, StringMultiply, UniquePaths  
 **Simple DP Matrix** - WildcardMatching, DiceRollsWithTargetSum, MinFallingPathSum  
 Note: Simple means that this can be optimized to replace each array after processing, saving memory.  
 **DP Graph** - WordBreakII(pt1)  
