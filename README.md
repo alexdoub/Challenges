@@ -288,7 +288,7 @@ A collection of solutions to various programming challenges I found online.
 **EvenOddLinkedList** - https://leetcode.com/problems/odd-even-linked-list/  
 	Single loop. Get heads for both sides & tails for both sides. Loop over main tail and alternate appending to each tail. Lastly null out the even tail and set the odd tail to the even head.  
 **FindKthSmallestElementInBST** - https://leetcode.com/problems/kth-smallest-element-in-a-bst/  
-	Recursive DFS with holder. To track count, make a holder class that can be passed down and incremented in each stage. Recursive algorithm searches left, increments count, checks if matches k, then searches right. If any search yeilded a result then propagate that up the callsite, else return null.  
+	Recursive DFS. Define a variable for count & a recursive algorithm. Recursive algorithm searches left, increments count, checks if matches k, then searches right. If any search yeilded a result then propagate that up the callsite, else return null.  
 
 
 # Strategy Categories
