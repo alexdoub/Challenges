@@ -44,6 +44,7 @@ object Reference {
         FindEventualSafeStates2
         CourseScheduleI
         CourseScheduleII
+        FindKthSmallestElementInBST
 
         //Graph DP
         // Note: Don't ever submit a brute force solution!!!
