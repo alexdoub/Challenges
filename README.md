@@ -295,6 +295,9 @@ A collection of solutions to various programming challenges I found online.
 **RemoveDuplicatesFromSortedArray** - https://leetcode.com/problems/remove-duplicates-from-sorted-array/  
 	Similar to MoveZeroes.  
 	Simple loop. Skip first element. Maintain anchor starting at 1 and loop from 1 to end. In loop, if this value isn't the same as our last anchored value (anchor-1), swap it in (anchor) and increment anchor. Finally return anchor, as it represnts the end of our cleaned array.  
+**ValidPalindromeWithSkips** - https://leetcode.com/problems/valid-palindrome-ii/  
+	Sliding window. Two options here. You can do it recursively or with a single greedy loop. Recursive is recommended for several reasons, mainly scalability if you had to allow more skips.  
+	Recursive: define recursive function that determines if its a valid palindrome between a Left and Right index. Loop & close in L/R each step except if its a mismatch. In that case, branch once for each side & count skips. If too many skipped, return false.  
 
 
 # Strategy Categories
