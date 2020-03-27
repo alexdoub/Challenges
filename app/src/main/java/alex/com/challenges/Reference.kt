@@ -69,8 +69,9 @@ object Reference {
         TwoSum
         ThreeSum
 
-        //Array DP
+        //Array DP (Simplified Matrix DP)
         WildcardMatching
+        UniquePaths
 
         //Array hopscotch DP
         CountDecodePaths    // similar to fibonacci
