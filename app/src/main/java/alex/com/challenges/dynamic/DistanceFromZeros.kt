@@ -18,27 +18,25 @@ object DistanceFromZeros {
         val height = matrix.size
         val solution = Array(matrix.size) { IntArray(width) { Int.MAX_VALUE } }
 
+        fun getValue(y: Int, x: Int): Int? {
+            if (x < 0 || y < 0 || x > width -1 || y > height - 1) return null
+            return solution[y][x]
+        }
+
         fun populate(y: Int, x: Int) {
+
             if (matrix[y][x] == 0) {
-                // Base case
                 solution[y][x] = 0
             } else {
-                // Gather options
-                val options = ArrayList<Int>()
-                if (x > 0) {
-                    options.add(solution[y][x - 1])
-                }
-                if (x < width - 1) {
-                    options.add(solution[y][x + 1])
-                }
-                if (y > 0) {
-                    options.add(solution[y - 1][x])
-                }
-                if (y < matrix.size - 1) {
-                    options.add(solution[y + 1][x])
-                }
-                // Set min
-                val min = options.filter { it >= 0 }.min() ?: Int.MAX_VALUE
+                // Gather options, ignore nulls
+                val options = listOfNotNull(
+                    getValue(y, x-1),
+                    getValue(y, x+1),
+                    getValue(y-1, x),
+                    getValue(y+1, x)
+                )
+                // Get min of option & set it
+                val min = options.filter { it >= 0 }.min()!!
                 if (min < solution[y][x]) {
                     solution[y][x] = min + 1
                 }
@@ -47,12 +45,15 @@ object DistanceFromZeros {
 
         val yRange = 0 until height
         val xRange = 0 until width
+
+        // TL -> BR sweep
         for (y in yRange) {
             for (x in xRange) {
                 populate(y, x)
             }
         }
 
+        // BR -> TL sweep
         for (y in yRange.reversed()) {
             for (x in xRange.reversed()) {
                 populate(y, x)
