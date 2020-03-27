@@ -251,7 +251,7 @@ A collection of solutions to various programming challenges I found online.
 **ComposeRanges** - https://app.codesignal.com/interview-practice/task/cHYqbQ9DiWmejAdeG  
 	"Reduce an ascending intArray into a sequence of strings"  
 	Arrays + Greedy loop. Loop over array until a sequence break is detected, then fill out that sequence. Finally fill out any existing sequences in progress.  
-**RemoveDuplicates** - https://leetcode.com/problems/remove-duplicates-from-sorted-list  
+**RemoveDuplicatesFromLinkedList** - https://leetcode.com/problems/remove-duplicates-from-sorted-list  
 	Greedy loop. Main loop advances tail, inner loop skips next nodes that are duplicates.  
 **IntSquareRoot** - https://leetcode.com/problems/sqrtx/  
 	BST Sliding window. Every iteration close it in by mid +- 1. Left is the source of truth. Undo last -1 before returning.  
@@ -291,7 +291,10 @@ A collection of solutions to various programming challenges I found online.
 	Recursive DFS. Define a variable for count & a recursive algorithm. Recursive algorithm searches left, increments count, checks if matches k, then searches right. If any search yeilded a result then propagate that up the callsite, else return null.  
 **UniquePaths** - https://leetcode.com/problems/unique-paths/  
 	"Given an X by Y board where you can only move down and right, how many unique paths exist from 0,0 to end,end?"  
-	DP. This problem basically counts all the unique permutations of 2 values. For example, given 5 Ls and 1 R (5) or 5 Ls and 0 Rs (1). Build a matrix and enumerate cells. This value is equal to the value above it and left of it. Base case: edges are always 1. Simplification: dont store solution in a 2d matrix, instead replace rows as they are filled out.    
+	DP. This problem basically counts all the unique permutations of 2 values. For example, given 5 Ls and 1 R (5) or 5 Ls and 0 Rs (1). Build a matrix and enumerate cells. This value is equal to the value above it and left of it. Base case: edges are always 1. Simplification: dont store solution in a 2d matrix, instead replace rows as they are filled out.  
+**RemoveDuplicatesFromSortedArray** - https://leetcode.com/problems/remove-duplicates-from-sorted-array/  
+	Similar to MoveZeroes.  
+	Simple loop. Skip first element. Maintain anchor starting at 1 and loop from 1 to end. In loop, if this value isn't the same as our last anchored value (anchor-1), swap it in (anchor) and increment anchor. Finally return anchor, as it represnts the end of our cleaned array.  
 
 
 # Strategy Categories
@@ -303,7 +306,7 @@ A collection of solutions to various programming challenges I found online.
 **DP Array** - MinFallingPathSum  
 
 ## Linked List
-**Single loop** - RemoveNthNodeFromEnd, LinkedListAdder, MergeTwoLinkedLists, ReverseLinkedList, RemoveDuplicates, EvenOddLinkedList  
+**Single loop** - RemoveNthNodeFromEnd, LinkedListAdder, MergeTwoLinkedLists, ReverseLinkedList, RemoveDuplicatesFromLinkedList, EvenOddLinkedList  
 
 ## Matrix
 **1-way sweep DP matrix** - MinimumPath2DSum  
@@ -344,7 +347,7 @@ Note: Simple means that this can be optimized to replace each array after proces
 **Loop + Tricky Math** - ReverseInt, IsIntPalindrome  
 **Binary Sliding Window** - IntSquareRoot, IsPerfectSquare  
 **Linear Sliding Window** - IsSumOfSquares  
-**Simple Loop** - MoveZeroes, AddBinaryStrings  
+**Simple Loop** - MoveZeroes, AddBinaryStrings, RemoveDuplicatesFromSortedArray    
 
 ## Strings
 **Loop + Hashset** - SimilarWords  

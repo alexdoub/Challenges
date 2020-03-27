@@ -32,7 +32,6 @@ object MoveZeroes {
     }
 
     //Best solution
-    //0,1,0,5,0,9,0
     fun moveZeroes(nums: IntArray): Unit {
         var index = 0
 

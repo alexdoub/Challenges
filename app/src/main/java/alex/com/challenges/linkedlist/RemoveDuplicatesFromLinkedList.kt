@@ -7,7 +7,7 @@ import alex.com.challenges.common.ListNode
  * https://leetcode.com/problems/remove-duplicates-from-sorted-list/
  */
 
-object RemoveDuplicates {
+object RemoveDuplicatesFromLinkedList {
     fun deleteDuplicates(head: ListNode?): ListNode? {
         if (head == null) return null
         var tail = head

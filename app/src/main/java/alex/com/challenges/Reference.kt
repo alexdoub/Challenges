@@ -5,6 +5,7 @@ import alex.com.challenges.cs.*
 import alex.com.challenges.dynamic.*
 import alex.com.challenges.graph.*
 import alex.com.challenges.linkedlist.MergeTwoLinkedLists
+import alex.com.challenges.linkedlist.RemoveDuplicatesFromLinkedList
 import alex.com.challenges.stack.ExclusiveTimeOfFunctions
 import alex.com.challenges.stack.SimplifyUnixPath
 import alex.com.challenges.strings.AddBinaryStrings
@@ -23,11 +24,11 @@ object Reference {
         //CS
         CountSort
         QuickSort
-        SelectionSort
+        SelectionSort;  MergeIntoPaddedArrayAndSort
 
         //Basic
         AddBinaryStrings
-        MoveZeroes; MergeIntoPaddedArrayAndSort
+        MoveZeroes; RemoveDuplicatesFromSortedArray //same approach
         InPlaceRemoveElements
         IsSumOfSquares
         IsIntPalindrome
@@ -81,5 +82,6 @@ object Reference {
 
         //Linked List
         MergeTwoLinkedLists
+        RemoveDuplicatesFromLinkedList
     }
 }
