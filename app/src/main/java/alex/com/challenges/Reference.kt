@@ -2,10 +2,7 @@ package alex.com.challenges
 
 import alex.com.challenges.arrays.*
 import alex.com.challenges.cs.*
-import alex.com.challenges.dynamic.MinFallingPathSum
-import alex.com.challenges.dynamic.StringMultiply
-import alex.com.challenges.dynamic.SubarraySumEqualsK
-import alex.com.challenges.dynamic.WildcardMatching
+import alex.com.challenges.dynamic.*
 import alex.com.challenges.graph.*
 import alex.com.challenges.linkedlist.MergeTwoLinkedLists
 import alex.com.challenges.stack.ExclusiveTimeOfFunctions
@@ -70,11 +67,9 @@ object Reference {
         ThreeSum
 
         //Array DP (Simplified Matrix DP)
-        WildcardMatching
-        UniquePaths
-
-        //Array hopscotch DP
-        CountDecodePaths    // similar to fibonacci
+        WildcardMatching    //complex, build off previous rows
+        UniquePaths         //solution[x][y] = solution[x-1][y] + solution[x][y-1]
+        CountDecodePaths    // Hopscotch DP. similar to fibonacci
 
         //Array DFS
         CombinationSum

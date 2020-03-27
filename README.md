@@ -290,6 +290,7 @@ A collection of solutions to various programming challenges I found online.
 **FindKthSmallestElementInBST** - https://leetcode.com/problems/kth-smallest-element-in-a-bst/  
 	Recursive DFS. Define a variable for count & a recursive algorithm. Recursive algorithm searches left, increments count, checks if matches k, then searches right. If any search yeilded a result then propagate that up the callsite, else return null.  
 **UniquePaths** - https://leetcode.com/problems/unique-paths/  
+	"Given an X by Y board where you can only move down and right, how many unique paths exist from 0,0 to end,end?"  
 	DP. This problem basically counts all the unique permutations of 2 values. For example, given 5 Ls and 1 R (5) or 5 Ls and 0 Rs (1). Build a matrix and enumerate cells. This value is equal to the value above it and left of it. Base case: edges are always 1. Simplification: dont store solution in a 2d matrix, instead replace rows as they are filled out.    
 
 
