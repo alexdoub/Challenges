@@ -298,7 +298,8 @@ A collection of solutions to various programming challenges I found online.
 **ValidPalindromeWithSkips** - https://leetcode.com/problems/valid-palindrome-ii/  
 	Sliding window. Two options here. You can do it recursively or with a single greedy loop. Recursive is recommended for several reasons, mainly scalability if you had to allow more skips.  
 	Recursive: define recursive function that determines if its a valid palindrome between a Left and Right index. Loop & close in L/R each step except if its a mismatch. In that case, branch once for each side & count skips. If too many skipped, return false.  
-
+**BSTIterator** - https://leetcode.com/problems/binary-search-tree-iterator/  
+	Stack + Recursion. Maintain a stack representing the next lowest elements. On init, push the left-most path to the stack. On each next(), pop from the stack and push the left-most path of the right side. The iterator is finished when the stack is empty.  
 
 # Strategy Categories
 
@@ -307,6 +308,7 @@ A collection of solutions to various programming challenges I found online.
 **Loop BFS** - KeysAndRooms  
 **Double Recursive DFS** - BinaryTreeMaxPathSum, BinaryTreePathSumIII  
 **DP Array** - MinFallingPathSum  
+**Stack + Recursion** - BSTIterator  
 
 ## Linked List
 **Single loop** - RemoveNthNodeFromEnd, LinkedListAdder, MergeTwoLinkedLists, ReverseLinkedList, RemoveDuplicatesFromLinkedList, EvenOddLinkedList  
@@ -322,7 +324,7 @@ A collection of solutions to various programming challenges I found online.
 
 ## Stacks
 **Loop** - ValidParentheses, ExclusiveTimeOfFunctions, SimplifyUnixPath  
-**Recursive DFS** - ValidParenthesesString  
+**Recursive DFS** - ValidParenthesesString, BSTIterator  
 
 ## Arrays
 **Greedy Loop** - RomanToInt, ZigzagConversion, MinimumSwaps, BinaryMatrix, MergeIntoPaddedArrayAndSort, ComposeRanges  
@@ -359,3 +361,4 @@ Note: Simple means that this can be optimized to replace each array after proces
 **Hopscotch DP** - CountDecodePaths  
 **Fixed Sliding Window** - StringIncludesPermutation  
 **Variable Sliding Window** - MinWindowSubstring  
+**Closing Sliding Window** - ValidPalindromeWithSkips  
