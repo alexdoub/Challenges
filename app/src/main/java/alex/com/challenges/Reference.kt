@@ -33,6 +33,7 @@ object Reference {
         IsSumOfSquares
         IsIntPalindrome
         StringMultiply
+        MaxSubArraySum  //Note, simple compared to SubawwaySumEqualsK
 
         //Stack
         ExclusiveTimeOfFunctions
@@ -62,7 +63,7 @@ object Reference {
         //Note:
         // 1) Avoid using tricky data structures when loops suffice
         // 2) Sort input and skip duplicate values. When its sorted, checking for duplicates is trivial
-        SubarraySumEqualsK
+        CountSubarraysWithSumTarget
         KMostFrequentInts
         TwoSum
         ThreeSum

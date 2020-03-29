@@ -5,7 +5,7 @@ package alex.com.challenges.dynamic
  * https://leetcode.com/problems/subarray-sum-equals-k/
  */
 
-object SubarraySumEqualsK {
+object CountSubarraysWithSumTarget {
 
     // Similar to cumulative approach but we use a hashmap to store 'incrementing sums that stopped at this value'
     // Since all values are based off our FULL SUM then they are guaranteed correct
@@ -15,7 +15,7 @@ object SubarraySumEqualsK {
         var rollingSum = 0
         val cumulativeSumsMap: HashMap<Int, Int> = HashMap()
 
-        //Base case -- indicate starting point
+        //Base case -- indicate starting point. "We have 1 sum that equals 0"
         //If sum-k ever equals 0 then we have a cumulative sum!
         // If our rolling sum ever goes back to 0 then it will increment
         cumulativeSumsMap[0] = 1
@@ -44,18 +44,18 @@ object SubarraySumEqualsK {
     //Double loop over cumulative sums array. If end - start == sum, its a match
     fun subarraySum_cumulative(nums: IntArray, k: Int): Int {
         var count = 0
-        val sum = IntArray(nums.size + 1)
+        val sums = IntArray(nums.size + 1)
 
-        // Build cumulative sums -- O(n)
-        sum[0] = 0
+        // First iteration. Build cumulative sums -- O(n)
+        sums[0] = 0
         for (i in 1..nums.size) {
-            sum[i] = sum[i - 1] + nums[i - 1]
+            sums[i] = sums[i - 1] + nums[i - 1]
         }
 
         // Find partial sums -- O(n^2 / 2)
         for (start in nums.indices) {
             for (end in start + 1..nums.size) {
-                if (sum[end] - sum[start] == k) count++
+                if (sums[end] - sums[start] == k) count++
             }
         }
         return count
@@ -81,6 +81,9 @@ object SubarraySumEqualsK {
 
     //O(n^2) -- TOO SLOW --- memory was 100% unnecessary
     // This would have been a good approach if there was no requirement for continuous subarrays
+
+    /** Loop over values and maintain in-progress sums. On every value increment previous partial sums & retally sumsMap
+     * */
     fun subarraySum_doobies_OG_solution(nums: IntArray, k: Int): Int {
         val sumsMap = HashMap<Int, Int>() //worst case size O(n)
         val partialSums = ArrayList<Int>(nums.size) //constant size O(n)
