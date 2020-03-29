@@ -24,7 +24,7 @@ object Reference {
         //CS
         CountSort
         QuickSort
-        SelectionSort;  MergeIntoPaddedArrayAndSort
+        SelectionSort;  MergedSortedArrayIntoPaddedSortedArray
 
         //Basic
         AddBinaryStrings
