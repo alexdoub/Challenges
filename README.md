@@ -300,6 +300,8 @@ A collection of solutions to various programming challenges I found online.
 	Recursive: define recursive function that determines if its a valid palindrome between a Left and Right index. Loop & close in L/R each step except if its a mismatch. In that case, branch once for each side & count skips. If too many skipped, return false.  
 **BSTIterator** - https://leetcode.com/problems/binary-search-tree-iterator/  
 	Stack + Recursion. Maintain a stack representing the next lowest elements. On init, push the left-most path to the stack. On each next(), pop from the stack and push the left-most path of the right side. The iterator is finished when the stack is empty.  
+**AddStringInts** - * https://leetcode.com/problems/add-strings/  
+	Simple loop. Maintain pointers to both ends of the strings. Loop until indexes run off and no carry. Account for either one reaching 0. Subtract '0' from each to get int values, add together, append single digit, factor carry.  
 
 # Strategy Categories
 
@@ -355,6 +357,7 @@ Note: Simple means that this can be optimized to replace each array after proces
 **Simple Loop** - MoveZeroes, AddBinaryStrings, RemoveDuplicatesFromSortedArray    
 
 ## Strings
+**Simple Loop** - AddStringInts  
 **Loop + Hashset** - SimilarWords  
 **Double Loop** - LongestCommonPrefix  
 **Loop + Countsort** - GroupedAnagrams  
