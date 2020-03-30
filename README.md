@@ -238,9 +238,10 @@ A collection of solutions to various programming challenges I found online.
 **MergedSortedArrayIntoPaddedSortedArray** - https://leetcode.com/problems/merge-sorted-array/  
 	"Given an array with extra space and a 2nd array, merge the 2nd into the first and sort the values, excluding the padding."  
 	Simple loop. Do not sort. Reverse iterate from m+n-1 and swap values into main array. Use pointers for each arrays' 'known end values'.  
-**QuickSort** - https://www.geeksforgeeks.org/quick-sort/  
+**QuickSort & QuickSelect** - https://www.geeksforgeeks.org/quick-sort/  
 	Make recursive sort function. If low < high, get adjusted partition index and call sort on the left & right sides. When getting adjusted partition index, choose a pivot (last element) and a smallIndex (start). Loop up to the pivot index, if any element was smaller than the pivot then swap it with the smallIndex & ++ it (this puts items smaller than the pivot to the left of the partition). Finally swap the pivot with the small index, making it separate the left & right sides.  
 	To reiterate, partition splits the array according to the pivot and returns the index of the split.  
+	Quickselect: Use exact same partition function but recursively call & narrow down the range. Return when pi == k.  
 **IsIntPalindrome** - https://leetcode.com/problems/palindrome-number/submissions/  
 	"Return true if the int is a palindrome (treated like a string). You cannot use strings"  
 	Count how many digits the input is, by dividing by 10 and counting until the input is 0. Next, do the sliding window approach from end to end and compare digits. The compare function fetches specific digits by dividing by 10^digit (as int), then modding by 10.  
