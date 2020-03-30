@@ -13,12 +13,12 @@ object CountSubarraysWithSumTarget {
     fun subarraySum(nums: IntArray, k: Int): Int {
         var matchCount = 0
         var rollingSum = 0
-        val cumulativeSumsMap: HashMap<Int, Int> = HashMap()
+        val sumsCountMap: HashMap<Int, Int> = HashMap()
 
         //Base case -- indicate starting point. "We have 1 sum that equals 0"
         //If sum-k ever equals 0 then we have a cumulative sum!
         // If our rolling sum ever goes back to 0 then it will increment
-        cumulativeSumsMap[0] = 1
+        sumsCountMap[0] = 1
 
         for (num in nums) {
             rollingSum += num
@@ -27,13 +27,13 @@ object CountSubarraysWithSumTarget {
             // e.g. array= [7,7] k=7.
             // First loop will be 7-7=0, which is the base case
             // Second loop will be 14-7=7, which points to the sum we set on the first iteration
-            cumulativeSumsMap[rollingSum - k]?.let { sumCount ->
+            sumsCountMap[rollingSum - k]?.let { sumCount ->
                 matchCount += sumCount
             }
 
             // Mark our running sum increment
             // aka "We had a sum reach here"
-            cumulativeSumsMap[rollingSum] = cumulativeSumsMap.getOrDefault(rollingSum, 0) + 1
+            sumsCountMap[rollingSum] = sumsCountMap.getOrDefault(rollingSum, 0) + 1
         }
         return matchCount
     }

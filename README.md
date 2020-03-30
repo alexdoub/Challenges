@@ -74,14 +74,14 @@ A collection of solutions to various programming challenges I found online.
 **FindEventualSafeStates** - https://leetcode.com/problems/find-eventual-safe-states/  
 	"Find all the terminal nodes in a graph. A terminal node will not lead to any loops"  
 	Recursive DFS. Maintain list of states for each node. Loop over all nodes and explore them with DFS. Explore function recursively checks all next nodes & checks for loops according to the visited list that was passed in. If a visited node is seen again, then this path looped. If any child paths looped, they return false & it sets this node to unsafe.  
-**MinWindowSubstring** - https://leetcode.com/problems/minimum-window-substring/  
+**!MinWindowSubstring** - https://leetcode.com/problems/minimum-window-substring/  
 	"Given an input string and a target string, return the smallest substring that contains all the letters in the target string"  
-	Loop + Hashmap tracking indexes.  Similar to StringIncludesPermutation. Make hashmap that maps chars to counts. Make 2nd hashmap that maps chars to index locations. Loop input and tally up characters. If over-tallyd, pop off last. Store solutions when tallys are full.  
-	Better: Sliding window. Maintain hashmap of ideal char counts & progress char counts. Have L & R pointers on the input string. Expand right when non-match, pull in left when matching. On each char, update the single char count & check if matching. Don't compare whole hashmaps, instead just check what changed. O(n).  
+	(Decent)Loop + Hashmap tracking indexes.  Similar to StringIncludesPermutation. Make hashmap that maps chars to counts. Make 2nd hashmap that maps chars to index locations. Loop input and tally up characters. If over-tallyd, pop off last. Store solutions when tallys are full.  
+	(Better) Variable Sliding window. Maintain hashmap of ideal char counts & progress char counts. Have L & R pointers on the input string. Expand right when non-match, pull in left when matching. On each char, update the single char count & check if matching. Don't compare whole hashmaps, instead just check what changed. O(n).  
 **!StringIncludesPermutation** - https://leetcode.com/problems/permutation-in-string/  
 	"Given an input string and a target string, return T/F if the input string contains a permutation of the target string in it"  
 	Loop + Hashmap tracking indexes. Similar to MinWindowSubstring. Make hashmap of char -> count of the target string. Loop over input string and tally characters as they match. Prune indexes when they get too far. Check for solution each step  
-	Better Solution: Fixed sliding window. Make array of counts for full s2 & for s2.substring(s1.length). Loop from s1.length to end of s2. Every iteration, add the RHS to the s1 counts array and remove the LHS & check for win state.  Don't count full array on each iteration, instead have an int count & update it regarding each changed char. Similar to my solution but doesn't involve counting indexes & pruning them.  
+	(Better) Fixed sliding window. Make array of counts for full s2 & for s2.substring(s1.length). Loop from s1.length to end of s2. Every iteration, add the RHS to the s1 counts array and remove the LHS & check for win state.  Don't count full array on each iteration, instead have an int count & update it regarding each changed char. Similar to my solution but doesn't involve counting indexes & pruning them.  
 **RepeatedSubstringPattern** - https://leetcode.com/problems/repeated-substring-pattern/  
 	"Given a string, return T/F if its just a repeat of a single substring"  
 	Tricky math. Get all divisors of input string. For each divisor, enumerate input string in chunks and see if its a full match.  
@@ -234,10 +234,10 @@ A collection of solutions to various programming challenges I found online.
 	Make flat IntArray of size 0. Loop inputs and increment each corresponding value in the flat array. Extend array on each new large input. Finally, loop over flat array and decrement values while putting the value (from index) into an arraylist. Return arraylist.  
 **MergeTwoLinkedLists** - https://leetcode.com/problems/merge-two-sorted-lists/  
 	"Given two sorted linked lists, merge them into a single one."
-	Single Loop. Maintain pointers for head, tail, leftHead and rightHead. Early return if either input is empty. Handle both not null case - loop and pull best head+tail once else advance the best option. Handle 1 not null case - unroll that list. Advance tail after every push. Lastly, return head which was set earlier.  
-**MergeIntoPaddedArrayAndSort** - https://leetcode.com/problems/merge-sorted-array/  
+	Single Loop. Maintain pointers for head, tail, leftHead and rightHead. Early return if either input is empty. Handle both not null case - loop and pull best head+tail once else advance the best option. Handle 1 not null case - unroll that list. Advance tail after every push. Lastly, return head which was set previously.  
+**MergedSortedArrayIntoPaddedSortedArray** - https://leetcode.com/problems/merge-sorted-array/  
 	"Given an array with extra space and a 2nd array, merge the 2nd into the first and sort the values, excluding the padding."  
-	Sort. Since array#1 has padding, all copying and sorting must only go until m+n-1.  
+	Simple loop. Do not sort. Reverse iterate from m+n-1 and swap values into main array. Use pointers for each arrays' 'known end values'.  
 **QuickSort** - https://www.geeksforgeeks.org/quick-sort/  
 	Make recursive sort function. If low < high, get adjusted partition index and call sort on the left & right sides. When getting adjusted partition index, choose a pivot (last element) and a smallIndex (start). Loop up to the pivot index, if any element was smaller than the pivot then swap it with the smallIndex & ++ it (this puts items smaller than the pivot to the left of the partition). Finally swap the pivot with the small index, making it separate the left & right sides.  
 	To reiterate, partition splits the array according to the pivot and returns the index of the split.  
@@ -260,7 +260,7 @@ A collection of solutions to various programming challenges I found online.
 **IsSumOfSquares** - https://leetcode.com/problems/sum-of-square-numbers/  
 	"Given a number, return T/F if its the sum of 2 other numbers squared  
 	Linear Sliding Window, from 0 to sqrt of input.  
-**!SubarraySumEqualsK** - https://leetcode.com/problems/subarray-sum-equals-k/  
+**!CountSubarraysWithSumTarget** - https://leetcode.com/problems/subarray-sum-equals-k/  
 	"Given an array of integers, return the total number of continuous subsets that sum up to a target K"  
 	Tricky Hashmap. Loop over values and maintain a rolling sum. Use a hashmap to mark counts of partial sums after each iteration, including a base case of 0->1. If ${rolling sum - target} exists in the hashmap then it means we had that many partial sub-arrays sum up to the target.  
 **!MoveZeroes** - https://leetcode.com/problems/move-zeroes/  
@@ -302,8 +302,17 @@ A collection of solutions to various programming challenges I found online.
 	Stack + Recursion. Maintain a stack representing the next lowest elements. On init, push the left-most path to the stack. On each next(), pop from the stack and push the left-most path of the right side. The iterator is finished when the stack is empty.  
 **AddStringInts** - * https://leetcode.com/problems/add-strings/  
 	Simple loop. Maintain pointers to both ends of the strings. Loop until indexes run off and no carry. Account for either one reaching 0. Subtract '0' from each to get int values, add together, append single digit, factor carry.  
+**MaxSubArraySum** - https://leetcode.com/problems/maximum-subarray/  
+	Simple loop. Keep rolling sum as you loop over values. If sum goes under 0, reset it. Account for negative max sums by having max initialize to Int.MIN.  
+**TrieWithWildcards** - https://leetcode.com/problems/add-and-search-word-data-structure-design/  
+	Trie. Define node class with isWord:Boolean and next:HashMap<Char, Node>. For add, loop through characters and build out trie graph & finally set isWord=true. For search, start with a list of root and loop over chars, mapping the list into a new list. Finally return nodes.any{ it.isWord }
+**TrieWithoutWildcards** - https://leetcode.com/problems/implement-trie-prefix-tree  
+	Trie. Same as above but also has startsWith() function. Same as search but also returns true if final node's next is not empty.  
 
 # Strategy Categories
+
+## Data Structures
+**Trie** - TrieWithWildcards, TrieWithoutWildcards  
 
 ## Graph
 **Recursive DFS** - CourseScheduleI, NumIslands, CourseScheduleII, KeysAndRooms, FindGrasshopper, IsValidBST, WordBreakII(pt2), FindEventualSafeStates, KeysAndRooms, InvertBinaryTree, BinaryTreePathSumI, BinaryTreePathSumII, BinaryTreeAllPaths, BinaryTreeMinLexographicalPath  
@@ -329,7 +338,7 @@ A collection of solutions to various programming challenges I found online.
 **Recursive DFS** - ValidParenthesesString, BSTIterator  
 
 ## Arrays
-**Greedy Loop** - RomanToInt, ZigzagConversion, MinimumSwaps, BinaryMatrix, MergeIntoPaddedArrayAndSort, ComposeRanges  
+**Greedy Loop** - RomanToInt, ZigzagConversion, MinimumSwaps, BinaryMatrix, MergedSortedArrayIntoPaddedSortedArray, ComposeRanges, MaxSubArraySum  
 **Loop + Hashmap** - TwoSums  
 **Loop + Branch** - PhoneNumberCombos  
 **Loop + Inner Loop** - PalindromeSubstring, MixedWordsConcatenated  
@@ -340,7 +349,7 @@ A collection of solutions to various programming challenges I found online.
 **Partial Sort** - SortPartiallySortedArray  
 **Recursive + Memoization** - DivisorGame, Fibonacci  
 **Tricky Math** - RepeatedSubstringPattern  
-**Tricky Hashmap** - StringIncludesPermutation, MinWindowSubstring, LongestSubstringWithoutRepeatingCharacters, SubarraySumEqualsK  
+**Tricky Hashmap** - StringIncludesPermutation, MinWindowSubstring, LongestSubstringWithoutRepeatingCharacters, CountSubarraysWithSumTarget  
 
 ## Dynamic Programming  
 **Single DP Array** - JumpGame, DivisorGame, KnightDialer, Fibonacci, MinCostClimbingStairs, StringMultiply, UniquePaths  
