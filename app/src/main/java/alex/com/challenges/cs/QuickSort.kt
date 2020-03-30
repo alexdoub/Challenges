@@ -7,52 +7,56 @@ package alex.com.challenges.cs
 
 object QuickSort {
     fun partitionAndReturnPartitionIndex(arr: IntArray, low: Int, high: Int): Int {
-        val pivot = arr[high]
-        var smallIndex = low // index of smaller element
-        println("... partition starting. pivot:${smallIndex} -- ${arr.joinToString()}")
+        //Partition around last element
+        var lowIndex = low
+        val pivotIndex = high   // Choose high because then we don't have to skip it in the inner loop. cleaner code
 
         //Loop & partition according to pivot
         // (Anchored forward loop. See MoveZeroes)
-        for (x in low until high) {
-            // If current element is smaller than the pivot
-            if (arr[x] < pivot) {
-
-                // swap arr[i] and arr[j]
-                val temp = arr[smallIndex]
-                arr[smallIndex] = arr[x]
-                arr[x] = temp
-
-                println("... ... partition did bubble swap i:$smallIndex with i:$x because ${arr[x]} < $pivot")
-                smallIndex++
+        for (x in lowIndex..high) {
+            if (arr[x] < arr[pivotIndex]) {
+                val tmp = arr[lowIndex]
+                arr[lowIndex] = arr[x]
+                arr[x] = tmp
+                lowIndex++
             }
         }
 
-        // Finally swap partition with the smallIndex.
-        // Everything before smallIndex is smaller than pivot, everything else is larger
-        // The return value will be the first index of a value not smaller than the pivot
-        val temp = arr[smallIndex]
-        arr[smallIndex] = arr[high]
-        arr[high] = temp
-        println("... ... partition did finally swap i:$smallIndex with i:$high")
+        //final swap. lowIndex with pivot index (high)
+        val tmp = arr[lowIndex]
+        arr[lowIndex] = arr[pivotIndex]
+        arr[pivotIndex] = tmp
 
-
-        println("... partition returning. pivot:${smallIndex + 1} -- ${arr.joinToString()}")
-
-        return smallIndex
+        return lowIndex
     }
 
-    fun sort(arr: IntArray, low: Int, high: Int) {
-        println("Sort called with l:$low h:$high")
+    private fun quicksort(arr: IntArray, low: Int, high: Int) {
         if (low < high) {
 
             //Choose PartitionIndex
             val pi = partitionAndReturnPartitionIndex(arr, low, high)
 
             // Recursively sort left & right of index
-            sort(arr, low, pi - 1)
-            sort(arr, pi + 1, high)
-        } else {
-            println("... skipped")
+            quicksort(arr, low, pi - 1)
+            quicksort(arr, pi + 1, high)
         }
+    }
+
+    fun quickselect(arr: IntArray, k: Int): Int {
+        return quickselect(arr, 0, arr.size - 1, k)
+    }
+
+    private fun quickselect(arr: IntArray, low: Int, high: Int, k: Int): Int {
+        if (k > arr.size - 1) return -1 //no kth element
+
+        //Choose PartitionIndex. Partition array around last element & return the partition index
+        val pi = partitionAndReturnPartitionIndex(arr, low, high)
+
+        // If pivot == k, then we are done
+        if (pi == k) return arr[k]
+        // Value we want is on the right side
+        else if (k > pi) return quickselect(arr, pi + 1, high, k)
+        // Value we want is on the left side
+        else return quickselect(arr, low, pi - 1, k)
     }
 }
