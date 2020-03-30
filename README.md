@@ -309,6 +309,13 @@ A collection of solutions to various programming challenges I found online.
 	Trie. Define node class with isWord:Boolean and next:HashMap<Char, Node>. For add, loop through characters and build out trie graph & finally set isWord=true. For search, start with a list of root and loop over chars, mapping the list into a new list. Finally return nodes.any{ it.isWord }
 **TrieWithoutWildcards** - https://leetcode.com/problems/implement-trie-prefix-tree  
 	Trie. Same as above but also has startsWith() function. Same as search but also returns true if final node's next is not empty.  
+**FindLargestRisingDifference** - https://leetcode.com/problems/best-time-to-buy-and-sell-stock/  
+	Simple Loop. Similar to MaxSubArraySum. We only care about max - min but we must find the min first. Loop and both set min & compare this difference compared to min. Return max difference.  
+
+## TODO:
+https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
+https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/
+https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/
 
 # Strategy Categories
 
@@ -339,7 +346,7 @@ A collection of solutions to various programming challenges I found online.
 **Recursive DFS** - ValidParenthesesString, BSTIterator  
 
 ## Arrays
-**Greedy Loop** - RomanToInt, ZigzagConversion, MinimumSwaps, BinaryMatrix, MergedSortedArrayIntoPaddedSortedArray, ComposeRanges, MaxSubArraySum  
+**Greedy Loop** - RomanToInt, ZigzagConversion, MinimumSwaps, BinaryMatrix, MergedSortedArrayIntoPaddedSortedArray, ComposeRanges, MaxSubArraySum, FindLargestRisingDifference  
 **Loop + Hashmap** - TwoSums  
 **Loop + Branch** - PhoneNumberCombos  
 **Loop + Inner Loop** - PalindromeSubstring, MixedWordsConcatenated  
