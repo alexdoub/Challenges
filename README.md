@@ -311,6 +311,8 @@ A collection of solutions to various programming challenges I found online.
 	Trie. Same as above but also has startsWith() function. Same as search but also returns true if final node's next is not empty.  
 **FindLargestRisingDifference** - https://leetcode.com/problems/best-time-to-buy-and-sell-stock/  
 	Simple Loop. Similar to MaxSubArraySum. We only care about max - min but we must find the min first. Loop and both set min & compare this difference compared to min. Return max difference.  
+**SumOfRisingDifferences** - https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/  
+	Same as FindLargestRisingDifference but you keep a rolling sum. Increment sum with diff of this and last iff its positive.  
 
 ## TODO:
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
@@ -346,7 +348,7 @@ https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/
 **Recursive DFS** - ValidParenthesesString, BSTIterator  
 
 ## Arrays
-**Greedy Loop** - RomanToInt, ZigzagConversion, MinimumSwaps, BinaryMatrix, MergedSortedArrayIntoPaddedSortedArray, ComposeRanges, MaxSubArraySum, FindLargestRisingDifference  
+**Greedy Loop** - RomanToInt, ZigzagConversion, MinimumSwaps, BinaryMatrix, MergedSortedArrayIntoPaddedSortedArray, ComposeRanges, MaxSubArraySum, FindLargestRisingDifference, SumOfRisingDifferences  
 **Loop + Hashmap** - TwoSums  
 **Loop + Branch** - PhoneNumberCombos  
 **Loop + Inner Loop** - PalindromeSubstring, MixedWordsConcatenated  

@@ -37,6 +37,7 @@ object CombinationSumII {
 
     //224 ms	37.6 MB
     // Lessons learned: sort() incrementally so we can early terminate branches with less checks
+    // Pass sum so we dont have to recount
     fun combinationSum2_updated(candidates: IntArray, target: Int): List<List<Int>> {
         candidates.sort()
         val solutionSet = ArrayList<List<Int>>()
