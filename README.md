@@ -313,9 +313,10 @@ A collection of solutions to various programming challenges I found online.
 	Simple Loop. Similar to MaxSubArraySum. We only care about max - min but we must find the min first. Loop and both set min & compare this difference compared to min. Return max difference.  
 **SumOfRisingDifferences** - https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/  
 	Same as FindLargestRisingDifference but you keep a rolling sum. Increment sum with diff of this and last iff its positive.  
+**IsSameBST** - https://leetcode.com/problems/same-tree/  
+	Dirt simple recursive loop. If both null, return false. If both same, return recursive call on left && right. If not same, return false.  
 
 ## TODO:
-https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/
 
