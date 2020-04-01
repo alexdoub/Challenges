@@ -317,6 +317,8 @@ A collection of solutions to various programming challenges I found online.
 	Dirt simple recursive loop. If both null, return false. If both same, return recursive call on left && right. If not same, return false.  
 **CombinationSumIII** - https://leetcode.com/problems/combination-sum-iii/  
 	Recursive DFS. Define recursive function with WIP list & sum. Check base cases: if used too many or sum too high, cancel. Branch on remaining numbers in order from last used number.  
+**!CombinationSumIV** - https://leetcode.com/problems/combination-sum-iv/  
+	DP. 1D array with base case of 0=1. Count up to target from 1, inner loop over numbers propagating prev vals (dp[i] += dp[i - num]).  
 
 ## TODO:
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/
