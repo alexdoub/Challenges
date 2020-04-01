@@ -315,6 +315,8 @@ A collection of solutions to various programming challenges I found online.
 	Same as FindLargestRisingDifference but you keep a rolling sum. Increment sum with diff of this and last iff its positive.  
 **IsSameBST** - https://leetcode.com/problems/same-tree/  
 	Dirt simple recursive loop. If both null, return false. If both same, return recursive call on left && right. If not same, return false.  
+**CombinationSumIII** - https://leetcode.com/problems/combination-sum-iii/  
+	Recursive DFS. Define recursive function with WIP list & sum. Check base cases: if used too many or sum too high, cancel. Branch on remaining numbers in order from last used number.  
 
 ## TODO:
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/
@@ -354,7 +356,7 @@ https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/
 **Loop + Branch** - PhoneNumberCombos  
 **Loop + Inner Loop** - PalindromeSubstring, MixedWordsConcatenated  
 **Loop + Queues** - AssignCookies  
-**Recursive DFS** -  PermutationsI, PermutationsII, GenerateParentheses, CombinationSum, CombinationSumII  
+**Recursive DFS** -  PermutationsI, PermutationsII, GenerateParentheses, CombinationSum, CombinationSumII, CombinationSumIII  
 **Sliding Window** - SearchInRotatedArray, GetRangeOfNumInArray, 3-Sum, 3-SumClosests, ContainerWithMostWater  
 **2D Sliding Window** - SmallestSpanningRange, InPlaceRemoveElements  
 **Partial Sort** - SortPartiallySortedArray  
