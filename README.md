@@ -318,7 +318,15 @@ A collection of solutions to various programming challenges I found online.
 **CombinationSumIII** - https://leetcode.com/problems/combination-sum-iii/  
 	Recursive DFS. Define recursive function with WIP list & sum. Check base cases: if used too many or sum too high, cancel. Branch on remaining numbers in order from last used number.  
 **!CombinationSumIV** - https://leetcode.com/problems/combination-sum-iv/  
-	DP. 1D array with base case of 0=1. Count up to target from 1, inner loop over numbers propagating prev vals (dp[i] += dp[i - num]).  
+	"Given an array of numbers, how many unique *permutations* sum up to a target?"
+	DP. Order does matter. 1D array with base case of 0=1. Outer loop up to target from 1, inner loop over numbers propagating prev vals, like dp[dx] += dp[dx - coin].  
+	Recursive solution is too damn slow.  
+**!CoinChangeII** - https://leetcode.com/problems/coin-change-2/description/  
+	"Given an array of numbers, how many unique *combinations* make a target sum?"  
+	DP. Order doesn't matter. 1d array with base case of 0=1. Outer loop coins, inner loop up to target, like dp[dx] += dp[dx - coin]. 
+	NOTES: In DP, always extend from previous cases, never do +=1. 
+	Order matters, aka Permutation: outer loop target, inner loop values.
+	Order does not matter aka Combination: outer loop values, inner loop target
 
 ## TODO:
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/
@@ -367,7 +375,7 @@ https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/
 **Tricky Hashmap** - StringIncludesPermutation, MinWindowSubstring, LongestSubstringWithoutRepeatingCharacters, CountSubarraysWithSumTarget  
 
 ## Dynamic Programming  
-**Single DP Array** - JumpGame, DivisorGame, KnightDialer, Fibonacci, MinCostClimbingStairs, StringMultiply, UniquePaths  
+**Single DP Array** - JumpGame, DivisorGame, KnightDialer, Fibonacci, MinCostClimbingStairs, StringMultiply, UniquePaths, CombinationSumIV, CoinChangeII  
 **Simple DP Matrix** - WildcardMatching, DiceRollsWithTargetSum, MinFallingPathSum  
 Note: Simple means that this can be optimized to replace each array after processing, saving memory.  
 **DP Graph** - WordBreakII(pt1)  

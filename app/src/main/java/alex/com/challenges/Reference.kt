@@ -72,6 +72,8 @@ object Reference {
         WildcardMatching    //complex, build off previous rows
         UniquePaths         //solution[x][y] = solution[x-1][y] + solution[x][y-1]
         CountDecodePaths    // Hopscotch DP. similar to fibonacci
+        CombinationSumIV    // 1d, simple. Permutation. outer loop target, inner loop values.
+        CoinChangeII        // 1d, simple. Combination. outer loop values, inner loop target
 
         //Array DFS
         CombinationSum
