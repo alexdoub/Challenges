@@ -327,6 +327,8 @@ A collection of solutions to various programming challenges I found online.
 	NOTES: In DP, always extend from previous cases, never do +=1. 
 	Order matters, aka Permutation: outer loop target, inner loop values.
 	Order does not matter aka Combination: outer loop values, inner loop target
+**RobHouses** - https://leetcode.com/problems/house-robber/  
+	Greedy loop. Store past 3 values. Loop over nums & set this sum as the value + max of two or three houses back.  
 
 ## TODO:
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/
@@ -361,7 +363,7 @@ https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/
 **Recursive DFS** - ValidParenthesesString, BSTIterator  
 
 ## Arrays
-**Greedy Loop** - RomanToInt, ZigzagConversion, MinimumSwaps, BinaryMatrix, MergedSortedArrayIntoPaddedSortedArray, ComposeRanges, MaxSubArraySum, FindLargestRisingDifference, SumOfRisingDifferences  
+**Greedy Loop** - RomanToInt, ZigzagConversion, MinimumSwaps, BinaryMatrix, MergedSortedArrayIntoPaddedSortedArray, ComposeRanges, MaxSubArraySum, FindLargestRisingDifference, SumOfRisingDifferences, RobHouses  
 **Loop + Hashmap** - TwoSums  
 **Loop + Branch** - PhoneNumberCombos  
 **Loop + Inner Loop** - PalindromeSubstring, MixedWordsConcatenated  
