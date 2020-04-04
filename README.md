@@ -329,6 +329,8 @@ A collection of solutions to various programming challenges I found online.
 	Order does not matter aka Combination: outer loop values, inner loop target
 **RobHouses** - https://leetcode.com/problems/house-robber/  
 	Greedy loop. Store past 3 values. Loop over nums & set this sum as the value + max of two or three houses back.  
+**LRUCache**  
+	Hashmap & Linked List. Hashmap points to LL nodes. Linked list node holds key, value, prev & next. On put, push the tail off if new key, or replace existing node & move to front. On get, move node to front.  
 
 ## TODO:
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/
