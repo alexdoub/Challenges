@@ -8,6 +8,8 @@ import java.util.*
  * https://leetcode.com/problems/binary-search-tree-iterator/
  */
 
+// Push full left - init
+// get - pop, PFL on right
 class BSTIterator(root: TreeNode?) {
     val stack = Stack<TreeNode>()
 
