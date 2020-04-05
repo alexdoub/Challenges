@@ -24,7 +24,7 @@ class TwoSum {
 
                 hashMap[num] = x
             }
-            // dead case
+            // No match found
             return IntArray(0)
         }
 

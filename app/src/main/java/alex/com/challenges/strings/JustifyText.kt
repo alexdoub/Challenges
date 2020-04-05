@@ -32,7 +32,7 @@ object JustifyText {
                 }
             }
             val resultString = wordsInProg.joinToString(separator = "")
-            
+
             // clear & flush results
             results.add(resultString)
             wordsInProg.clear()
