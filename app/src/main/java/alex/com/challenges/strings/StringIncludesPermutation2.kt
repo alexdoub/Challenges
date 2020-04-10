@@ -7,11 +7,66 @@ package alex.com.challenges.strings
 
 object StringIncludesPermutation2 {
 
+    // Note: Not using hashmap was simpler
+    fun checkInclusion(target: String, input: String): Boolean {
+
+        if (target.length > input.length) return false
+
+        val targetArr = IntArray(26)
+        val tmpArr = IntArray(26)
+        var matching = 0
+
+        // Fill out target array
+        for (c in target) {
+            targetArr[c-'a'] ++
+        }
+
+        // Prefill out tmp map with first batch of characters (loop continues from thereon)
+        for (x in target.indices) {
+            val c = input[x]
+            tmpArr[c-'a'] ++
+        }
+        // Prefill check -- are we already at the solution?
+        for (x in 0 until 26) {
+            if (tmpArr[x] == targetArr[x]) matching++
+        }
+        if (matching == 26) return true
+
+        // Main loop - fixed window substring
+        for (x in target.length until input.length) {
+
+            //Add char, update matching
+            val newChar = input[x]
+            tmpArr[newChar-'a']++
+            if (tmpArr[newChar-'a'] == targetArr[newChar-'a']) {
+                matching++
+            } else if (tmpArr[newChar-'a'] == targetArr[newChar-'a'] + 1) {
+                matching--
+            }
+
+            // Remove char, update matching
+            val removedChar = input[x-target.length]
+            tmpArr[removedChar-'a'] --
+            if (tmpArr[removedChar-'a'] == targetArr[removedChar-'a']) {
+                matching++
+            } else if (tmpArr[removedChar-'a'] == targetArr[removedChar-'a'] - 1) {
+                matching--
+            }
+
+            // Check win state
+            if (matching == 26) return true
+        }
+
+        return false
+    }
+
+
+
     // Fixed sliding window -- only deal with matching chars (unlike array approach)
     // Fill out target hashmap -- maps chars to counts
     // Prefill tmpMap, this keeps our main loop simple
     // Main loop - add 1, remove 1, (update matching ++/-- on each change!), check if matching count is right
-    fun checkInclusion(target: String, input: String): Boolean {
+    fun checkInclusion_hashmap(target: String, input: String): Boolean {
 
         if (target.length > input.length) return false
 
