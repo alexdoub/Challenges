@@ -5,7 +5,6 @@ package alex.com.challenges.strings
  * https://leetcode.com/problems/minimum-window-substring/
  */
 
-//@@TODO: REDO with simplify like StringIncludesPermutation
 object MinWindowSubstring {
 
     // WORKS??

@@ -9,7 +9,7 @@ import java.lang.RuntimeException
  */
 
 class LRUCacheTest {
-    
+
     @Test
     fun test_size_2() {
         val cache = LRUCache(2)
