@@ -9,49 +9,89 @@ package alex.com.challenges.arrays
 class CombinationSum {
     companion object {
 
-        // Blind redo -- same approach but simpler
+        // Optimized -- clear out paths early. only copy lists when needed
         fun combinationSum(candidates: IntArray, target: Int): List<List<Int>> {
 
-            candidates.sortDescending() // reduce search space
-            fun getSums(used: List<Int>, searchIndex: Int): List<List<Int>> {
-                val sum = used.sum()
-                if (sum > target) return emptyList()
-                if (sum == target) return listOf(used)
+            candidates.sort() // sort so we can early terminate
 
-                return (searchIndex until candidates.size).map { index ->
-                    getSums(used + candidates[index], index)
-                }.flatten()
+            val sums = ArrayList<List<Int>>()
+            fun buildSums(index: Int, rem: Int, used: ArrayList<Int>) {
+                if (rem == 0) sums.add(used.toList())
+
+                for (x in index until candidates.size) {
+                    val candidate = candidates[x]
+
+                    if (rem - candidate < 0) break
+
+                    used.add(candidate)
+                    buildSums(x, rem - candidate , used)
+                    used.removeAt(used.lastIndex)
+                }
             }
-
-            return getSums(emptyList(), 0)
+            buildSums(0, target, ArrayList<Int>())
+            return sums
         }
 
 
-        fun combinationSum_OLD(candidates: IntArray, target: Int): List<List<Int>> {
-            //DFS
-            fun getPathToTarget(inputSoFar: List<Int>, index: Int): List<List<Int>>? {
+        fun combinationSum_simple(candidates: IntArray, target: Int): List<List<Int>> {
 
-                //Check if end of the line
-                val sum = inputSoFar.sum()
-                if (sum > target) {
-                    return null
-                }
-                if (sum == target) {
-                    return listOf(inputSoFar.sorted())
-                }
+            val sums = ArrayList<List<Int>>()
+            fun buildSums(index: Int, rem: Int, used: List<Int>) {
+                if (rem == 0) sums.add(used)
+                if (rem <= 0) return
 
-                //Try to find new paths
-                val newPaths = ArrayList<List<Int>>()
-                candidates.forEachIndexed { i, candidate ->
-                    if (i >= index) {
-                        getPathToTarget(inputSoFar + candidate, i)?.let { newPaths.addAll(it) }
-                    }
+                for (x in index until candidates.size) {
+                    buildSums(x, rem - candidates[x], used + candidates[x])
                 }
-                return newPaths
             }
-
-            //Starting point -- calculate all paths and join to list
-            return ArrayList<List<Int>>().apply { addAll(getPathToTarget(emptyList(), 0) ?: emptyList()) }
+            buildSums(0, target, emptyList())
+            return sums
         }
+
+
+        // Blind redo -- same approach but simpler
+//        fun combinationSum_old2(candidates: IntArray, target: Int): List<List<Int>> {
+//
+//            candidates.sortDescending() // reduce search space
+//            fun getSums(used: List<Int>, searchIndex: Int): List<List<Int>> {
+//                val sum = used.sum()
+//                if (sum > target) return emptyList()
+//                if (sum == target) return listOf(used)
+//
+//                return (searchIndex until candidates.size).map { index ->
+//                    getSums(used + candidates[index], index)
+//                }.flatten()
+//            }
+//
+//            return getSums(emptyList(), 0)
+//        }
+
+
+//        fun combinationSum_OLD(candidates: IntArray, target: Int): List<List<Int>> {
+//            //DFS
+//            fun getPathToTarget(inputSoFar: List<Int>, index: Int): List<List<Int>>? {
+//
+//                //Check if end of the line
+//                val sum = inputSoFar.sum()
+//                if (sum > target) {
+//                    return null
+//                }
+//                if (sum == target) {
+//                    return listOf(inputSoFar.sorted())
+//                }
+//
+//                //Try to find new paths
+//                val newPaths = ArrayList<List<Int>>()
+//                candidates.forEachIndexed { i, candidate ->
+//                    if (i >= index) {
+//                        getPathToTarget(inputSoFar + candidate, i)?.let { newPaths.addAll(it) }
+//                    }
+//                }
+//                return newPaths
+//            }
+//
+//            //Starting point -- calculate all paths and join to list
+//            return ArrayList<List<Int>>().apply { addAll(getPathToTarget(emptyList(), 0) ?: emptyList()) }
+//        }
     }
 }

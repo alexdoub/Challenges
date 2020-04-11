@@ -4,10 +4,12 @@ package alex.com.challenges.dynamic
  * Created by Alex Doub on 4/1/2020.
  * https://leetcode.com/problems/coin-change-2/
  *
- * // NOTE: Similar to knapsack problem
+ * NOTE: This is COMBINATIONS -- loop values then loop indexes
+ * // NOTE: Similar to knapsack problem....?
  */
 
 object CoinChangeII {
+
 
     // Borrowed
     // Outer loop coins, inner loop dp indexes.

@@ -336,6 +336,10 @@ A collection of solutions to various programming challenges I found online.
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/
 
+Combo Sum Suite
+Coin Change II
+SubarraySum
+
 # Strategy Categories
 
 ## Data Structures
@@ -401,3 +405,17 @@ Note: Simple means that this can be optimized to replace each array after proces
 **Fixed Sliding Window** - StringIncludesPermutation  
 **Variable Sliding Window** - MinWindowSubstring  
 **Closing Sliding Window** - ValidPalindromeWithSkips  
+
+
+### DP Tricks
+
+Usually there is a base case of 0=1
+Usually you do NOT add +1, you += a previous value
+
+Combinations: e.g. CoinChangeII
+	For each value, loop DP rows. (Enumerate rows)
+
+Permutations: e.g. CombinationSumIV
+	For each index, loop through values. (Enumerate columns)
+
+![Combinations & Permutations](dp combination permutations.jpg)

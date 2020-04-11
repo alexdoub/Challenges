@@ -8,29 +8,62 @@ package alex.com.challenges.dynamic
 class DiceRollsWithTargetSum {
     companion object {
 
+        // Blind Redo
         fun numRollsToTarget(d: Int, f: Int, target: Int): Int {
-            val mod = 1_000_000_007
 
-            //1st iteration - base case -- fill
-            var solution = IntArray(target + 1)
-            solution.fill(1, 1, Math.min(target, f) + 1)
+            if (d < 1 || f < 1 || target < 1) return 0
 
-            //Loop iteration -- Replace DP array with updated array including this dice
-            (2..d).forEach { _ ->
-                val newSolution = IntArray(target + 1)
-                (1..solution.size).forEach { index ->
-                    (1..f).forEach { newRoll ->
-                        if (index + newRoll <= target) {
-                            val newTotal = (solution[index] + newSolution[index + newRoll]) % mod
-                            newSolution[index + newRoll] = newTotal
-                        }
-                    }
-                }
-                solution = newSolution
+            val MOD = 1_000_000_007
+
+            var dp = IntArray(target + 1)
+
+            //Initial roll
+            for (x in 1..f) {
+                if (x <= target) dp[x] = 1
             }
 
-            return solution.last()
+            // successive rolls
+            //make new rows so work-in-progress doesnt fuck up math
+            for (times in 2 .. d) {
+                val newDp = IntArray(target + 1)
+
+                //loop over rows, on every cell add all rolls
+                // added must come from previous rows
+                for (x in 0..target) {
+                    for (roll in 1..f) {
+                        if (x + roll <= target) newDp[x+roll] = (newDp[x+roll] + dp[x]) % MOD
+                    }
+                }
+
+                dp = newDp
+            }
+            return dp[target]
         }
+
+
+//        fun numRollsToTarget(d: Int, f: Int, target: Int): Int {
+//            val mod = 1_000_000_007
+//
+//            //1st iteration - base case -- fill
+//            var solution = IntArray(target + 1)
+//            solution.fill(1, 1, Math.min(target, f) + 1)
+//
+//            //Loop iteration -- Replace DP array with updated array including this dice
+//            (2..d).forEach { _ ->
+//                val newSolution = IntArray(target + 1)
+//                (1..solution.size).forEach { index ->
+//                    (1..f).forEach { newRoll ->
+//                        if (index + newRoll <= target) {
+//                            val newTotal = (solution[index] + newSolution[index + newRoll]) % mod
+//                            newSolution[index + newRoll] = newTotal
+//                        }
+//                    }
+//                }
+//                solution = newSolution
+//            }
+//
+//            return solution.last()
+//        }
 
         fun numRollsToTarget_2Dmatrix(d: Int, f: Int, target: Int): Int {
 
