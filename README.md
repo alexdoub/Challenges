@@ -418,4 +418,4 @@ Combinations: e.g. CoinChangeII
 Permutations: e.g. CombinationSumIV
 	For each index, loop through values. (Enumerate columns)
 
-![Combinations & Permutations](dp combination permutations.jpg)
+<img src="dp combination permutations.jpg"/>
