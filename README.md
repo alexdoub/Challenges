@@ -409,13 +409,13 @@ Note: Simple means that this can be optimized to replace each array after proces
 
 ### DP Tricks
 
-Usually there is a base case of 0=1
-Usually you do NOT add +1, you += a previous value
+Usually there is a base case of 0=1  
+Usually you do NOT add +1, you += a previous value  
 
-Combinations: e.g. CoinChangeII
-	For each value, loop DP rows. (Enumerate rows)
+Combinations: e.g. CoinChangeII  
+	For each value, loop DP rows. (Enumerate rows)  
 
-Permutations: e.g. CombinationSumIV
-	For each index, loop through values. (Enumerate columns)
+Permutations: e.g. CombinationSumIV  
+	For each index, loop through values. (Enumerate columns)  
 
 <img src="dp combination permutations.jpg"/>
