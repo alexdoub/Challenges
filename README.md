@@ -331,6 +331,8 @@ A collection of solutions to various programming challenges I found online.
 	Greedy loop. Store past 3 values. Loop over nums & set this sum as the value + max of two or three houses back.  
 **LRUCache**  
 	Hashmap & Linked List. Hashmap points to LL nodes. Linked list node holds key, value, prev & next. On put, push the tail off if new key, or replace existing node & move to front. On get, move node to front.  
+**PossibleIPAddresses** - https://leetcode.com/problems/restore-ip-addresses/  
+	Recursion. Make recursive function that takes in an index & a 'work in progress' list. Branch out 3 times, adding a 1-3 digit substring to the used list. Base case -- if theres 4 batches in the list then we are done. Be sure to verify that a batch is a valid number. Additional optimizations include: leave enough digits for remaining batches & make sure there arent too many digits remaining for remaining batches. Note: This algo runs in constant time regardless, as input can be at max 12 digits.  
 
 ## TODO:
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/
@@ -405,6 +407,7 @@ Note: Simple means that this can be optimized to replace each array after proces
 **Fixed Sliding Window** - StringIncludesPermutation  
 **Variable Sliding Window** - MinWindowSubstring  
 **Closing Sliding Window** - ValidPalindromeWithSkips  
+**RecursiveDFS** - PossibleIPAddresses  
 
 
 ### DP Tricks
@@ -419,3 +422,5 @@ Permutations: e.g. CombinationSumIV
 	For each index, loop through values. (Enumerate columns)  
 
 <img src="dp combination permutations.jpg"/>
+
+Trick to remember: Think of how you draw a P. Top to bottom, come back up and go right a bit.  
