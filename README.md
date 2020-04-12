@@ -333,6 +333,8 @@ A collection of solutions to various programming challenges I found online.
 	Hashmap & Linked List. Hashmap points to LL nodes. Linked list node holds key, value, prev & next. On put, push the tail off if new key, or replace existing node & move to front. On get, move node to front.  
 **PossibleIPAddresses** - https://leetcode.com/problems/restore-ip-addresses/  
 	Recursion. Make recursive function that takes in an index & a 'work in progress' list. Branch out 3 times, adding a 1-3 digit substring to the used list. Base case -- if theres 4 batches in the list then we are done. Be sure to verify that a batch is a valid number. Additional optimizations include: leave enough digits for remaining batches & make sure there arent too many digits remaining for remaining batches. Note: This algo runs in constant time regardless, as input can be at max 12 digits.  
+**RotateLinkedList** - https://leetcode.com/problems/rotate-list/  
+	Loop. Get length of head. Decide depth of new head, using mod to account for large rolls. Early terminate if no roll necessary.  Loop down and find new tail and new head. Null out new tail. Append original head to original tail, then return new head.    
 
 ## TODO:
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/

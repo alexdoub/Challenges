@@ -30,36 +30,33 @@ object ReverseLinkedList {
         return prev
     }
 
+    // WORKS
+    // Note: if you run into crazy problems make sure you have the right thing set!!
+    fun reverseList_not_best(head: ListNode?): ListNode? {
+        if (head == null) return head
 
+        var prev: ListNode? = null
+        var tail: ListNode = head
+        var next: ListNode? = tail.next
+        while (next != null) {
+            //set up next next
+            val newNext = next.next //THIS LINE WAS tail.next WHICH WAS WRONG!!
 
-    // ran into issues... would not recommend
-//    fun reverseList_FAILURE(head: ListNode?): ListNode? {
-//        if (head == null) return head
-//
-//        var prev: ListNode? = null
-//        var tail = head!!
-//        var next: ListNode? = tail.next
-//        while (next != null) {
-//            //set up next next
-//            val newNext = tail.next
-//
-//            // T -> P
-//            tail.next = prev
-//
-//            // Prev IS tail
-//            prev = tail
-//
-//            // Tail IS next
-//            tail = next
-//
-//            // Set next
-//            next = newNext
-//        }
-//        tail.next = prev
-//
-//
-//        return tail
-//    }
+            // T -> P
+            tail.next = prev
+
+            // Prev IS tail
+            prev = tail
+
+            // Tail IS next
+            tail = next
+
+            // Set next
+            next = newNext
+        }
+        tail.next = prev
+        return tail
+    }
 
 //    // WORKS
 //    fun reverseList(initialHead: ListNode?): ListNode? {
