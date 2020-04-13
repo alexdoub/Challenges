@@ -7,6 +7,21 @@ package alex.com.challenges.cs
 
 object InPlaceRemoveElements {
 
+    // Single loop with single pointer
+    // BEST
+    fun removeElement(nums: IntArray, `val`: Int): Int {
+        var start = 0
+        for (x in nums.indices) {
+            if (nums[x] != `val`) {
+                val tmp = nums[x]
+                nums[x] = nums[start]
+                nums[start] = tmp
+                start++
+            }
+        }
+        return start
+    }
+
     //2 way loop
     //BAD. Too complex & loses ordering
     fun removeElement_1(nums: IntArray, `val`: Int): Int {
@@ -30,21 +45,6 @@ object InPlaceRemoveElements {
                     end--
                 }
             } else {
-                start++
-            }
-        }
-        return start
-    }
-
-    // Single loop with single pointer
-    // BEST
-    fun removeElement(nums: IntArray, `val`: Int): Int {
-        var start = 0
-        for (x in nums.indices) {
-            if (nums[x] != `val`) {
-                val tmp = nums[x]
-                nums[x] = nums[start]
-                nums[start] = tmp
                 start++
             }
         }
