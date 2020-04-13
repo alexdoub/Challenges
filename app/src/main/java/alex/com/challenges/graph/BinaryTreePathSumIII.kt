@@ -21,9 +21,7 @@ object BinaryTreePathSumIII {
     fun pathSumInclusive(root: TreeNode?, targetSum: Int): Int {
         if (root == null) return 0
 
-        var paths = 0
-        if (targetSum - root.`val` == 0) paths++    // We have reached a target sum through a continuation
-
+        var paths = if (targetSum - root.`val` == 0) 1 else 0
         paths += pathSumInclusive(root.left, targetSum - root.`val`)
         paths += pathSumInclusive(root.right, targetSum - root.`val`)
         return paths

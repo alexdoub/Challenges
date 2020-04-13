@@ -12,7 +12,7 @@ object StringIncludesPermutation {
     // Use array of char counts instead of hashmap of char counts.... but why
 
     //168 ms	35.6 MB
-    fun checkInclusion_borrowed_BEST(s1: String, s2: String): Boolean {
+    fun checkInclusion(s1: String, s2: String): Boolean {
         if (s1.length > s2.length) return false
 
         // Fill out small int array of char counts

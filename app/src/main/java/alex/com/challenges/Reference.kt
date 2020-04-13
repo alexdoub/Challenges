@@ -55,7 +55,9 @@ object Reference {
         BinaryTreePathSumI
         BinaryTreePathSumII
 
-        //Tree Recursion x2
+        // Tree Recursion x2 - Use with partial paths
+        // 1st recursive function recursively calls 2nd on every node
+        // 2nd recursive function recursively builds paths to leaf nodes
         BinaryTreeMaxPathSum3
         BinaryTreePathSumIII
 

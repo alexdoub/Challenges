@@ -21,7 +21,7 @@ class BinaryTreeMaxPathSumTest {
         // 2, 3
         val tree: Array<Int?> = arrayOf(1, 2, 3)
         val head = buildTree(tree)
-        assertEquals(6, BinaryTreeMaxPathSum3.maxPathSumWithBranching(head))
+        assertEquals(6, BinaryTreeMaxPathSum3.maxPathSum(head))
     }
 
     @Test
@@ -31,7 +31,7 @@ class BinaryTreeMaxPathSumTest {
         // n, n, 15, 7
         val tree: Array<Int?> = arrayOf(-10, 9, 20, null, null, 15, 7)
         val head = buildTree(tree)
-        assertEquals(42, BinaryTreeMaxPathSum3.maxPathSumWithBranching(head))
+        assertEquals(42, BinaryTreeMaxPathSum3.maxPathSum(head))
     }
 
     @Test
@@ -42,7 +42,7 @@ class BinaryTreeMaxPathSumTest {
         // Should equal 89
         val tree: Array<Int?> = arrayOf(-1000, -11, -12, 100, -13, -14, null)
         val head = buildTree(tree)
-        assertEquals(100, BinaryTreeMaxPathSum3.maxPathSumWithBranching(head))
+        assertEquals(100, BinaryTreeMaxPathSum3.maxPathSum(head))
     }
 
     @Test
@@ -53,7 +53,7 @@ class BinaryTreeMaxPathSumTest {
         // Should equal 89
         val tree: Array<Int?> = arrayOf(-1000, -11, -12, 100, -13, null, null)
         val head = buildTree(tree)
-        assertEquals(100, BinaryTreeMaxPathSum3.maxPathSumWithBranching(head))
+        assertEquals(100, BinaryTreeMaxPathSum3.maxPathSum(head))
     }
 
     @Test
@@ -64,7 +64,7 @@ class BinaryTreeMaxPathSumTest {
         //4, n
         val tree: Array<Int?> = arrayOf(1, 2, null, 3, null, 4, null)
         val head = buildTree(tree)
-        assertEquals(10, BinaryTreeMaxPathSum3.maxPathSumWithBranching(head))
+        assertEquals(10, BinaryTreeMaxPathSum3.maxPathSum(head))
     }
 
     @Test
@@ -76,7 +76,7 @@ class BinaryTreeMaxPathSumTest {
         //-1, n
         val tree: Array<Int?> = arrayOf(1, 2, null, 3, null, 4, null, -1, null)
         val head = buildTree(tree)
-        assertEquals(10, BinaryTreeMaxPathSum3.maxPathSumWithBranching(head))
+        assertEquals(10, BinaryTreeMaxPathSum3.maxPathSum(head))
     }
 
     @Test
@@ -89,7 +89,7 @@ class BinaryTreeMaxPathSumTest {
         //10, n
         val tree: Array<Int?> = arrayOf(1, 2, null, 3, null, 4, null, -1, null, 2, null)
         val head = buildTree(tree)
-        assertEquals(11, BinaryTreeMaxPathSum3.maxPathSumWithBranching(head))
+        assertEquals(11, BinaryTreeMaxPathSum3.maxPathSum(head))
     }
 
     @Test
@@ -97,7 +97,7 @@ class BinaryTreeMaxPathSumTest {
         //     1
         val tree: Array<Int?> = arrayOf(1)
         val head = buildTree(tree)
-        assertEquals(1, BinaryTreeMaxPathSum3.maxPathSumWithBranching(head))
+        assertEquals(1, BinaryTreeMaxPathSum3.maxPathSum(head))
     }
 
     // NOTE: This requires only a single branch! Cannot branch twice
@@ -110,7 +110,7 @@ class BinaryTreeMaxPathSumTest {
         //NOTE: Spreads wide, skips 2, 4 and 1
         val tree: Array<Int?> = arrayOf(5, 4, 8, 11, null, 13, 4, 7, 2, null, null, null, 1)
         val head = buildTree(tree)
-        assertEquals(48, BinaryTreeMaxPathSum3.maxPathSumWithBranching(head))
+        assertEquals(48, BinaryTreeMaxPathSum3.maxPathSum(head))
     }
 
     //Left half gets 2, right half gets 1, + top
@@ -122,7 +122,7 @@ class BinaryTreeMaxPathSumTest {
         // 0,1,-1,0, -1,0,1,0
         val tree: Array<Int?> = arrayOf(1, 0, 1, 1, 2, 0, -1, 0, 1, -1, 0, -1, 0, 1, 0)
         val head = buildTree(tree)
-        assertEquals(4, BinaryTreeMaxPathSum3.maxPathSumWithBranching(head))
+        assertEquals(4, BinaryTreeMaxPathSum3.maxPathSum(head))
     }
 
     @Test
@@ -133,7 +133,7 @@ class BinaryTreeMaxPathSumTest {
         // 0,1,-1,0, -1,0,1,0
         val tree: Array<Int?> = arrayOf(10, 0, 3, 1, 2, 0, -1, 0, 1, -1, 0, -1, 0, 1, 0)
         val head = buildTree(tree)
-        assertEquals(15, BinaryTreeMaxPathSum3.maxPathSumWithBranching(head))
+        assertEquals(15, BinaryTreeMaxPathSum3.maxPathSum(head))
     }
 
 }
