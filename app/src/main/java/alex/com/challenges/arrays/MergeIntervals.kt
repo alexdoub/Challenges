@@ -7,9 +7,13 @@ package alex.com.challenges.arrays
 
 object MergeIntervals {
 
-    //@@NOTE: THIS FAILS. [1,1].
-    //ALSO IT SCALES LIKE SHIT DUE TO BOOL ARRAY LOL
     fun merge(intervals: Array<IntArray>): Array<IntArray> {
+
+    }
+
+    //Note: Fails on intervals next to eachother - e.g.[[1,4],[5,6]]
+    //ALSO IT SCALES LIKE SHIT DUE TO BOOL ARRAY LOL
+    fun merge_fail(intervals: Array<IntArray>): Array<IntArray> {
         var booleanArray = BooleanArray(0)
 
         // Fill out array
@@ -17,10 +21,11 @@ object MergeIntervals {
             val start = interval[0]
             val end = interval[1]
             if (end > booleanArray.size-1) {
-                booleanArray = booleanArray.copyOf(end)
+                // Expand array
+                booleanArray = booleanArray.copyOf(end+1)
             }
 
-            booleanArray.fill(true, start, end)
+            booleanArray.fill(true, start, end+1)
         }
 
         //Prepare return array
@@ -41,13 +46,13 @@ object MergeIntervals {
             } else {
                 // Found stop or successive stop
                 if (recording) {
-                    rArray.add(intArrayOf(start, end))
+                    rArray.add(intArrayOf(start, end-1))
                     recording = false
                 }
             }
         }
         if (recording) {
-            rArray.add(intArrayOf(start, booleanArray.size))
+            rArray.add(intArrayOf(start, booleanArray.size-1))
         }
         return rArray.toTypedArray()
     }
