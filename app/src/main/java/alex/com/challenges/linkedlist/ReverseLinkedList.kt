@@ -10,6 +10,22 @@ import alex.com.challenges.common.ListNode
 
 object ReverseLinkedList {
 
+    // Recursive: Was surprisingly easy
+    fun reverseList_recursive(head: ListNode?): ListNode? {
+
+        fun recurse(prev: ListNode?, node: ListNode): ListNode {
+            // Always point node to prev
+            val next = node.next
+            node.next = prev
+
+            // Handle end or keep going
+            return if (next == null) node
+            else recurse(node, next)
+        }
+        if (head == null) return null
+        return recurse(null, head)
+    }
+
     fun reverseList(head: ListNode?): ListNode? {
 
         var prev: ListNode? = null
