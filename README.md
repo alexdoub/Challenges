@@ -428,4 +428,4 @@ Permutations: e.g. CombinationSumIV
 
 <img src="dp combination permutations.jpg"/>
 
-Trick to remember: Think of how you draw a P. Top to bottom, come back up and go right a bit.  
+Trick to remember: Think of how you draw a P. Top to bottom, come back up and go right a bit.   
