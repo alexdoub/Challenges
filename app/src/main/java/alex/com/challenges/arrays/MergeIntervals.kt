@@ -7,9 +7,9 @@ package alex.com.challenges.arrays
 
 object MergeIntervals {
 
-    fun merge(intervals: Array<IntArray>): Array<IntArray> {
-
-    }
+//    fun merge(intervals: Array<IntArray>): Array<IntArray> {
+//
+//    }
 
     //Note: Fails on intervals next to eachother - e.g.[[1,4],[5,6]]
     //ALSO IT SCALES LIKE SHIT DUE TO BOOL ARRAY LOL

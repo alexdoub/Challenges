@@ -2,6 +2,8 @@ package alex.com.challenges.cs
 
 /**
  * Created by Alex Doub on 4/3/2020.
+ *
+ * NOTE: A LinkedHashSet could accomplish all of this
  */
 
 class LRUCache(val capacity: Int) {
@@ -76,4 +78,32 @@ class LRUCache(val capacity: Int) {
         }
     }
 
+}
+
+
+class LRUCacheFromLHM(val capacity: Int) {
+    val map = LinkedHashMap<Int, Int>()
+
+    fun get(key: Int): Int {
+        val value = map[key]
+
+        if (value != null) {
+            map.remove(key)
+            map[key] = value
+        }
+
+        return value ?: -1
+    }
+
+    fun put(key: Int, value: Int) {
+
+        map[key] = value
+
+        while (map.size > capacity) {
+
+            // this part is sketchy, cant guarantee constant time deletes
+            map.remove(map.keys.first())
+//            map.remove(map.entries.first().key)
+        }
+    }
 }
