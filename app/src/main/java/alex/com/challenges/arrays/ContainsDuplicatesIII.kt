@@ -5,18 +5,19 @@ package alex.com.challenges.arrays
  * @author alexdoub
  */
 
-// its duplicate if its up to K away and up to T diff
+// "The function returns true if there is a duplicate item in the array.
+// An item is a duplicate if its up to K away and within T away from another element"
 object ContainsDuplicatesIII {
 
+
+    //@@TODO: Can you convert out the long and handle int rollover? without using mod. you could just subtract (t-1) before division (from neg value only). if it rolled over put in the min bucket
+
     // Group into buckets
-    // Normalize buckets by converting to long
+    // Normalize buckets by converting to long and subtracting Int Min. (this is because values immediately before zero divide to zero, making the zero bucket too big)
     //372 ms	36 MB
     fun containsNearbyAlmostDuplicate(nums: IntArray, k: Int, t: Int): Boolean {
 
         val t = t.toLong()
-        fun getBucket(value: Int): Long {
-            return (value.toLong() - Int.MIN_VALUE) / (t + 1)
-        }
 
         if (t < 0) return false
         if (k <= 0) return false    // cant compare nothing with nothing
@@ -25,11 +26,10 @@ object ContainsDuplicatesIII {
         for (x in nums.indices) {
 
             val thisValue = nums[x]
-            val thisBucket = getBucket(thisValue)
+            val thisBucket = (thisValue.toLong() - Int.MIN_VALUE) / (t + 1)
 
             // Check existing buckets
             map[thisBucket]?.let {
-                println(".. bucket exists")
                 return true
             }
             map[thisBucket - 1]?.let { thatValue ->
@@ -50,7 +50,7 @@ object ContainsDuplicatesIII {
             if (map.size > k) {
                 val y = x - k
                 val thatValue = nums[y]
-                val thatBucket = getBucket(thatValue)
+                val thatBucket = (thatValue.toLong() - Int.MIN_VALUE) / (t + 1)
                 map.remove(thatBucket)
             }
         }

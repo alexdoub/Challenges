@@ -337,6 +337,8 @@ A collection of solutions to various programming challenges I found online.
 	Loop. Get length of head. Decide depth of new head, using mod to account for large rolls. Early terminate if no roll necessary.  Loop down and find new tail and new head. Null out new tail. Append original head to original tail, then return new head.  
 **TotalTimeOfJobsWithCooldown** - FB TI  
 	Simple loop. Use a hashmap to store when a job will be ready to run again. On loop, add remaining difference if exists, then increment total time.  
+**ContainsDuplicatesIII** - https://leetcode.com/problems/contains-duplicate-iii/submissions/  
+	Single loop with buckets. Use a map to store values in buckets, with size determined by T. Zero-normalize values so -1 doesn't offset buckets. After bucket calculated, check if bucket already exists. Check ahead and behind & do a fine compare. If buckets > k, remove last bucket  
 
 ## TODO:
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/
@@ -381,6 +383,7 @@ SubarraySum
 **Loop + Branch** - PhoneNumberCombos  
 **Loop + Inner Loop** - PalindromeSubstring, MixedWordsConcatenated  
 **Loop + Queues** - AssignCookies  
+**Loop + Buckets** - ContainsDuplicatesIII  
 **Recursive DFS** -  PermutationsI, PermutationsII, GenerateParentheses, CombinationSum, CombinationSumII, CombinationSumIII  
 **Sliding Window** - SearchInRotatedArray, GetRangeOfNumInArray, 3-Sum, 3-SumClosests, ContainerWithMostWater  
 **2D Sliding Window** - SmallestSpanningRange, InPlaceRemoveElements  
