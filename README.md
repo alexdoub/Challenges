@@ -1,4 +1,4 @@
-A collection of solutions to various programming challenges I found online.  
+A collection of solutions to various programming challenges I found online.   
 
 # Challenges
 **MazeMatrixMinPath** - Simple maze navigation problem. Shortest solution wins  
