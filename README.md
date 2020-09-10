@@ -341,8 +341,8 @@ A collection of solutions to various programming challenges I found online.
 	Single loop with buckets. Use a map to store values in buckets, with size determined by T. Zero-normalize values so -1 doesn't offset buckets. After bucket calculated, check if bucket already exists. Check ahead and behind & do a fine compare. If buckets > k, remove last bucket  
 
 ## TODO:
-https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/
-https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/
+https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/  
+https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/  
 
 Combo Sum Suite
 Coin Change II
